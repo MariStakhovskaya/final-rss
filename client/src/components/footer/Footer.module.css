@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.container > p {
+  color: #c5c5c5;
+  font-weight: 700;
+  font-size: 28px;
+  margin: 0;
+}
+.container a {
+  height: 38px;
+}
+.container svg {
+  height: 38px;
+  cursor: pointer;
+}
+.container svg:hover path {
+  fill: #000000;
+  transition: all 0.3s ease-in-out;
+}

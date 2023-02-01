@@ -3,7 +3,7 @@ import './index.css';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import React from 'react';
-import Root from './routes/root';
+import Root from './routes/root/Root';
 import ErrorPage from './routes/error-page';
 import Login from './routes/login-page';
 import Registration from './routes/registration-page';

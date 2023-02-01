@@ -18,7 +18,7 @@
   cursor: pointer;
 }
 .navigation > svg:hover path {
-  fill: black;
+  fill: #000000;
   transition: all 0.3s ease-in-out;
 }
 .container > p {
