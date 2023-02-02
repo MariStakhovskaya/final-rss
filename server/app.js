@@ -13,10 +13,12 @@ const corsOptions = {
  };
  app.use(express.json(cors(corsOptions)))
 app.use('/api/auth',cors(corsOptions), require('./routes/auth.routes'))
+app.use('/users', cors(corsOptions), require('./routes/users.routes'))
+app.use('/meetings',cors(corsOptions), require('./routes/meeting.rotes'))
 
-app.get('/', (req, res) =>{
-res.send('hello world')
-})
+// app.get('/', (req, res) =>{
+// res.send('hello world')
+// })
 mongoose.set('strictQuery', true);
 
 const connection = async () => {
@@ -28,10 +30,11 @@ const connection = async () => {
     console.log('Database connected successfully')
 
  } catch (error) {
-    console.log('Error while connecting with the database', error)
+    console.log('Error while connecting with the database', error);
+    process.exit(1);
  }
 }
 app.listen(PORT, () => {
-    console.log(`Example app listening on port ${PORT}`)
+    console.log(`app listening on port ${PORT}`)
   })
 connection();

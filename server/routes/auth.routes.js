@@ -11,6 +11,7 @@ router.post(
     [
         check("email", "Некорректный email").isEmail().normalizeEmail(),
         check("password", "Minimum password length must be 4").isLength({ min: 4}),
+        check("name", "Minimum name length must be 3").isLength({ min: 3}),
       ],
      async (req, res) => {
 try {
@@ -22,7 +23,7 @@ try {
             message: "Incorrect registration data",
           });
     }
-    const {email, password} = req.body;
+    const {email, password, name} = req.body;
 // Check user in db
     const isPerson = await User.findOne({email})
 
@@ -33,7 +34,8 @@ try {
     const hashedPassword = await bycrypt.hash(password, 12)
     const user = new User({
         email, 
-        password: hashedPassword
+        password: hashedPassword,
+        name
     })
 
     await user.save();
@@ -79,7 +81,7 @@ router.post(
             const token = jwt.sign(
                 {userId: user.id},
                 config.get('jwtSecret'),
-                {expiresIn: "1h"},
+                {expiresIn: "20h"},
                 );
 
             res.json({token, userId: user.id})
