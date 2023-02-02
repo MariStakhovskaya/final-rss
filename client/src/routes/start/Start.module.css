@@ -1,0 +1,39 @@
+.slogan {
+  position: relative;
+  margin-top: 200px;
+  margin-left: 350px;
+}
+.slogan > h3 {
+  width: 1050px;
+  font-size: 64px;
+  font-weight: 400;
+}
+.slogan > h3 > span {
+  font-weight: 700;
+}
+.line {
+  position: absolute;
+  top: 46px;
+  left: 120px;
+  width: 910px;
+  height: 36px;
+  background: #FFC430;
+  z-index: -100;
+}
+.start__button {
+  cursor: pointer;
+  display: block;
+  background: #FFC430;
+  width: 296px;
+  display: block;
+  margin-left: 1073px;
+}
+.start__button:hover {
+  background: #e9ac11;
+  transition: all 0.3s ease-in-out;
+}
+.start__button > button p{
+  color: #000000;
+  font-weight: 700;
+  font-size: 24px;
+}

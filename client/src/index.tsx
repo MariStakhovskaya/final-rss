@@ -8,7 +8,8 @@ import ErrorPage from './routes/error-page';
 import Login from './routes/login/Login';
 import Registration from './routes/registration/Registration';
 import { CarsGame } from './components/cars-game';
-import { HomePage } from './routes/home-page';
+// import { HomePage } from './routes/home-page';
+import Start from './routes/start/Start';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <Start />,
       },
       {
         path: '/carsgame',

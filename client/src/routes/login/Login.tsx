@@ -2,6 +2,7 @@ import styles from './Login.module.css';
 import google from '../../images/google.svg';
 import SecondHeader from '../../components/secodHeader/SecondHeader';
 import Button from '../../components/custom/button/Button';
+import { Link } from 'react-router-dom';
 
 function Login() {
   return (
@@ -27,6 +28,9 @@ function Login() {
         <div className={styles.login__button}>
           <Button name="Log in" callback={() => {}} />
         </div>
+        <p>
+          Don't have an account? <Link to="/registration">Register</Link>
+        </p>
       </div>
     </div>
   );

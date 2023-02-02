@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 40px;
 }
 .login__input {
   display: flex;
@@ -75,4 +75,17 @@ h3 {
   color: #ffffff;
   font-weight: 700;
   font-size: 24px;
+}
+.login__input > p {
+  color: #a0a0a0;
+  font-size: 20px;
+}
+.login__input a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #2E294E;
+}
+.login__input a:hover {
+  text-decoration: underline;
+  transition: all 0.3s ease-in-out;
 }
