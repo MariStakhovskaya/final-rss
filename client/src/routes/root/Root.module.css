@@ -1,0 +1,14 @@
+.container {
+  display: grid;
+  grid-template-columns: 119px 1fr;
+}
+main {
+  width: 100%;
+}
+.content {
+  padding: 26px 80px 24px 73px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -1,0 +1,91 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.login__input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 43px 64px 49px 64px;
+  box-shadow: #0202463a 8px 8px 25px;
+  width: 580px;
+  margin: 0 auto;
+}
+h3 {
+  font-size: 36px;
+}
+.google__button {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.google__button > div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 580px;
+  padding: 8px 0;
+  border: 1px #eaeaea solid;
+}
+.google__button > div button p {
+  margin-left: 20px;
+}
+.google__button > img {
+  width: 37px;
+  height: 37px;
+  position: absolute;
+  left: 182px;
+}
+.or {
+  display: flex;
+  align-items: center;
+}
+.or > div {
+  width: 266px;
+  height: 1px;
+  background: #eaeaea;
+}
+.or > p {
+  font-size: 26px;
+  color: #909090;
+  margin: 12px;
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 62px;
+}
+.inputs > input {
+  width: 550px;
+  padding: 15px;
+  border: 1px #eaeaea solid;
+}
+.inputs > input::placeholder {
+  color: #909090;
+}
+.login__button {
+  background: #2E294E;
+  width: 580px;
+  margin-bottom: 28px;
+}
+.login__button > button p{
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 24px;
+}
+.login__input > p {
+  color: #a0a0a0;
+  font-size: 20px;
+}
+.login__input a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #2E294E;
+}
+.login__input a:hover {
+  text-decoration: underline;
+  transition: all 0.3s ease-in-out;
+}
