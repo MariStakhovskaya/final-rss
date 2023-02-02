@@ -1,9 +1,14 @@
+import styles from './game-car.module.css';
+import hero from '../../../assets/car-game/hero.png';
+
 const GameCar = () => {
   return (
     <>
       <div className="game">
-        <div className="word"></div>
-        <div className="car"></div>
+        <div className="word">ABCDE</div>
+        <div className="car">
+          <img src={hero} alt="Hero" />
+        </div>
       </div>
       <div className="footer">
         <p className="counter">
