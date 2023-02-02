@@ -1,4 +1,9 @@
-.registration__input {
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.login__input {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -61,26 +66,13 @@ h3 {
 .inputs > input::placeholder {
   color: #909090;
 }
-.create__button {
+.login__button {
   background: #2E294E;
   width: 580px;
   margin-bottom: 28px;
 }
-.create__button > button p{
+.login__button > button p{
   color: #ffffff;
   font-weight: 700;
   font-size: 24px;
-}
-.registration__input > p {
-  color: #a0a0a0;
-  font-size: 20px;
-}
-.registration__input a {
-  cursor: pointer;
-  text-decoration: none;
-  color: #2E294E;
-}
-.registration__input a:hover {
-  text-decoration: underline;
-  transition: all 0.3s ease-in-out;
 }

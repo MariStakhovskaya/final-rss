@@ -2,11 +2,13 @@ import { Link } from 'react-router-dom';
 import styles from './SecondHeader.module.css';
 
 function SecondHeader() {
+  const path = '/';
+
   return (
     <div className={styles.container}>
       <div className={styles.user}>
         <div className={styles.status}>
-          <Link to="login">Log in</Link>
+          <Link to="/login">Log in</Link>
         </div>
         <svg
           width="18"
