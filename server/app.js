@@ -6,6 +6,14 @@ const { default: mongoose } = require("mongoose");
 const app = express();
 const PORT = process.env.port || 8000;
 
+const whitelist = [
+   "https://final-rss-server.onrender.com",
+   //"https://mern-app-development.up.railway.app",
+   "http://localhost:8000",
+   "http://localhost:5000",
+   "http://localhost:3000",
+ ];
+
 const corsOptions = {
    origin: "https://final-rss-server.onrender.com",
    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
@@ -31,7 +39,7 @@ const connection = async () => {
 
  } catch (error) {
     console.log('Error while connecting with the database', error);
-    process.exit(1);
+    //process.exit(1);
  }
 }
 app.listen(PORT, () => {
