@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Button from '../../components/custom/button/Button';
 import SecondHeader from '../../components/secodHeader/SecondHeader';
 import styles from './Start.module.css';
@@ -14,7 +15,9 @@ function Start() {
         <div className={styles.line}></div>
       </div>
       <div className={styles.start__button}>
-        <Button name="Join Now" callback={() => {}} />
+        <Link to="/registration">
+          <Button name="Join Now" callback={() => {}} />
+        </Link>
       </div>
     </div>
   );
