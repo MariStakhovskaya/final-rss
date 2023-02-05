@@ -10,6 +10,7 @@ function SecondHeader() {
   const dispatch = useDispatch<AppDispatch>();
   const onClickLogout = () => {
     dispatch(logout());
+    localStorage.removeItem('token');
   };
   return (
     <div className={styles.container}>

@@ -1,20 +1,19 @@
 import Button from '../../components/custom/button/Button';
-import { ChangeEvent, useState, useEffect } from 'react';
+import { ChangeEvent, useState } from 'react';
 import styles from './Registration.module.css';
 import google from '../../images/google.svg';
 import SecondHeader from '../../components/secodHeader/SecondHeader';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { fetchMeeting } from '../../store/slice/meetingSlice';
+import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../store/store';
+import { fetchRegister } from '../../store/slice/authSlice';
+import { setIsAuth } from '../../store/slice/authSlice';
+import { Navigate } from 'react-router-dom';
 
 function Registration() {
+  const isAuth = useSelector(setIsAuth);
+  console.log(isAuth);
   const dispatch = useDispatch<AppDispatch>();
-  useEffect(() => {
-    //instance.get('meetings');
-    dispatch(fetchMeeting());
-  }, []);
-
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -30,9 +29,15 @@ function Registration() {
   };
 
   const onClickHandler = () => {
-    console.log('click');
-    // dispatch(createUser({ name, email, password }));
+    dispatch(fetchRegister({ name, email, password }));
+    setEmail('');
+    setName('');
+    setPassword('');
   };
+
+  if (isAuth) {
+    return <Navigate to="/profile" />;
+  }
 
   return (
     <div className={styles.container}>

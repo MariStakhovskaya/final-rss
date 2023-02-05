@@ -13,6 +13,7 @@ import Login from './routes/login/Login';
 import Registration from './routes/registration/Registration';
 import { CarsGame } from './routes/cars-game';
 import Start from './routes/start/Start';
+import Profile from './routes/profile/Profile';
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: '/registration',
         element: <Registration />,
+      },
+      {
+        path: '/profile',
+        element: <Profile />,
       },
     ],
   },

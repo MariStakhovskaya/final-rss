@@ -27,7 +27,7 @@ function Login() {
     dispatch(fetchAuth({ email, password }));
   };
   if (isAuth) {
-    return <Navigate to="/" />;
+    return <Navigate to="/profile" />;
   }
   return (
     <div className={styles.container}>

@@ -15,6 +15,19 @@ export const fetchAuth = createAsyncThunk(
   }
 );
 
+export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
+  const { data } = await instance.get('api/auth/me');
+  return data;
+});
+
+export const fetchRegister = createAsyncThunk(
+  'auth/fetchRegister',
+  async (params: { name: string; email: string; password: string }) => {
+    const { data } = await instance.post('api/auth/register', params);
+    return data;
+  }
+);
+
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -24,6 +37,21 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    builder.addCase(fetchRegister.pending, (state) => {
+      state.status = 'loading';
+      state.data = null;
+    });
+    builder.addCase(fetchRegister.fulfilled, (state, action) => {
+      state.status = 'loaded';
+      state.data = action.payload;
+      if (state.data) {
+        localStorage.setItem('token', action.payload.token);
+      }
+    });
+    builder.addCase(fetchRegister.rejected, (state) => {
+      state.status = 'error';
+      state.data = null;
+    });
     builder.addCase(fetchAuth.pending, (state) => {
       state.status = 'loading';
       state.data = null;
@@ -31,8 +59,23 @@ const authSlice = createSlice({
     builder.addCase(fetchAuth.fulfilled, (state, action) => {
       state.status = 'loaded';
       state.data = action.payload;
+      if (state.data) {
+        localStorage.setItem('token', action.payload.token);
+      }
     });
     builder.addCase(fetchAuth.rejected, (state) => {
+      state.status = 'error';
+      state.data = null;
+    });
+    builder.addCase(fetchAuthMe.pending, (state) => {
+      state.status = 'loading';
+      state.data = null;
+    });
+    builder.addCase(fetchAuthMe.fulfilled, (state, action) => {
+      state.status = 'loaded';
+      state.data = action.payload;
+    });
+    builder.addCase(fetchAuthMe.rejected, (state) => {
       state.status = 'error';
       state.data = null;
     });
