@@ -8,19 +8,20 @@ const PORT = process.env.port || 8000;
 
 const whitelist = [
    "https://final-rss-server.onrender.com",
-   //"https://mern-app-development.up.railway.app",
    "http://localhost:8000",
    "http://localhost:5000",
    "http://localhost:3000",
  ];
 
 const corsOptions = {
-   origin: "https://final-rss-server.onrender.com",
+   origin: "http://localhost:3000",
    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+   Headers: '*',
    mode: "no-cors",
  };
- app.use(express.json(cors(corsOptions)))
+ app.use(express.json({ extended: true }), cors(corsOptions));
 app.use('/api/auth',cors(corsOptions), require('./routes/auth.routes'))
+app.use('/api/auth', cors(corsOptions), require('./routes/auth.routes'))
 app.use('/users', cors(corsOptions), require('./routes/users.routes'))
 app.use('/meetings',cors(corsOptions), require('./routes/meeting.rotes'))
 
