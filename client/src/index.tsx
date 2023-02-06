@@ -12,6 +12,7 @@ import { GameCar } from './routes/cars-game-pages/game-car/game-car';
 import Login from './routes/login/Login';
 import Registration from './routes/registration/Registration';
 import { CarsGame } from './routes/cars-game';
+import FunnyStoryGame from './routes/funnyStoryGame/FunnyStoryGame';
 import Start from './routes/start/Start';
 import Profile from './routes/profile/Profile';
 
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
             element: <FinishCarGame />,
           },
         ],
+      },
+      {
+        path: '/funnyStory',
+        element: <FunnyStoryGame />,
       },
       {
         path: '/login',
