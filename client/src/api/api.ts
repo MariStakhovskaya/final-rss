@@ -1,7 +1,9 @@
 import axios, { AxiosHeaders } from 'axios';
 
 export const instance = axios.create({
-  baseURL: 'http://localhost:8000/',
+  // baseURL: 'http://localhost:8000/',
+  baseURL: 'https://final-rss-server.onrender.com',
+  withCredentials: false,
 });
 
 instance.interceptors.request.use((config) => {

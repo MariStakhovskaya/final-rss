@@ -1,19 +1,18 @@
 import styles from './Root.module.css';
-import { Outlet, Navigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Footer from '../../components/footer/Footer';
 import Header from '../../components/header/Header';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { useEffect } from 'react';
-import { fetchAuthMe, setIsAuth } from '../../store/slice/authSlice';
+import { fetchAuthMe } from '../../store/slice/authSlice';
 
 export default function Root() {
   const dispatch = useDispatch<AppDispatch>();
-  const isAuth = useSelector(setIsAuth);
 
   useEffect(() => {
     dispatch(fetchAuthMe());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={styles.container}>
