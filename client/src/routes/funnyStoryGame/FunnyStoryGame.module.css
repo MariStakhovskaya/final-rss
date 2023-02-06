@@ -1,1 +1,52 @@
-
+.container {
+  width: 60%;
+  margin: 0 auto;
+  min-height: calc(100vh - 26px - 38px - 24px - 30px);
+  display: grid;
+  grid-template-rows: 72px 1fr 76px;
+  border: 1px #eeeeee solid;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+.name,
+.input__message {
+  background: #eeeeee;
+  padding: 20px;
+  margin: 0;
+}
+.name {
+  font-size: 24px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  text-align: center;
+}
+.input__message {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.input__message > svg {
+  cursor: pointer;
+}
+.input__message > svg:hover path {
+  fill: #000000;
+  transition: all 0.3s ease-in-out;
+}
+.message {
+  width: 90%;
+  height: 34px;
+  background: white;
+  border: 1px #bebebe solid;
+  font-size: 20px;
+  padding: 0 10px;
+  border-radius: 8px;
+}
+.content {
+  padding: 20px;
+}

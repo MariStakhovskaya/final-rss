@@ -32,7 +32,7 @@
   background: #e9ac11;
   transition: all 0.3s ease-in-out;
 }
-.start__button > button p{
+.start__button > a button p {
   color: #000000;
   font-weight: 700;
   font-size: 24px;
