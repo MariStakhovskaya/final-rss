@@ -5,11 +5,12 @@ import { RootState } from '../store';
 const initialState = {
   data: null,
   status: 'loading',
+  error: '',
 };
 
 export const fetchAuth = createAsyncThunk(
   'auth/fetchAuth',
-  async (params: { email: string; password: string }) => {
+  async (params: { email: string; password: string }, { dispatch }) => {
     const { data } = await instance.post('api/auth/login', params);
     return data;
   }
@@ -35,6 +36,9 @@ const authSlice = createSlice({
     logout: (state) => {
       state.data = null;
     },
+    setErrorREdux: (state, action) => {
+      state.error = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchRegister.pending, (state) => {
@@ -48,16 +52,18 @@ const authSlice = createSlice({
         localStorage.setItem('token', action.payload.token);
       }
     });
-    builder.addCase(fetchRegister.rejected, (state) => {
+    builder.addCase(fetchRegister.rejected, (state, action) => {
       state.status = 'error';
       state.data = null;
     });
     builder.addCase(fetchAuth.pending, (state) => {
       state.status = 'loading';
       state.data = null;
+      state.error = '';
     });
     builder.addCase(fetchAuth.fulfilled, (state, action) => {
       state.status = 'loaded';
+      state.error = '';
       state.data = action.payload;
       if (state.data) {
         localStorage.setItem('token', action.payload.token);
@@ -65,14 +71,15 @@ const authSlice = createSlice({
     });
     builder.addCase(fetchAuth.rejected, (state) => {
       state.status = 'error';
+      state.error = 'Неверный email или пароль';
       state.data = null;
     });
     builder.addCase(fetchAuthMe.pending, (state) => {
-      state.status = 'loading';
+      state.status = 'loadingMe';
       state.data = null;
     });
     builder.addCase(fetchAuthMe.fulfilled, (state, action) => {
-      state.status = 'loaded';
+      state.status = 'loadedMe';
       state.data = action.payload;
     });
     builder.addCase(fetchAuthMe.rejected, (state) => {
@@ -83,7 +90,9 @@ const authSlice = createSlice({
 });
 
 export const setIsAuth = (state: RootState) => Boolean(state.auth.data);
+export const error = (state: RootState) => state.auth.error;
+export const isLoading = (state: RootState) => state.auth.status;
 
 export const authReducer = authSlice.reducer;
 
-export const { logout } = authSlice.actions;
+export const { logout, setErrorREdux } = authSlice.actions;
