@@ -43,10 +43,12 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchRegister.pending, (state) => {
       state.status = 'loading';
+      state.error = '';
       state.data = null;
     });
     builder.addCase(fetchRegister.fulfilled, (state, action) => {
       state.status = 'loaded';
+      state.error = '';
       state.data = action.payload;
       if (state.data) {
         localStorage.setItem('token', action.payload.token);
@@ -54,6 +56,7 @@ const authSlice = createSlice({
     });
     builder.addCase(fetchRegister.rejected, (state, action) => {
       state.status = 'error';
+      state.error = 'Пользователь с таким e-mail уже зарегестрирован';
       state.data = null;
     });
     builder.addCase(fetchAuth.pending, (state) => {
