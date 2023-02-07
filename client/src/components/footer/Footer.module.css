@@ -17,6 +17,6 @@
   cursor: pointer;
 }
 .container svg:hover path {
-  fill: #000000;
+  fill: #808080;
   transition: all 0.3s ease-in-out;
 }

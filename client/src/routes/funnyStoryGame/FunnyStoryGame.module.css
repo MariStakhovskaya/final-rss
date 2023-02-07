@@ -35,7 +35,7 @@
   cursor: pointer;
 }
 .input__message > svg:hover path {
-  fill: #000000;
+  fill: #808080;
   transition: all 0.3s ease-in-out;
 }
 .message {
@@ -48,5 +48,25 @@
   border-radius: 8px;
 }
 .content {
-  padding: 20px;
+  padding: 20px 30px;
+  font-size: 20px;
+  height: calc(100vh - 26px - 38px - 24px - 30px - 72px - 76px - 40px);
+  overflow-y: auto;
+}
+.sms {
+  display: flex;
+}
+.sms > p {
+  width: fit-content;
+  background: #eeeeee;
+  padding: 3px 12px 7px 12px;
+  border-radius: 5px;
+  border: 1px #bebebe solid;
+  margin-bottom: 10px;
+}
+.smsBot {
+  justify-content: flex-start;
+}
+.smsMe {
+  justify-content: flex-end;
 }

@@ -5,26 +5,6 @@ import logo from '../../images/logo.svg';
 function Header() {
   return (
     <div className={styles.container}>
-      {/* <nav>
-        <ul>
-          <li>
-            <NavLink
-              to={`login`}
-              className={({ isActive }) => (isActive ? 'active-link' : '')}
-            >
-              Login
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to={`registration`}
-              className={({ isActive }) => (isActive ? 'active-link' : '')}
-            >
-              Registration
-            </NavLink>
-          </li>
-        </ul>
-      </nav> */}
       <div>
         <Link to="/">
           <img src={logo} width="119px" height="114px" alt="logo" />
