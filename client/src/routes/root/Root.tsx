@@ -9,11 +9,9 @@ import { fetchAuthMe } from '../../store/slice/authSlice';
 
 export default function Root() {
   const dispatch = useDispatch<AppDispatch>();
-
   useEffect(() => {
     dispatch(fetchAuthMe());
   }, [dispatch]);
-
   return (
     <div className={styles.container}>
       <Header />

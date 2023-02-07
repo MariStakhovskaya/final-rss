@@ -2,8 +2,16 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { instance } from '../../api/api';
 import { RootState } from '../store';
 
+export type UserType = {
+  _id?: string;
+  email?: string;
+  name?: string;
+  __v?: number;
+};
+
 const initialState = {
   data: null,
+  dataUser: {} as UserType,
   status: 'loading',
   error: '',
 };
@@ -12,12 +20,16 @@ export const fetchAuth = createAsyncThunk(
   'auth/fetchAuth',
   async (params: { email: string; password: string }, { dispatch }) => {
     const { data } = await instance.post('api/auth/login', params);
+    // dispatch(setUserData(data.userData));
     return data;
   }
 );
 
 export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
   const { data } = await instance.get('api/auth/me');
+  // const token = localStorage.getItem('token');
+  // console.log(token);
+  //dispatch(setUserData(data.userData));
   return data;
 });
 
@@ -35,9 +47,16 @@ const authSlice = createSlice({
   reducers: {
     logout: (state) => {
       state.data = null;
+      delete state.dataUser._id;
+      delete state.dataUser.name;
+      delete state.dataUser.__v;
+      delete state.dataUser.email;
     },
     setErrorREdux: (state, action) => {
       state.error = action.payload;
+    },
+    setUserData: (state, action) => {
+      state.dataUser = { ...action.payload };
     },
   },
   extraReducers: (builder) => {
@@ -52,6 +71,7 @@ const authSlice = createSlice({
       state.data = action.payload;
       if (state.data) {
         localStorage.setItem('token', action.payload.token);
+        localStorage.setItem('user', JSON.stringify(action.payload.userData));
       }
     });
     builder.addCase(fetchRegister.rejected, (state, action) => {
@@ -70,6 +90,7 @@ const authSlice = createSlice({
       state.data = action.payload;
       if (state.data) {
         localStorage.setItem('token', action.payload.token);
+        localStorage.setItem('user', JSON.stringify(action.payload.userData));
       }
     });
     builder.addCase(fetchAuth.rejected, (state) => {
@@ -78,16 +99,19 @@ const authSlice = createSlice({
       state.data = null;
     });
     builder.addCase(fetchAuthMe.pending, (state) => {
-      state.status = 'loadingMe';
+      state.status = 'loaded';
       state.data = null;
+      state.error = '';
     });
     builder.addCase(fetchAuthMe.fulfilled, (state, action) => {
-      state.status = 'loadedMe';
+      state.status = 'loaded';
       state.data = action.payload;
+      state.error = '';
     });
     builder.addCase(fetchAuthMe.rejected, (state) => {
       state.status = 'error';
       state.data = null;
+      state.error = '';
     });
   },
 });
@@ -95,7 +119,8 @@ const authSlice = createSlice({
 export const setIsAuth = (state: RootState) => Boolean(state.auth.data);
 export const error = (state: RootState) => state.auth.error;
 export const isLoading = (state: RootState) => state.auth.status;
+export const setUser = (state: RootState) => state.auth.data;
 
 export const authReducer = authSlice.reducer;
 
-export const { logout, setErrorREdux } = authSlice.actions;
+export const { logout, setErrorREdux, setUserData } = authSlice.actions;

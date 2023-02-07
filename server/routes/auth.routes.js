@@ -41,7 +41,7 @@ try {
         name
     })
 
-   const userNew =  await user.save();
+   const userData =  await user.save();
    res.header({
     "Access-Control-Allow-Origin": "*",
   });
@@ -54,7 +54,7 @@ try {
     //const { passwordHash, ...userData } = userNew._doc
 
     res.json({
-      userNew,
+      userData,
       token
     })
 
@@ -101,8 +101,7 @@ router.post(
                 config.get('jwtSecret'),
                 {expiresIn: "30d"},
                 );
-
-                const {passwordH, ...userData} = user._doc
+                const {passwordH, ...userData} = user._doc;
                 res.header({
                   "Access-Control-Allow-Origin": "*",
                 });
@@ -126,6 +125,9 @@ const checkAuth = (req, res, next) => {
      return res.status(403).json({message: 'нет доступа'}) 
       }
   }
+  if (!token) {
+    return res.status(403).json({message: 'нет доступа'}) 
+  }
 }
 
 router.get('/me', checkAuth, async (req, res) => {
@@ -140,7 +142,10 @@ router.get('/me', checkAuth, async (req, res) => {
           return res.status(404).json({message: 'User not found'})
         }
         const {password, ...userData} = user._doc
-          res.json({userData})
+        res.header({
+          "Access-Control-Allow-Origin": "*",
+        });
+          res.json(userData)
         } 
         catch (e) {
           res.status(500).json({message: 'Something wrong'})

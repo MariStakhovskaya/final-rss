@@ -19,6 +19,7 @@ import { Preloader } from '../../components/custom/preloader/Preloader';
 function Login() {
   const isAuth = useSelector(setIsAuth);
   const errorRedux = useSelector(error);
+  console.log(errorRedux);
   const loader = useSelector(isLoading);
   const dispatch = useDispatch<AppDispatch>();
 

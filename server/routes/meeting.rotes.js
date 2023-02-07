@@ -17,9 +17,10 @@ try {
         time,
         personCount,
     })
-
     await meeting.save();
-
+    res.header({
+      "Access-Control-Allow-Origin": "*",
+    });
     res.status(201).json({message: 'Meeting has been created'})
 
   } catch (e) {
@@ -38,6 +39,9 @@ router.put('/:id',async (req, res) => {
             meeting.time = req.body.time,
             meeting.personCount = req.body.personCount
            }
+           res.header({
+            "Access-Control-Allow-Origin": "*",
+          });
         res.send(meeting)
         //res.json(meeting);
       } catch (e) {
@@ -54,6 +58,9 @@ router.put('/:id',async (req, res) => {
 router.get("/", async (req, res) => {
     try {
       const meeting = await Meeting.find();
+      res.header({
+        "Access-Control-Allow-Origin": "*",
+      });
       res.json(meeting);
     } catch (e) {
       console.log(e);
@@ -67,7 +74,9 @@ router.get("/", async (req, res) => {
 router.delete('/:id',async (req, res) => {
     try {
         const meeting = await Meeting.findByIdAndDelete({_id:req.params.id});
-
+        res.header({
+          "Access-Control-Allow-Origin": "*",
+        });
         res.json(meeting)
       } catch (e) {
         console.log(e);

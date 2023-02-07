@@ -1,50 +1,41 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { instance } from '../../api/api';
 
 export type UserType = {
   _id: string;
   email: string;
-  password: string;
   name: string;
   __v: number;
 };
 
 export type StateType = {
-  users: Array<UserType>;
+  user: UserType;
   status: string;
 };
 
-const initialState: StateType = {
-  users: [],
-  status: 'loading',
+const initialState = {
+  user: {
+    _id: '',
+    email: '',
+    name: '',
+    __v: 0,
+  },
 };
 
-export const fetchRegister = createAsyncThunk(
-  'auth/fetchRegister',
-  async (params) => {
-    const { data } = await axios.post<ResponseType>(
-      'api/auth/register',
-      params
-    );
-    return data;
-  }
-);
+export const getUserData = createAsyncThunk('user/getUserData', async () => {
+  const { data } = await instance.get('users/user');
+  return data;
+});
 
 const userSlice = createSlice({
-  name: 'users',
+  name: 'user',
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(fetchRegister.pending, (state) => {
-      state.status = 'loading';
-    });
-    builder.addCase(fetchRegister.fulfilled, (state) => {
-      state.status = 'loaded';
-    });
-    builder.addCase(fetchRegister.rejected, (state) => {
-      state.status = 'error';
-    });
+  reducers: {
+    setUserData: (state, action) => {
+      state.user = { ...action.payload };
+    },
   },
 });
 
 export const usersReducer = userSlice.reducer;
+export const { setUserData } = userSlice.actions;
