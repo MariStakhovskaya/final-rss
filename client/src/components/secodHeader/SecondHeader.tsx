@@ -5,12 +5,13 @@ import { AppDispatch } from '../../store/store';
 import { logout, setIsAuth } from '../../store/slice/authSlice';
 
 function SecondHeader() {
-  //const path = '/';
-  const isAuth = useSelector(setIsAuth);
   const dispatch = useDispatch<AppDispatch>();
+  const isAuth = useSelector(setIsAuth);
+
   const onClickLogout = () => {
     dispatch(logout());
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
   };
   return (
     <div className={styles.container}>

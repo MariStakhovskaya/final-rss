@@ -8,7 +8,7 @@ router.post(
     '/',
      async (req, res) => {
 try {
-    const {title, description, date, time, personCount} = req.body;
+    const {title, description, date, time, personCount, url} = req.body;
 
     const meeting = new Meeting({
         title, 
@@ -16,10 +16,12 @@ try {
         date,
         time,
         personCount,
+        url,
     })
-
     await meeting.save();
-
+    res.header({
+      "Access-Control-Allow-Origin": "*",
+    });
     res.status(201).json({message: 'Meeting has been created'})
 
   } catch (e) {
@@ -36,8 +38,13 @@ router.put('/:id',async (req, res) => {
             meeting.description = req.body.description,
             meeting.date = req.body.date,
             meeting.time = req.body.time,
-            meeting.personCount = req.body.personCount
+            meeting.personCount = req.body.personCount,
+            meeting.url = req.body.url
            }
+           res.header({
+            "Access-Control-Allow-Origin": "*",
+          });
+        await meeting.save();
         res.send(meeting)
         //res.json(meeting);
       } catch (e) {
@@ -54,6 +61,9 @@ router.put('/:id',async (req, res) => {
 router.get("/", async (req, res) => {
     try {
       const meeting = await Meeting.find();
+      res.header({
+        "Access-Control-Allow-Origin": "*",
+      });
       res.json(meeting);
     } catch (e) {
       console.log(e);
@@ -63,11 +73,13 @@ router.get("/", async (req, res) => {
     }
   });
   
-  // update 
+  // delete 
 router.delete('/:id',async (req, res) => {
     try {
         const meeting = await Meeting.findByIdAndDelete({_id:req.params.id});
-
+        res.header({
+          "Access-Control-Allow-Origin": "*",
+        });
         res.json(meeting)
       } catch (e) {
         console.log(e);

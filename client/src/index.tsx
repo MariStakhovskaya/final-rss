@@ -14,6 +14,8 @@ import Registration from './routes/registration/Registration';
 import { CarsGame } from './routes/cars-game';
 import Start from './routes/start/Start';
 import Profile from './routes/profile/Profile';
+import Meetings from './routes/meetings/Meetings';
+import MeetingDetails from './routes/meetings/MeetingDetails';
 
 const router = createBrowserRouter([
   {
@@ -54,6 +56,14 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <Profile />,
+      },
+      {
+        path: '/profile/meetings',
+        element: <Meetings />,
+      },
+      {
+        path: '/profile/meetings/:id',
+        element: <MeetingDetails />,
       },
     ],
   },

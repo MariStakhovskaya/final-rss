@@ -14,6 +14,7 @@ export type MeetingType = {
   date: string;
   time: string;
   personCount: number;
+  url: string;
   __v: number;
 };
 
