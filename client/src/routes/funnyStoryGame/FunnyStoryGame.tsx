@@ -1,16 +1,33 @@
 import { createRef, useEffect, useState } from 'react';
-// import { names } from '../../data';
+import {
+  can,
+  howMuchTime,
+  howMuchMoney,
+  names,
+  what,
+  when,
+  where,
+  why,
+  want,
+  defaultAnswer,
+  quastions,
+} from '../../data';
 import styles from './FunnyStoryGame.module.css';
 
 function FunnyStoryGame() {
-  // const [dots, setDots] = useState('.');
+  const handleRandomString = (mass: string[]): string => {
+    const r = Math.floor(Math.random() * mass.length);
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     dots.length === 3 ? setDots('.') : setDots(dots + '.');
-  //   }, 500);
-  //   return () => clearInterval(interval);
-  // }, [dots]);
+    return mass[r];
+  };
+
+  const generateAnswer = (mass: string[]): void => {
+    const answer = handleRandomString(mass);
+
+    if (answer[answer.length - 1] === '?') setContent([...content, answer]);
+    else
+      setContent([...content, answer + '. ' + handleRandomString(quastions)]);
+  };
 
   const [content, setContent] = useState<Array<string>>([]);
   const [value, setValue] = useState<string>('');
@@ -30,13 +47,80 @@ function FunnyStoryGame() {
     handleSetValue('');
   };
 
-  useEffect(() => {
+  useEffect((): void => {
     if (elBlock.current) elBlock.current.scrollIntoView();
   }, [content]);
 
+  const [dots, setDots] = useState<string>('.');
+
+  useEffect((): (() => void) => {
+    const interval = setInterval((): void => {
+      dots.length === 3 ? setDots('.') : setDots(dots + '.');
+      if (content.length % 2 !== 0) {
+        clearInterval(interval);
+        setDots('.');
+      }
+    }, 500);
+    return () => clearInterval(interval);
+  }, [dots, content]);
+
+  useEffect((): void => {
+    if (content.length % 2 === 0 && content.length !== 0) {
+      const quastion: string =
+        content[content.length - 1]
+          .match(/\(.+\)/)?.[0]
+          .replace(/[\(\)\?\s]/g, '') || '';
+
+      console.log(quastion);
+
+      if (quastion) {
+        setTimeout(() => {
+          switch (quastion.toLowerCase()) {
+            case 'where':
+              generateAnswer(where);
+              break;
+            case 'why':
+              generateAnswer(why);
+              break;
+            case 'when':
+              generateAnswer(when);
+              break;
+            case 'what':
+              generateAnswer(what);
+              break;
+            case 'can':
+              generateAnswer(can);
+              break;
+            case 'howmuchtime':
+              generateAnswer(howMuchTime);
+              break;
+            case 'want':
+              generateAnswer(want);
+              break;
+            case 'howmuchmoney':
+              generateAnswer(howMuchMoney);
+              break;
+            default:
+              setContent([...content, handleRandomString(defaultAnswer)]);
+              break;
+          }
+        }, 3000);
+      } else generateAnswer(defaultAnswer);
+    }
+  }, [content]);
+
+  useEffect((): void => {
+    setTimeout(() => {
+      setContent([
+        ...content,
+        'Hello! I`m ' + handleRandomString(names) + '. Can I help you?',
+      ]);
+    }, 3000);
+  }, []);
+
   return (
     <div className={styles.container}>
-      <p className={styles.name}>Receptionist</p>
+      <p className={styles.name}>In a Restaurant</p>
       <div className={styles.content}>
         {content.map((el, i) => {
           return (
@@ -52,6 +136,11 @@ function FunnyStoryGame() {
             </div>
           );
         })}
+        {content.length % 2 === 0 && (
+          <div className={[styles.smsBot, styles.dots].join(' ')}>
+            <p>{dots}</p>
+          </div>
+        )}
       </div>
       <div className={styles.input__message}>
         <input
