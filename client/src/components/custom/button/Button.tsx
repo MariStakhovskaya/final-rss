@@ -10,6 +10,7 @@ type ButtonType = {
 function Button(props: ButtonType) {
   const handleClick = () => {
     if (props.callback) props.callback();
+    console.log(props.callback);
   };
 
   return (
