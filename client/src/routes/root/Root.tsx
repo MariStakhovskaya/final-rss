@@ -2,8 +2,16 @@ import styles from './Root.module.css';
 import { Outlet } from 'react-router-dom';
 import Footer from '../../components/footer/Footer';
 import Header from '../../components/header/Header';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store/store';
+import { useEffect } from 'react';
+import { fetchAuthMe } from '../../store/slice/authSlice';
 
 export default function Root() {
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(() => {
+    dispatch(fetchAuthMe());
+  }, [dispatch]);
   return (
     <div className={styles.container}>
       <Header />
