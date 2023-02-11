@@ -16,7 +16,7 @@ export const names: string[] = [
   'Max',
   'Julya',
   'Bill',
-  'Kelli',
+  'Kelly',
   'Oleg',
   'Vinny',
 ];
@@ -106,16 +106,18 @@ export const want: string[] = [
   'What else?',
 ];
 
+export const how: string[] = ['Very simple', 'Slowly', 'Without adventure'];
+
 export const defaultAnswer: string[] = [
   'What are you saying?',
-  'I don`t understand you',
-  'Repeat please',
-  'Paraphrase please',
+  'I don`t understand you.',
+  'Repeat please.',
+  'Paraphrase please.',
 ];
 
 export const quastions: string[] = [
   'What are your wishes?',
-  'What day do you want to come? What time?',
+  'When do you want to come?',
   'What else can I do for you?',
   'May I have your name?',
   'Can I take your order?',
