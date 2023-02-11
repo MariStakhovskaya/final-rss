@@ -47,7 +47,7 @@ p {
   transition: all 0.3s ease-in-out;
 }
 .message {
-  width: 90%;
+  width: 78%;
   height: 34px;
   background: white;
   border: 1px #bebebe solid;
@@ -84,6 +84,7 @@ p {
 }
 .bot__answer__parts { 
   display: flex;
+  align-items: center;
   gap: 5px;
 }
 .smsMe {
@@ -126,10 +127,12 @@ p {
   color: #808080;
   border-color: #808080;
 }
-.popup__close {
+.popup__close,
+.story__close {
   display: none;
 }
-.popup__open {
+.popup__open,
+.story__open {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -144,12 +147,15 @@ p {
   text-align: justify;
   color: #ffffff;
 }
-.popup__open > div {
+.popup__open > div,
+.story__open > div {
   position: relative;
   margin: 0 auto;
   background: #2e294e;
   padding: 20px 40px;
   width: 40%;
+  max-height: 80vh;
+  overflow-y: auto;
   border-radius: 10px;
   border: 1px #ffffff solid;
 }
@@ -197,4 +203,20 @@ p {
 }
 .questionWords > span {
   font-weight: 600;
+}
+.view__button {
+  cursor: pointer;
+  background: #FFC430;
+  width: 100px;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+.view__button:hover {
+  background: #e9ac11;
+  transition: all 0.3s ease-in-out;
+}
+.view__button p {
+  color: #000000;
+  font-weight: 500;
+  font-size: 20px;
 }

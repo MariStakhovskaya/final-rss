@@ -1,4 +1,5 @@
 import { createRef, useEffect, useState } from 'react';
+import Button from '../../components/custom/button/Button';
 import {
   can,
   howMuchTime,
@@ -127,6 +128,13 @@ function FunnyStoryGame() {
     else setOpenPopUp(true);
   };
 
+  const [openStory, setOpenStory] = useState<boolean>(false);
+
+  const handleStory = () => {
+    if (openStory) setOpenStory(false);
+    else setOpenStory(true);
+  };
+
   useEffect((): void => {
     if (content.length === 0) {
       setTimeout(() => {
@@ -166,6 +174,30 @@ function FunnyStoryGame() {
             <li>The bot will answer your question with a random answer.</li>
             <li>At the end of the game, click on the "View dialog" button.</li>
           </ul>
+        </div>
+      </div>
+      <div className={openStory ? styles.story__open : styles.story__close}>
+        <div>
+          <div className={styles.cross} onClick={handleStory}></div>
+          <div>
+            {content.map((el) => {
+              return (
+                <div key={Math.random().toString(36).substring(2)}>
+                  {el.match(/\(.+\)/) ? (
+                    <p>
+                      -{' '}
+                      {el
+                        .split(' ')
+                        .slice(0, el.split(' ').length - 1)
+                        .join(' ')}
+                    </p>
+                  ) : (
+                    <p>- {el}</p>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
       <div className={styles.chat}>
@@ -230,6 +262,9 @@ function FunnyStoryGame() {
                 fill="#C6C5C5"
               />
             </svg>
+            <div className={styles.view__button}>
+              <Button name="View story" callback={handleStory} />
+            </div>
           </div>
           <div>
             <p className={styles.questionWords}>
