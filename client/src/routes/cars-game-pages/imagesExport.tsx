@@ -1,0 +1,16 @@
+export { default as hero11 } from '../../../assets/car-game/hero/hero11.png';
+export { default as hero12 } from '../../../assets/car-game/hero/hero12.png';
+export { default as hero13 } from '../../../assets/car-game/hero/hero13.png';
+export { default as hero14 } from '../../../assets/car-game/hero/hero14.png';
+export { default as hero21 } from '../../../assets/car-game/hero/hero21.png';
+export { default as hero22 } from '../../../assets/car-game/hero/hero22.png';
+export { default as hero23 } from '../../../assets/car-game/hero/hero23.png';
+export { default as hero24 } from '../../../assets/car-game/hero/hero24.png';
+export { default as hero31 } from '../../../assets/car-game/hero/hero31.png';
+export { default as hero32 } from '../../../assets/car-game/hero/hero32.png';
+export { default as hero33 } from '../../../assets/car-game/hero/hero33.png';
+export { default as hero34 } from '../../../assets/car-game/hero/hero34.png';
+export { default as hero41 } from '../../../assets/car-game/hero/hero14.png';
+export { default as hero42 } from '../../../assets/car-game/hero/hero42.png';
+export { default as hero43 } from '../../../assets/car-game/hero/hero43.png';
+export { default as hero44 } from '../../../assets/car-game/hero/hero44.png'; 
