@@ -9,6 +9,7 @@ import ErrorPage from './routes/error-page';
 
 import Login from './routes/login/Login';
 import Registration from './routes/registration/Registration';
+import FunnyStoryGame from './routes/funnyStoryGame/FunnyStoryGame';
 import { GameCar } from './routes/cars-game-pages/game-car';
 // import { HomePage } from './routes/home-page';
 import Start from './routes/start/Start';
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: '/carsGame',
         element: <GameCar />,
+      },
+      {
+        path: '/funnyStory',
+        element: <FunnyStoryGame />,
       },
       {
         path: '/login',

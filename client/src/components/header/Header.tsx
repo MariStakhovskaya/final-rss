@@ -9,26 +9,6 @@ function Header() {
   const isAuth = useSelector(setIsAuth);
   return (
     <div className={styles.container}>
-      {/* <nav>
-        <ul>
-          <li>
-            <NavLink
-              to={`login`}
-              className={({ isActive }) => (isActive ? 'active-link' : '')}
-            >
-              Login
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to={`registration`}
-              className={({ isActive }) => (isActive ? 'active-link' : '')}
-            >
-              Registration
-            </NavLink>
-          </li>
-        </ul>
-      </nav> */}
       {isAuth ? (
         <ProfileHeader />
       ) : (

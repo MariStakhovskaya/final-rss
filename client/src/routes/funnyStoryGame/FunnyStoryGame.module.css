@@ -1,0 +1,222 @@
+p {
+  margin: 0;
+}
+.container {
+  position: relative;
+}
+.chat {
+  position: relative;
+  width: 60%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: 72px 1fr 100px;
+  border: 1px #eeeeee solid;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+.name,
+.typing {
+  background: #eeeeee;
+  padding: 20px;
+  margin: 0;
+}
+.typing {
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.name {
+  font-size: 24px;
+  letter-spacing: 2px;
+  font-weight: 700;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  text-align: center;
+}
+.input__message {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.input__message > svg {
+  cursor: pointer;
+}
+.input__message > svg:hover path {
+  fill: #808080;
+  transition: all 0.3s ease-in-out;
+}
+.message {
+  width: 78%;
+  height: 34px;
+  background: white;
+  border: 1px #bebebe solid;
+  font-size: 20px;
+  padding: 0 10px;
+  border-radius: 8px;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px;
+  font-size: 24px;
+  height: calc(100vh - 26px - 38px - 24px - 30px - 72px - 76px - 40px - 15px);
+  overflow-y: auto;
+}
+.sms {
+  width: fit-content;
+  padding: 3px 12px 7px 12px;
+  margin-bottom: 10px;
+}
+.smsBot {
+  align-self: flex-start;
+  background: #eeeeee;
+  border: 1px #bebebe solid;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+.bot__answer {
+  color: #eeeeee;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.bot__answer__parts { 
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.smsMe {
+  align-self: flex-end;
+  background: #b2dfff;
+  border: 1px #60a0ff solid;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+.dots {
+  width: 40px;
+  margin-bottom: 10px;
+}
+.dots > p {
+  padding: 3px 12px 7px 12px;
+}
+.quastion {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  cursor: pointer;
+  font-size: 28px;
+  border: 2px #c5c5c5 solid;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  color: #c5c5c5;
+  margin: 0;
+}
+.quastion > p {
+  margin: 0;
+}
+.quastion:hover {
+  transform: scale(1.2);
+  transition: all 0.3s ease-in-out;
+  color: #808080;
+  border-color: #808080;
+}
+.popup__close,
+.story__close {
+  display: none;
+}
+.popup__open,
+.story__open {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: -26px;
+  left: calc(-73px - 119px);
+  z-index: 100;
+  background: #00000082;
+  font-size: 24px;
+  text-align: justify;
+  color: #ffffff;
+}
+.popup__open > div,
+.story__open > div {
+  position: relative;
+  margin: 0 auto;
+  background: #2e294e;
+  padding: 20px 40px;
+  width: 40%;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  border: 1px #ffffff solid;
+}
+.popup__open p {
+  width: fit-content;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  font-weight: 700;
+  font-size: 28px;
+}
+.popup__open ul {
+  padding-left: 20px;
+  margin: 0 auto;
+}
+.popup__open li {
+  margin-bottom: 10px;
+}
+.cross {
+  cursor: pointer;
+  position: absolute;
+  transform: rotate(45deg);
+  top: 30px;
+  right: 30px;
+  width: 25px;
+  height: 3px;
+  background: #ffffff;
+  border-radius: 2px;
+}
+.cross::before {
+  display: block;
+  content: '';
+  width: 25px;
+  height: 3px;
+  background: #ffffff;
+  transform: rotate(-90deg);
+  border-radius: 2px;
+}
+.cross:hover {
+  transform: scale(1.2) rotate(45deg);
+  transition: all 0.3s ease-in-out;
+}
+.questionWords {
+  font-size: 18px;
+  margin: 8px 0 0 0;
+}
+.questionWords > span {
+  font-weight: 600;
+}
+.view__button {
+  cursor: pointer;
+  background: #FFC430;
+  width: 100px;
+  padding: 0 10px;
+  border-radius: 10px;
+}
+.view__button:hover {
+  background: #e9ac11;
+  transition: all 0.3s ease-in-out;
+}
+.view__button p {
+  color: #000000;
+  font-weight: 500;
+  font-size: 20px;
+}
