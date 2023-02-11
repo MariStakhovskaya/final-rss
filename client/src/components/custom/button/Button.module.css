@@ -14,3 +14,8 @@
 .container p {
   margin: 0;
 }
+
+.container:disabled {
+  background-color: gray;
+  cursor: default;
+}

@@ -1,0 +1,67 @@
+.containerMeeting {
+  width: 344px;
+  height: 486px;
+  background: #FFFFFF;
+  box-shadow: 8px 8px 25px rgba(2, 2, 70, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+.title {
+font-family: 'Poppins';
+font-style: normal;
+font-weight: 700;
+font-size: 32px;
+line-height: 48px;
+/* identical to box height */
+display: flex;
+align-items: center;
+color: #2E294E;
+}
+
+.description {
+  font-family: 'SF Pro Display';
+  font-style: normal;
+  font-weight: 400;
+  width: 275px;
+  font-size: 18px;
+  line-height: 21px;
+  color: #0F0F0F;
+}
+
+.btnMeeting {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10.1618px 140.265px;
+  margin-top: 10px;
+  gap: 14.62px;
+  width: 225px;
+  height: 63.32px;
+  background: #2E294E;
+  color: #FFFFFF;
+}
+
+.btnMeeting:hover {
+  background-color: darkcyan;
+} 
+
+.btnName {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24.8611px;
+  line-height: 37px;
+  text-align: center;  
+  color: #FFFFFF;
+}
+
+.imgMeeting {
+  width: 270px;
+}

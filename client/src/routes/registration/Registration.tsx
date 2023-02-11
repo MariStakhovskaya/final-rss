@@ -1,38 +1,49 @@
 import Button from '../../components/custom/button/Button';
-import { ChangeEvent, useState } from 'react';
 import styles from './Registration.module.css';
-import google from '../../images/google.svg';
+//import google from '../../images/google.svg';
 import SecondHeader from '../../components/secodHeader/SecondHeader';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../store/store';
-import { fetchRegister } from '../../store/slice/authSlice';
+import {
+  error,
+  fetchRegister,
+  isLoading,
+  setErrorREdux,
+} from '../../store/slice/authSlice';
 import { setIsAuth } from '../../store/slice/authSlice';
 import { Navigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { Preloader } from '../../components/custom/preloader/Preloader';
 
 function Registration() {
-  const isAuth = useSelector(setIsAuth);
-  console.log(isAuth);
   const dispatch = useDispatch<AppDispatch>();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const isAuth = useSelector(setIsAuth);
+  const errorRedux = useSelector(error);
+  const loader = useSelector(isLoading);
 
-  const onChangeHandlerName = (e: ChangeEvent<HTMLInputElement>) => {
-    setName(e.currentTarget.value);
-  };
-  const onChangeHandlerEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.currentTarget.value);
-  };
-  const onChangeHandlerPass = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.currentTarget.value);
-  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = useForm({
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+    },
+    mode: 'onChange',
+  });
 
-  const onClickHandler = () => {
-    dispatch(fetchRegister({ name, email, password }));
-    setEmail('');
-    setName('');
-    setPassword('');
+  const onSubmit = (values: {
+    name: string;
+    email: string;
+    password: string;
+  }) => {
+    dispatch(fetchRegister(values));
+    setTimeout(() => {
+      dispatch(setErrorREdux(''));
+    }, 3000);
   };
 
   if (isAuth) {
@@ -44,7 +55,7 @@ function Registration() {
       <SecondHeader />
       <div className={styles.registration__input}>
         <h3>Create an Account</h3>
-        <div className={styles.google__button}>
+        {/* <div className={styles.google__button}>
           <img src={google} alt="Google logo" />
           <div>
             <Button name="Sign up with Google" callback={() => {}} />
@@ -54,30 +65,45 @@ function Registration() {
           <div></div>
           <p>OR</p>
           <div></div>
-        </div>
-        <div className={styles.inputs}>
-          <input
-            type="text"
-            placeholder="First Name"
-            value={name}
-            onChange={onChangeHandlerName}
-          />
-          <input
-            type="email"
-            value={email}
-            placeholder="Email"
-            onChange={onChangeHandlerEmail}
-          />
-          <input
-            type="password"
-            value={password}
-            placeholder="Password"
-            onChange={onChangeHandlerPass}
-          />
-        </div>
-        <div className={styles.create__button}>
-          <Button name="Create Account" callback={onClickHandler} />
-        </div>
+        </div> */}
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={styles.inputs}>
+            <input
+              type="text"
+              {...register('name', {
+                required: 'Укажите имя',
+                minLength: {
+                  value: 3,
+                  message: 'Имя должно быть больше 3 символов',
+                },
+              })}
+              placeholder="First Name"
+            />
+            <div className={styles.errorRed}>{errors.name?.message}</div>
+            <input
+              type="email"
+              {...register('email', { required: 'Укажите почту' })}
+              placeholder="Email"
+            />
+            <div>{errors.email?.message}</div>
+            <input
+              type="password"
+              {...register('password', { required: 'Укажите пароль' })}
+              placeholder="Password"
+            />
+            <div className={styles.errorRed}>{errors.password?.message}</div>
+            <div className={styles.errorRed}>
+              {errorRedux ? errorRedux : ''}
+            </div>
+          </div>
+          {loader === 'loading' ? (
+            <Preloader />
+          ) : (
+            <div className={styles.create__button}>
+              <Button name="Create Account" type="submit" disabled={!isValid} />
+            </div>
+          )}
+        </form>
         <p>
           Already have an account? <Link to="/login">Log in</Link>
         </p>

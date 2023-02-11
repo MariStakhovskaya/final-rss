@@ -6,6 +6,7 @@ const schemaMeeting = new Schema({
     date: {type: String, required: true},
     time: {type: String, required: true},
     personCount: {type: Number, required: true},
+    url: {type: String},
     
 });
 
