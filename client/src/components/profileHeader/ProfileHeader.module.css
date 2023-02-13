@@ -14,7 +14,7 @@
   gap: 47px;
   margin-top: 28px;
 }
-.navigation > a svg {
+.navigation svg {
   cursor: pointer;
 }
 .navigation svg:hover path,
