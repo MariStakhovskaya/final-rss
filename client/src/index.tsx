@@ -48,11 +48,11 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: '/profile/meetings',
+        path: '/meetings',
         element: <Meetings />,
       },
       {
-        path: '/profile/meetings/:id',
+        path: '/meetings/:id',
         element: <MeetingDetails />,
       },
     ],

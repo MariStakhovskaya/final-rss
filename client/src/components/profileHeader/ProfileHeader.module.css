@@ -14,30 +14,44 @@
   gap: 47px;
   margin-top: 28px;
 }
-.navigation > svg {
+.navigation > a svg {
   cursor: pointer;
 }
-.navigation > svg:hover path {
-  fill: #000000;
+.navigation svg:hover path,
+.navigation > a:hover svg path {
+  fill: #808080;
   transition: all 0.3s ease-in-out;
+}
+.navigation > a {
+  padding: 4px 4px 0 4px;
 }
 .container > p {
   color: #c5c5c5;
   font-size: 22px;
   margin: 0 0 24px 0;
 }
-
-.activeLink {
-  width: 48px;
-  height: 48px;
-  background: rgba(46, 41, 78, 0.53);
+.navigation > .activeLink,
+.navigation > .activeLink svg {
+  cursor: auto;
 }
-
-.activeLink::before {
-  content: '';
+.navigation > .activeLink:hover svg path {
+  fill: #ffffff;
+}
+.activeLink {
   position: relative;
-  top: 0;
-  left: -20px;
-  border-left: 6px solid rgba(46, 41, 78, 0.53);
-  border-radius: 10px;
+  background: #2E294E;
+}
+.activeLink > svg path {
+  fill: #ffffff;
+}
+.activeLink::before {
+  display: block;
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 36px;
+  background: #2E294E;
+  border-radius: 5px;
+  left: -14px;
+  top: 6px;
 }
