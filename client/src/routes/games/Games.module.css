@@ -1,0 +1,51 @@
+.games {
+  display: flex;
+  gap: 76px;
+}
+.game {
+  width: 344px;
+  height: 486px;
+  background: #FFFFFF;
+  box-shadow: 8px 8px 25px rgba(2, 2, 70, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 0;
+}
+.game__select {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 28px;
+  color: #2E3A59;
+}
+.play__button {
+  cursor: pointer;
+  display: block;
+  background: #2E294E;
+  width: 296px;
+}
+.play__button:hover {
+  transition: all 0.3s ease-in-out;
+}
+.play__button > a button p {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 24px;
+}
+.img__container {
+  width: 270px;
+  overflow: hidden;
+}
+.img__container > img {
+  height: 270px;
+}
+.title {
+  font-family: 'Poppins';
+  font-weight: 700;
+  font-size: 32px;
+  color: #2E294E;
+  text-align: center;
+}

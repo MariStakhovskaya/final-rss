@@ -49,16 +49,14 @@ const router = createBrowserRouter([
       {
         path: '/games',
         element: <Games />,
-        children: [
-          {
-            path: '/games/carsGame',
-            element: <GameCar />,
-          },
-          {
-            path: '/games/nonsense',
-            element: <FunnyStoryGame />,
-          },
-        ],
+      },
+      {
+        path: '/games/carsGame',
+        element: <GameCar />,
+      },
+      {
+        path: '/games/nonsense',
+        element: <FunnyStoryGame />,
       },
     ],
   },
