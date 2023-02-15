@@ -1,3 +1,5 @@
+import Chart from '../../components/admins/chart/Chart';
+import Featured from '../../components/admins/featured/Featured';
 import Navbar from '../../components/admins/navbar/Navbar';
 import Sidebar from '../../components/admins/sidebar/Sidebar';
 import Widget from '../../components/admins/widgets/Widget';
@@ -13,7 +15,13 @@ const Admin = () => {
           <Widget type="user" />
           <Widget type="meeting" />
         </div>
-        <div className="charts"></div>
+        <div className="charts">
+          <Featured />
+          <Chart />
+        </div>
+        <div className="listContainer">
+          <div className="listTitle">Latest Users</div>
+        </div>
       </div>
     </div>
   );
