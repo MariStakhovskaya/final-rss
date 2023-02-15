@@ -36,10 +36,13 @@ router.put('/:id',async (req, res) => {
         if (meeting) {
             meeting.title = req.body.title,
             meeting.description = req.body.description,
+            meeting.fulldescriptions = req.body.fulldescriptions,
             meeting.date = req.body.date,
             meeting.time = req.body.time,
             meeting.personCount = req.body.personCount,
-            meeting.url = req.body.url
+            meeting.url = req.body.url,
+            meeting.role = req.body.role,
+            meeting.users = req.body.users
            }
            res.header({
             "Access-Control-Allow-Origin": "*",
@@ -77,6 +80,23 @@ router.get("/", async (req, res) => {
 router.delete('/:id',async (req, res) => {
     try {
         const meeting = await Meeting.findByIdAndDelete({_id:req.params.id});
+        res.header({
+          "Access-Control-Allow-Origin": "*",
+        });
+        res.json(meeting)
+      } catch (e) {
+        console.log(e);
+        res
+          .status(500)
+          .json({ message: "Something wrong" });
+      }
+    
+  })
+
+  // metteing
+  router.get('/:id',async (req, res) => {
+    try {
+        const meeting = await Meeting.findOne({_id:req.params.id});
         res.header({
           "Access-Control-Allow-Origin": "*",
         });
