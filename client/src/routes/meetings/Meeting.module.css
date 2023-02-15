@@ -1,32 +1,50 @@
-.container {
+.container,
+.meeting {
   width: 344px;
-  height: 486px;
-  background: #FFFFFF;
   box-shadow: 8px 8px 25px rgba(2, 2, 70, 0.15);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   padding: 15px 37px 32px 37px;
+}
+.container {
+  background: #ffffff;
+  height: 486px;
+  justify-content: space-between;
+}
+.meeting {
+  background: #2e294e;
+  color: #ffffff;
 }
 a {
   text-decoration: none;
 }
-.title {
+.title,
+.title__details {
   font-family: 'Poppins';
-  font-style: normal;
   font-weight: 700;
   font-size: 32px;
   line-height: 48px;
   align-self: flex-start;
-  color: #2E294E;
   margin-bottom: 13px;
+}
+.minititle {
+  font-family: 'Poppins';
+  font-weight: 600;
+  font-size: 24px;
+  align-self: flex-start;
+  margin-bottom: 13px;
+}
+.title {
+  color: #2E294E;
+}
+.title__details {
+  color: #ffffff;
 }
 .description {
   font-family: 'SF Pro Display';
   font-size: 18px;
   line-height: 21px;
-  color: #0F0F0F;
 }
 .btnMeeting {
   cursor: pointer;
@@ -52,17 +70,75 @@ a {
   width: 270px;
   margin-bottom: 16px;
 }
-.count__block {
+.count__block,
+.count__block__details {
   display: flex;
   gap: 8px;
   align-self: flex-start;
   margin-bottom: 13px;
 }
-.count {
+.count,
+.count__details {
   font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 400;
   font-size: 24px;
   line-height: 36px;
+}
+.count {
   color: #2E294E;
+}
+.count__details {
+  color: #ffffff;
+}
+.count__block > svg path {
+  fill: #2e294e;
+}
+.count__block__details > svg path {
+  fill: #ffffff;
+}
+.back__button {
+  margin-bottom: 36px;
+}
+.back__button > button {
+  cursor: pointer;
+  border: none;
+  background: inherit;
+  font-size: 36px;
+  font-weight: 700;
+  color: #c5c5c5;
+  display: flex;
+  align-items: center;
+}
+.back__button > button:hover {
+  color: #808080;
+  transition: all 0.3s ease-in-out;
+}
+.containerMeeting {
+  display: flex;
+  gap: 64px;
+  margin-bottom: 30px;
+}
+.roles {
+  display: flex;
+  justify-content: space-between;
+}
+.select__button {
+  width: 344px;
+  cursor: pointer;
+  background: #c5c5c5;
+  align-self: flex-end;
+}
+.select__button > button p {
+  color: #000000;
+  font-weight: 700;
+  font-size: 24px;
+}
+.about {
+  box-shadow: 8px 8px 25px rgba(2, 2, 70, 0.15);
+  border: 1px #2e294e solid;
+  padding: 15px 37px 32px 37px;
+  display: flex;
+  flex-direction: column;
+}
+.information {
+  margin-bottom: 30px;
 }
