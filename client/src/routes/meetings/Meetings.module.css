@@ -3,14 +3,11 @@
     flex-wrap: wrap;
     gap: 76px;
 }
-
 .selectTopic {
     font-family: 'Poppins';
-    font-style: normal;
     font-weight: 600;
     font-size: 36px;
     line-height: 28px;
-    /* identical to box height, or 78% */
     color: #2E3A59;
 }
 
