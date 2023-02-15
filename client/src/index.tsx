@@ -16,6 +16,7 @@ import Start from './routes/start/Start';
 import Profile from './routes/profile/Profile';
 import Meetings from './routes/meetings/Meetings';
 import MeetingDetails from './routes/meetings/MeetingDetails';
+import Admin from './routes/admin/admin';
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
         path: '/profile/meetings/:id',
         element: <MeetingDetails />,
       },
+      {
+        path: '/admin',
+        element: <Admin />,
+      },
     ],
   },
 ]);
@@ -63,11 +68,11 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  //<React.StrictMode>
-  <>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  </>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </>
+  </React.StrictMode>
 );
