@@ -1,6 +1,7 @@
 import SecondHeader from '../../components/secodHeader/SecondHeader';
 import styles from './Meeting.module.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAppSelector } from '../../store/store';
 
 // type MeetingType = {
 //   _id: string;
@@ -19,6 +20,14 @@ import { useNavigate } from 'react-router-dom';
 
 function MeetingDetails() {
   const navigate = useNavigate();
+  const params = useParams();
+  console.log(params);
+
+  const meeting = useAppSelector((state) =>
+    state.meetings.meetings.item.filter((el) => el._id === params._id)
+  );
+  // const dispatch = useDispatch<AppDispatch>();
+  console.log(meeting);
   return (
     <>
       <SecondHeader />
