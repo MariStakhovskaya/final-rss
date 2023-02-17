@@ -45,6 +45,7 @@ function Login() {
   if (isAuth) {
     return <Navigate to="/profile" />;
   }
+
   return (
     <div className={styles.container}>
       <SecondHeader />

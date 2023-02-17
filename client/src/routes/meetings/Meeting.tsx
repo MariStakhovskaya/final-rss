@@ -1,5 +1,6 @@
 import styles from './Meeting.module.css';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
 
 export type MeetingType = {
   _id: string;
