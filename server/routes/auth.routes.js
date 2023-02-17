@@ -146,6 +146,7 @@ router.get('/me', checkAuth, async (req, res) => {
           "Access-Control-Allow-Origin": "*",
         });
           res.json(userData)
+          //res.send(userData)
         } 
         catch (e) {
           res.status(500).json({message: 'Something wrong'})

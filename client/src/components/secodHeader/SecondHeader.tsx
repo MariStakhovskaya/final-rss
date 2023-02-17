@@ -12,6 +12,7 @@ function SecondHeader() {
     dispatch(logout());
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem('userId');
   };
   return (
     <div className={styles.container}>
