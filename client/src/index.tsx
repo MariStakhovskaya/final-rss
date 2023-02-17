@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import './index.css';
+import './style/dark.scss';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
@@ -16,7 +17,13 @@ import Start from './routes/start/Start';
 import Profile from './routes/profile/Profile';
 import Meetings from './routes/meetings/Meetings';
 import MeetingDetails from './routes/meetings/MeetingDetails';
-import Admin from './routes/admin/admin';
+import Admin from './routes/admin/adminPages/admin';
+import List from './routes/admin/listPage/List';
+import Single from './routes/admin/single/Single';
+import AdminNew from './routes/admin/new/AdminNew';
+import { DarkModeContextProvider } from './context/darkModeContext';
+import { AuthContextProvider } from './context/AuthContext';
+import App from './App';
 
 const router = createBrowserRouter([
   {
@@ -60,6 +67,30 @@ const router = createBrowserRouter([
         path: '/admin',
         element: <Admin />,
       },
+      {
+        path: '/admin/allUsers',
+        element: <List title="All Users" />,
+      },
+      {
+        path: '/admin/allMeeting',
+        element: <List title="All Meeting" />,
+      },
+      {
+        path: '/admin/user/:id',
+        element: <Single />,
+      },
+      {
+        path: 'admin/meeting/:id',
+        element: <Single />,
+      },
+      {
+        path: '/admin/newUser',
+        element: <AdminNew title="Add new user" />,
+      },
+      {
+        path: '/admin/newMeeting',
+        element: <AdminNew title="Add new meeting" />,
+      },
     ],
   },
 ]);
@@ -70,9 +101,14 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <>
+      {/*  <DarkModeContextProvider>
+        <AuthContextProvider> */}
       <Provider store={store}>
         <RouterProvider router={router} />
+        {/* <App /> */}
       </Provider>
+      {/* </AuthContextProvider>
+      </DarkModeContextProvider> */}
     </>
   </React.StrictMode>
 );

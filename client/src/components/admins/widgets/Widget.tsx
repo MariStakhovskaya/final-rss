@@ -6,16 +6,17 @@ import AccountBoxIcon from '@mui/icons-material/AccountBox';
 
 type WidgetType = {
   type: string;
+  count: number;
 };
 
 interface IWidget {
   title: string;
   link: string;
-  icon: ReactElement<any, any>;
+  icon: ReactElement;
   counter: number;
 }
 
-const Widget = ({ type }: WidgetType) => {
+const Widget = ({ type, count }: WidgetType) => {
   const [data, setData] = useState<IWidget>();
 
   useEffect(() => {
@@ -26,15 +27,17 @@ const Widget = ({ type }: WidgetType) => {
           title: 'USERS',
           link: 'See all users',
           icon: (
-            <AccountBoxIcon
-              className="icon"
+            <span
+              className="material-symbols-outlined icon"
               style={{
                 backgroundColor: 'rgba(218, 165, 32, 0.2)',
                 color: 'goldenrod',
               }}
-            />
+            >
+              account_box
+            </span>
           ),
-          counter: 100,
+          counter: count,
         });
         break;
       case 'meeting':
@@ -43,21 +46,23 @@ const Widget = ({ type }: WidgetType) => {
           title: 'MEETINGS',
           link: 'See all meetings',
           icon: (
-            <MeetingRoomIcon
-              className="icon"
+            <span
+              className="material-symbols-outlined icon"
               style={{
                 backgroundColor: 'rgba(0, 128, 0, 0.2)',
                 color: 'green',
               }}
-            />
+            >
+              meeting_room
+            </span>
           ),
-          counter: 100,
+          counter: count,
         });
         break;
       default:
         break;
     }
-  }, [data]);
+  }, []);
   return (
     <div className="widget">
       <div className="left">
@@ -66,11 +71,13 @@ const Widget = ({ type }: WidgetType) => {
         <span className="link">{data?.link}</span>
       </div>
       <div className="right">
-        <div className="percentage positive">
-          <ArrowDropUpOutlinedIcon />
-          20%
-        </div>
-        {data?.icon}
+        <>
+          <div className="percentage positive">
+            <ArrowDropUpOutlinedIcon />
+            20%
+          </div>
+          {data?.icon}
+        </>
       </div>
     </div>
   );

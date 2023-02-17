@@ -3,29 +3,40 @@ import GridViewIcon from '@mui/icons-material/GridView';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { DarkModeContext } from '../../../context/darkModeContext';
 
 const Sidebar = () => {
+  const { dispatch } = useContext(DarkModeContext);
   return (
     <div className="sidebar">
       <div className="top">
-        <span>!!! Logo !!!</span>
+        <Link to="/">
+          <span>!!! Logo !!!</span>
+        </Link>
       </div>
       <hr />
       <div className="center">
         <ul>
-          <li>
-            <GridViewIcon className="icon" />
-            <span>Dashboard</span>
-          </li>
-          <li>
-            <MeetingRoomIcon className="icon" />
-            <span>Meetings</span>
-          </li>
-          <li>
-            <AccountBoxIcon className="icon" />
-            <span>Users</span>
-          </li>
+          <Link to="/admin/">
+            <li>
+              <GridViewIcon className="icon" />
+              <span>Dashboard</span>
+            </li>
+          </Link>
+          <Link to="/admin/allMeeting">
+            <li>
+              <MeetingRoomIcon className="icon" />
+              <span>Meetings</span>
+            </li>
+          </Link>
+          <Link to="/admin/allUsers">
+            <li>
+              <AccountBoxIcon className="icon" />
+              <span>Users</span>
+            </li>
+          </Link>
           <li>
             <ExitToAppIcon className="icon" />
             <span>Logout</span>
@@ -33,8 +44,14 @@ const Sidebar = () => {
         </ul>
       </div>
       <div className="bottom">
-        <div className="colorOption"></div>
-        <div className="colorOption"></div>
+        <div
+          className="colorOption"
+          onClick={() => dispatch({ type: 'LIGHT' })}
+        ></div>
+        <div
+          className="colorOption"
+          onClick={() => dispatch({ type: 'DARK' })}
+        ></div>
       </div>
     </div>
   );
