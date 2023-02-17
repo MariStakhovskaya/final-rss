@@ -72,6 +72,7 @@ const authSlice = createSlice({
       if (state.data) {
         localStorage.setItem('token', action.payload.token);
         localStorage.setItem('user', JSON.stringify(action.payload.userData));
+        localStorage.setItem('userId', action.payload.userData._id);
       }
     });
     builder.addCase(fetchRegister.rejected, (state, action) => {
@@ -91,6 +92,7 @@ const authSlice = createSlice({
       if (state.data) {
         localStorage.setItem('token', action.payload.token);
         localStorage.setItem('user', JSON.stringify(action.payload.userData));
+        localStorage.setItem('userId', action.payload.userData._id);
       }
     });
     builder.addCase(fetchAuth.rejected, (state) => {
@@ -106,6 +108,9 @@ const authSlice = createSlice({
     builder.addCase(fetchAuthMe.fulfilled, (state, action) => {
       state.status = 'loaded';
       state.data = action.payload;
+      if (state.data) {
+        localStorage.setItem('userId', action.payload._id);
+      }
       state.error = '';
     });
     builder.addCase(fetchAuthMe.rejected, (state) => {

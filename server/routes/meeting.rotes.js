@@ -8,15 +8,18 @@ router.post(
     '/',
      async (req, res) => {
 try {
-    const {title, description, date, time, personCount, url} = req.body;
+    const {title, description, date, time, personCount, url, fulldescriptions, role} = req.body;
 
     const meeting = new Meeting({
         title, 
         description,
+        fulldescriptions,
         date,
         time,
         personCount,
         url,
+        role,
+        users
     })
     await meeting.save();
     res.header({
@@ -30,26 +33,28 @@ try {
 })
 
 // update 
-router.put('/:id',async (req, res) => {
+router.patch('/:id',async (req, res) => {
     try {
-        const meeting = await Meeting.findOne({_id:req.params.id});
-        if (meeting) {
-            meeting.title = req.body.title,
-            meeting.description = req.body.description,
-            meeting.fulldescriptions = req.body.fulldescriptions,
-            meeting.date = req.body.date,
-            meeting.time = req.body.time,
-            meeting.personCount = req.body.personCount,
-            meeting.url = req.body.url,
-            meeting.role = req.body.role,
-            meeting.users = req.body.users
-           }
+        await Meeting.updateOne({_id:req.params.id},
+          {
+            title: req.body.title,
+            description: req.body.description,
+            fulldescriptions: req.body.fulldescriptions,
+            date: req.body.date,
+            time: req.body.time,
+            personCount: req.body.personCount,
+            url: req.body.url,
+            role: req.body.role,
+            users: req.body.users
+             }
+          );
+         
            res.header({
             "Access-Control-Allow-Origin": "*",
           });
-        await meeting.save();
-        res.send(meeting)
-        //res.json(meeting);
+       // await meetingNew.save();
+       // res.send(meetingNew)
+        res.json({ success: true});
       } catch (e) {
         console.log(e);
         res
@@ -68,6 +73,26 @@ router.get("/", async (req, res) => {
         "Access-Control-Allow-Origin": "*",
       });
       res.json(meeting);
+    } catch (e) {
+      console.log(e);
+      res
+        .status(500)
+        .json({ message: "Something wrong" });
+    }
+  });
+
+  router.get('/:id', async (req, res) => {
+    try {
+      const meetingOne = await Meeting.findOne({_id: req.params.id});
+    
+      if (!meetingOne) {
+        return res.status(404).json({message: 'meeting not found'})
+      }
+      // res.header({
+      //   "Access-Control-Allow-Origin": "*",
+      // });
+      res.json(meetingOne);
+      //res.send(meetingOne)
     } catch (e) {
       console.log(e);
       res
@@ -94,19 +119,19 @@ router.delete('/:id',async (req, res) => {
   })
 
   // metteing
-  router.get('/:id',async (req, res) => {
-    try {
-        const meeting = await Meeting.findOne({_id:req.params.id});
-        res.header({
-          "Access-Control-Allow-Origin": "*",
-        });
-        res.json(meeting)
-      } catch (e) {
-        console.log(e);
-        res
-          .status(500)
-          .json({ message: "Something wrong" });
-      }
+  // router.get('/:id',async (req, res) => {
+  //   try {
+  //       const meeting = await Meeting.findOne({_id:req.params.id});
+  //       res.header({
+  //         "Access-Control-Allow-Origin": "*",
+  //       });
+  //       res.json(meeting)
+  //     } catch (e) {
+  //       console.log(e);
+  //       res
+  //         .status(500)
+  //         .json({ message: "Something wrong" });
+  //     }
     
-  })
+  // })
   module.exports = router;
