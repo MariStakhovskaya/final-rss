@@ -15,7 +15,7 @@ function Meetings() {
   }, [dispatch]);
 
   return (
-    <>
+    <div>
       <SecondHeader />
       <h3 className={styles.selectTopic}>Select a Topic</h3>
       <div className={styles.meetingsBlock}>
@@ -25,7 +25,7 @@ function Meetings() {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 }
 

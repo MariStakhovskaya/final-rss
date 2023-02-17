@@ -4,7 +4,6 @@ import './style/dark.scss';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
-import React from 'react';
 import Root from './routes/root/Root';
 import ErrorPage from './routes/error-page';
 
@@ -12,7 +11,6 @@ import Login from './routes/login/Login';
 import Registration from './routes/registration/Registration';
 import FunnyStoryGame from './routes/funnyStoryGame/FunnyStoryGame';
 import { GameCar } from './routes/cars-game-pages/game-car';
-// import { HomePage } from './routes/home-page';
 import Start from './routes/start/Start';
 import Profile from './routes/profile/Profile';
 import Meetings from './routes/meetings/Meetings';
@@ -21,9 +19,8 @@ import Admin from './routes/admin/adminPages/admin';
 import List from './routes/admin/listPage/List';
 import Single from './routes/admin/single/Single';
 import AdminNew from './routes/admin/new/AdminNew';
-import { DarkModeContextProvider } from './context/darkModeContext';
-import { AuthContextProvider } from './context/AuthContext';
-import App from './App';
+import Games from './routes/games/Games';
+
 
 const router = createBrowserRouter([
   {
@@ -34,14 +31,6 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Start />,
-      },
-      {
-        path: '/carsGame',
-        element: <GameCar />,
-      },
-      {
-        path: '/funnyStory',
-        element: <FunnyStoryGame />,
       },
       {
         path: '/login',
@@ -56,11 +45,11 @@ const router = createBrowserRouter([
         element: <Profile />,
       },
       {
-        path: '/profile/meetings',
+        path: '/meetings',
         element: <Meetings />,
       },
       {
-        path: '/profile/meetings/:id',
+        path: '/meetings/:id',
         element: <MeetingDetails />,
       },
       {
@@ -90,6 +79,18 @@ const router = createBrowserRouter([
       {
         path: '/admin/newMeeting',
         element: <AdminNew title="Add new meeting" />,
+        },
+        {
+        path: '/games',
+        element: <Games />,
+      },
+      {
+        path: '/games/carsGame',
+        element: <GameCar />,
+      },
+      {
+        path: '/games/nonsense',
+        element: <FunnyStoryGame />,
       },
     ],
   },
