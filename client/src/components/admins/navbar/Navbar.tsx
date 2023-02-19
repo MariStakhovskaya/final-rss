@@ -3,8 +3,6 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import Brightness6OutlinedIcon from '@mui/icons-material/Brightness6Outlined';
-import { useContext } from 'react';
-import { DarkModeContext } from '../../../context/darkModeContext';
 
 const Navbar = () => {
   //const { dispatch } = useContext(DarkModeContext);
@@ -33,7 +31,7 @@ const Navbar = () => {
           <div className="item">
             <img
               src="https://cropas.by/wp-content/uploads/2015/05/admin.jpg"
-              alt="Photo admin"
+              alt="Admin avatar"
               className="avatar"
             />
           </div>

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import SecondHeader from '../../components/secodHeader/SecondHeader';
-import { isLoading } from '../../store/slice/authSlice';
+import { fetchAuthMe, isLoading } from '../../store/slice/authSlice';
 import { Preloader } from '../../components/custom/preloader/Preloader';
 import { useEffect } from 'react';
 import { AppDispatch, RootState, useAppSelector } from '../../store/store';
@@ -14,13 +14,16 @@ function Profile() {
   const loader = useSelector(isLoading);
 
   const userId = localStorage.getItem('userId');
-  const user = useSelector((state: RootState) => state.user.user);
+  const userInfo = localStorage.getItem('user');
+  console.log(userInfo);
 
   useEffect(() => {
     if (userId) {
       dispatch(getUserData({ userId }));
     }
-  }, [userId, dispatch]);
+  }, []);
+
+  const user = useSelector((state: RootState) => state.user.user);
 
   if (!isAuth) {
     return <Navigate to="/login" />;

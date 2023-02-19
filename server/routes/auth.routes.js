@@ -48,7 +48,7 @@ try {
    const token = jwt.sign(
     {userId: user.id},
     config.get('jwtSecret'),
-    {expiresIn: "30d"},
+    {expiresIn: "5h"},
     );
 
     //const { passwordHash, ...userData } = userNew._doc

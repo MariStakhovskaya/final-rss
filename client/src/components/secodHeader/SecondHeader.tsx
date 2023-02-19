@@ -3,6 +3,7 @@ import styles from './SecondHeader.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { logout, setIsAuth } from '../../store/slice/authSlice';
+import { logoutUser } from '../../store/slice/userSlice';
 
 function SecondHeader() {
   const dispatch = useDispatch<AppDispatch>();
@@ -10,6 +11,7 @@ function SecondHeader() {
 
   const onClickLogout = () => {
     dispatch(logout());
+    dispatch(logoutUser());
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     localStorage.removeItem('userId');
