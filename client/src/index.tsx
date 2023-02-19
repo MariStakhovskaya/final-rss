@@ -1,6 +1,5 @@
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import './style/dark.scss';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
@@ -15,12 +14,13 @@ import Start from './routes/start/Start';
 import Profile from './routes/profile/Profile';
 import Meetings from './routes/meetings/Meetings';
 import MeetingDetails from './routes/meetings/MeetingDetails';
-import Admin from './routes/admin/adminPages/admin';
+import Admin from './routes/admin/adminPages/AdminPage';
 import List from './routes/admin/listPage/List';
 import Single from './routes/admin/single/Single';
 import AdminNew from './routes/admin/new/AdminNew';
 import Games from './routes/games/Games';
-
+import React from 'react';
+import AdminRoot from './routes/admin/AdminRoot';
 
 const router = createBrowserRouter([
   {
@@ -53,7 +53,26 @@ const router = createBrowserRouter([
         element: <MeetingDetails />,
       },
       {
-        path: '/admin',
+        path: '/games/nonsense',
+        element: <FunnyStoryGame />,
+      },
+      {
+        path: '/games',
+        element: <Games />,
+      },
+      {
+        path: '/games/carsGame',
+        element: <GameCar />,
+      },
+    ],
+  },
+  {
+    path: '/admin',
+    element: <AdminRoot />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        index: true,
         element: <Admin />,
       },
       {
@@ -69,7 +88,7 @@ const router = createBrowserRouter([
         element: <Single />,
       },
       {
-        path: 'admin/meeting/:id',
+        path: '/admin/meeting/:id',
         element: <Single />,
       },
       {
@@ -79,18 +98,6 @@ const router = createBrowserRouter([
       {
         path: '/admin/newMeeting',
         element: <AdminNew title="Add new meeting" />,
-        },
-        {
-        path: '/games',
-        element: <Games />,
-      },
-      {
-        path: '/games/carsGame',
-        element: <GameCar />,
-      },
-      {
-        path: '/games/nonsense',
-        element: <FunnyStoryGame />,
       },
     ],
   },
@@ -102,14 +109,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <>
-      {/*  <DarkModeContextProvider>
-        <AuthContextProvider> */}
       <Provider store={store}>
         <RouterProvider router={router} />
-        {/* <App /> */}
       </Provider>
-      {/* </AuthContextProvider>
-      </DarkModeContextProvider> */}
     </>
   </React.StrictMode>
 );

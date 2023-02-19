@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import './adminNew.scss';
-import Sidebar from '../../../components/admins/sidebar/Sidebar';
-import Navbar from '../../../components/admins/navbar/Navbar';
+import styles from './AdminNew.module.css';
 import DriveFolderUploadOutlinedIcon from '@mui/icons-material/DriveFolderUploadOutlined';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../store/store';
 import { fetchRegister, setErrorREdux } from '../../../store/slice/authSlice';
-import { fetchMeeting } from '../../../store/slice/meetingSlice';
 
 type AdminNewType = {
   title: string;
@@ -70,10 +67,6 @@ const AdminNew = ({ title }: AdminNewType) => {
   function handleInputMeeting(e: React.ChangeEvent<HTMLInputElement>) {
     const id = e.target.id;
     const value = e.target.value;
-
-    console.log(id);
-    console.log(value);
-
     setMeeting({ ...meeting, [id]: value });
   }
 
@@ -81,7 +74,6 @@ const AdminNew = ({ title }: AdminNewType) => {
     e.preventDefault();
     dispatch(fetchRegister(data));
     setTimeout(() => {
-      console.log(data);
       dispatch(setErrorREdux(''));
       navigate(-1);
     }, 3000);
@@ -98,136 +90,144 @@ const AdminNew = ({ title }: AdminNewType) => {
   };
 
   return (
-    <div className="new">
-      <Sidebar />
-      <div className="newContainer">
-        <Navbar />
-        <div className="top">
-          <p className="title">{title}</p>
+    <>
+      <div className={styles.top}>
+        <p className={styles.title}>{title}</p>
+      </div>
+      <div className={styles.bottom}>
+        <div className={styles.left}>
+          <img
+            src={
+              fileImg
+                ? URL.createObjectURL(fileImg)
+                : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
+            }
+            alt=""
+          />
         </div>
-        <div className="bottom">
-          <div className="left">
-            <img
-              src={
-                fileImg
-                  ? URL.createObjectURL(fileImg)
-                  : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
-              }
-              alt=""
-            />
-          </div>
-          <div className="right">
-            {page === 'newUser' ? (
-              <>
-                <form action="" onSubmit={handleSubmit}>
-                  <div className="formInput">
-                    <label htmlFor="">UserName</label>
-                    <input
-                      type="text"
-                      id="name"
-                      placeholder="New User Name"
-                      onChange={handleInput}
-                    />
-                  </div>
-                  <div className="formInput">
-                    <label htmlFor="file">
-                      Image:
-                      <DriveFolderUploadOutlinedIcon className="icon" />
-                    </label>
-                    <input
-                      onChange={(e) => setFileImg(getFile(e))}
-                      type="file"
-                      id="file"
-                      style={{ display: 'none' }}
-                    />
-                  </div>
-                  <div className="formInput">
-                    <label htmlFor="">Email</label>
-                    <input
-                      type="email"
-                      id="email"
-                      placeholder="NewUser@gmail.com"
-                      onChange={handleInput}
-                    />
-                  </div>
-                  <div className="formInput">
-                    <label htmlFor="">Password</label>
-                    <input
-                      type="password"
-                      id="password"
-                      onChange={handleInput}
-                    />
-                  </div>
-                  <button type="submit">Send</button>
-                </form>
-              </>
-            ) : (
-              <>
-                <form action="" onSubmit={handleSubmitMeeting}>
-                  <div className="formInput">
-                    <label htmlFor="">Title</label>
-                    <input
-                      type="text"
-                      id="title"
-                      placeholder="New Meeting Title"
-                      onChange={handleInputMeeting}
-                    />
-                  </div>
-                  <div className="formInput">
-                    <label htmlFor="file">
-                      Image:
-                      <DriveFolderUploadOutlinedIcon className="icon" />
-                    </label>
-                    <input
-                      onChange={(e) => setFileImg(getFile(e))}
-                      type="file"
-                      id="file"
-                      style={{ display: 'none' }}
-                    />
-                  </div>
-                  <div className="formInput">
-                    <label htmlFor="">Date</label>
-                    <input
-                      type="date"
-                      id="date"
-                      value="2023-02-22"
-                      min="2023-02-21"
-                      max="2023-12-31"
-                      onChange={handleInputMeeting}
-                    />
-                  </div>
-                  <div className="formInput">
-                    <label htmlFor="">Time</label>
-                    <input
-                      type="time"
-                      id="time"
-                      onChange={handleInputMeeting}
-                    />
-                  </div>
-                  <div className="formInput">
-                    <label htmlFor="">Count Person</label>
-                    <input
-                      type="number"
-                      id="personCount"
-                      onChange={handleInputMeeting}
-                    />
-                  </div>
-                  <div className="formInput">
-                    <label htmlFor="">Description</label>
-                    <input
-                      type="textarea"
-                      id="description"
-                      onChange={handleInputMeeting}
-                    />
-                  </div>
-                  <button type="submit">Send</button>
-                </form>
-              </>
-            )}
-          </div>
+        <div className={styles.right}>
+          {page === 'newUser' ? (
+            <>
+              <form action="" onSubmit={handleSubmit}>
+                <div className={styles.formInput}>
+                  <label htmlFor="">UserName</label>
+                  <input
+                    type="text"
+                    id="name"
+                    placeholder="New User Name"
+                    onChange={handleInput}
+                    className={styles.inputNewAdmin}
+                  />
+                </div>
+                <div className={styles.formInput}>
+                  <label htmlFor="file">
+                    Image:
+                    <DriveFolderUploadOutlinedIcon className={styles.icon} />
+                  </label>
+                  <input
+                    onChange={(e) => setFileImg(getFile(e))}
+                    type="file"
+                    id="file"
+                    style={{ display: 'none' }}
+                    className={styles.inputNewAdmin}
+                  />
+                </div>
+                <div className={styles.formInput}>
+                  <label htmlFor="">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    placeholder="NewUser@gmail.com"
+                    onChange={handleInput}
+                    className={styles.inputNewAdmin}
+                  />
+                </div>
+                <div className={styles.formInput}>
+                  <label htmlFor="">Password</label>
+                  <input
+                    type="password"
+                    id="password"
+                    className={styles.inputNewAdmin}
+                    onChange={handleInput}
+                  />
+                </div>
+                <button type="submit">Send</button>
+              </form>
+            </>
+          ) : (
+            <>
+              <form action="" onSubmit={handleSubmitMeeting}>
+                <div className={styles.formInput}>
+                  <label htmlFor="">Title</label>
+                  <input
+                    type="text"
+                    id="title"
+                    placeholder="New Meeting Title"
+                    onChange={handleInputMeeting}
+                    className={styles.inputNewAdmin}
+                  />
+                </div>
+                <div className={styles.formInput}>
+                  <label htmlFor="file">
+                    Image:
+                    <DriveFolderUploadOutlinedIcon className="icon" />
+                  </label>
+                  <input
+                    onChange={(e) => setFileImg(getFile(e))}
+                    type="file"
+                    id="file"
+                    style={{ display: 'none' }}
+                    className={styles.inputNewAdmin}
+                  />
+                </div>
+                <div className={styles.formInput}>
+                  <label htmlFor="">Date</label>
+                  <input
+                    type="date"
+                    id="date"
+                    value="2023-02-22"
+                    min="2023-02-21"
+                    max="2023-12-31"
+                    onChange={handleInputMeeting}
+                    className={styles.inputNewAdmin}
+                  />
+                </div>
+                <div className={styles.formInput}>
+                  <label htmlFor="">Time</label>
+                  <input
+                    type="time"
+                    id="time"
+                    onChange={handleInputMeeting}
+                    className={styles.inputNewAdmin}
+                  />
+                </div>
+                <div className={styles.formInput}>
+                  <label htmlFor="">Count Person</label>
+                  <input
+                    type="number"
+                    id="personCount"
+                    onChange={handleInputMeeting}
+                    className={styles.inputNewAdmin}
+                  />
+                </div>
+                <div className={styles.formInput}>
+                  <label htmlFor="">Description</label>
+                  <input
+                    type="textarea"
+                    id="description"
+                    onChange={handleInputMeeting}
+                    className={styles.inputNewAdmin}
+                  />
+                </div>
+                <button className={styles.buttonNewAdmin} type="submit">
+                  Send
+                </button>
+              </form>
+            </>
+          )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

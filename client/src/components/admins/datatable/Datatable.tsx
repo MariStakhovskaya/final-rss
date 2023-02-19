@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import './datatable.scss';
+import styles from './Datatable.module.css';
+import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 
@@ -60,8 +60,12 @@ const columns: GridColDef[] = [
     width: 160,
     renderCell: (params) => {
       return (
-        <div className="cellWithImg">
-          <img src={params.row.img || ''} alt="avatar" className="cellImg" />
+        <div className={styles.cellWithImg}>
+          <img
+            src={params.row.img || ''}
+            alt="avatar"
+            className={styles.cellImg}
+          />
           {params.row.valueGetter || ''}
         </div>
       );
@@ -75,11 +79,11 @@ const columns: GridColDef[] = [
     width: 200,
     renderCell: () => {
       return (
-        <div className="cellAction">
+        <div className={styles.cellAction}>
           <Link to="">
-            <div className="viewButton">Update</div>
+            <div className={styles.viewButton}>Update</div>
           </Link>
-          <div className="deleteButton">Delete</div>
+          <div className={styles.deleteButton}>Delete</div>
         </div>
       );
     },
@@ -128,15 +132,15 @@ const DataTable = ({ title }: DataTableType) => {
     navigate(`/admin/${page === 'allMeeting' ? 'newMeeting' : 'newUser'}`);
   }
   return (
-    <div className="datatable">
-      <div className="datatableTitle">
+    <div className={styles.datatable}>
+      <div className={styles.datatableTitle}>
         {title}
-        <button onClick={goToPage} className="link">
+        <button onClick={goToPage} className={styles.link}>
           Add New
         </button>
       </div>
       <DataGrid
-        className="datagrid"
+        className={styles.datagrid}
         rows={data}
         columns={columns}
         pageSize={9}

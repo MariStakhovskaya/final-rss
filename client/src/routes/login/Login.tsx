@@ -2,19 +2,27 @@ import styles from './Login.module.css';
 //import google from '../../images/google.svg';
 import SecondHeader from '../../components/secodHeader/SecondHeader';
 import Button from '../../components/custom/button/Button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   fetchAuth,
   setIsAuth,
   error,
   isLoading,
   setErrorREdux,
+  adminEmail,
+  adminPassword,
 } from '../../store/slice/authSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { Navigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Preloader } from '../../components/custom/preloader/Preloader';
+import { useState } from 'react';
+
+type AdminType = {
+  email: string;
+  password: string;
+}
 
 function Login() {
   const isAuth = useSelector(setIsAuth);
@@ -22,6 +30,26 @@ function Login() {
   //console.log(errorRedux);
   const loader = useSelector(isLoading);
   const dispatch = useDispatch<AppDispatch>();
+ 
+  const [adminDate, setAdminDate] = useState<AdminType>({
+    email: '',
+    password: '',
+  });
+
+  function handleChangeForAdmin(e: React.ChangeEvent<HTMLInputElement>) {
+    if (e.target.name === 'email') {
+      setAdminDate({
+        ...adminDate,
+        email: e.target.value,
+      }) 
+      console.log(e.target.value);
+    } else if (e.target.name === 'password') {
+      setAdminDate({
+        ...adminDate,
+        password: e.target.value,
+      }) 
+    }
+  } 
 
   const {
     register,
@@ -43,7 +71,11 @@ function Login() {
   };
 
   if (isAuth) {
-    return <Navigate to="/profile" />;
+    if (adminDate.email === adminEmail && adminDate.password === adminPassword) {
+      return <Navigate to="/admin" />;
+    } else {
+      return <Navigate to="/profile" />;
+    }
   }
 
   return (
@@ -68,12 +100,14 @@ function Login() {
               type="email"
               {...register('email', { required: 'Укажите почту' })}
               placeholder="Email"
+              onChange={handleChangeForAdmin}
             />
             <div>{errors.email?.message}</div>
             <input
               type="password"
               {...register('password', { required: 'Укажите пароль' })}
               placeholder="Password"
+              onChange={handleChangeForAdmin}
             />
             {errors.password?.message}
             <div className={styles.errorRed}>

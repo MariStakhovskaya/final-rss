@@ -1,8 +1,6 @@
-import React, { ReactElement, useEffect, useState } from 'react';
-import './widget.scss';
-import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined';
-import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import styles from './Widget.module.css';
+import { ReactElement, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 type WidgetType = {
   type: string;
@@ -17,6 +15,7 @@ interface IWidget {
 }
 
 const Widget = ({ type, count }: WidgetType) => {
+  const iconStyle = `material-symbols-outlined ${styles.icon}`;
   const [data, setData] = useState<IWidget>();
 
   useEffect(() => {
@@ -28,7 +27,7 @@ const Widget = ({ type, count }: WidgetType) => {
           link: 'See all users',
           icon: (
             <span
-              className="material-symbols-outlined icon"
+              className={iconStyle}
               style={{
                 backgroundColor: 'rgba(218, 165, 32, 0.2)',
                 color: 'goldenrod',
@@ -47,7 +46,7 @@ const Widget = ({ type, count }: WidgetType) => {
           link: 'See all meetings',
           icon: (
             <span
-              className="material-symbols-outlined icon"
+              className={iconStyle}
               style={{
                 backgroundColor: 'rgba(0, 128, 0, 0.2)',
                 color: 'green',
@@ -63,19 +62,24 @@ const Widget = ({ type, count }: WidgetType) => {
         break;
     }
   }, []);
+
   return (
-    <div className="widget">
-      <div className="left">
-        <span className="title">{data?.title}</span>
-        <span className="counter">{data?.counter}</span>
-        <span className="link">{data?.link}</span>
+    <div className={styles.widget}>
+      <div className={styles.left}>
+        <span className={styles.title}>{data?.title}</span>
+        <span className={styles.counter}>{data?.counter}</span>
+        <Link
+          to={data?.title === 'USERS' ? '/admin/allUsers' : '/admin/allMeeting'}
+        >
+          <span className={styles.link}>{data?.link}</span>
+        </Link>
       </div>
-      <div className="right">
+      <div className={styles.right}>
         <>
-          <div className="percentage positive">
+          {/*  <div className="percentage positive">
             <ArrowDropUpOutlinedIcon />
             20%
-          </div>
+          </div> */}
           {data?.icon}
         </>
       </div>

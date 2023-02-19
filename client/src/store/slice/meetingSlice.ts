@@ -56,7 +56,7 @@ const initialState = {
   meeting: {} as MeetingType,
 };
 
-export const fetchMeeting = createAsyncThunk('auth/fetchMeeting', async () => {
+export const fetchMeeting = createAsyncThunk('meeting/fetchMeeting', async () => {
   const { data } = await instance.get('meetings');
   return data;
 });

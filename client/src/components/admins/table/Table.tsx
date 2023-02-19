@@ -1,5 +1,4 @@
-import React from 'react';
-import './table.scss';
+import styles from './Table.module.css';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -80,8 +79,8 @@ const List = () => {
             <TableRow key={row.id}>
               <TableCell className="tableCell">{row.id}</TableCell>
               <TableCell className="tableCell">
-                <div className="cellWrapper">
-                  <img src={row.img} alt="" className="image" />
+                <div className={styles.cellWrapper}>
+                  <img src={row.img} alt="" className={styles.image} />
                   {row.product}
                 </div>
               </TableCell>
