@@ -14,6 +14,9 @@ import Profile from './routes/profile/Profile';
 import Registration from './routes/registration/Registration';
 import Root from './routes/root/Root';
 import Start from './routes/start/Start';
+import { RoomProvider } from './routes/videochat/context/RoomContext';
+import HomeVideo from './routes/videochat/pages/HomeVideo';
+import { RoomPage } from './routes/videochat/pages/RoomPage';
 
 function App() {
   return (
@@ -45,6 +48,8 @@ function App() {
             path="/admin/newMeeting"
             element={<AdminNew title="Add new meeting" />}
           />
+          <Route path="/meetingRoom" element={<HomeVideo />} />
+          <Route path="/meetingRoom/:id" element={<RoomPage />} />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>
