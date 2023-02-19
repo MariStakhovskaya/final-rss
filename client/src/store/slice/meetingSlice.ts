@@ -53,18 +53,23 @@ const initialState = {
     item: [] as Array<MeetingType>,
     status: 'loading',
   },
-  meeting: {} as MeetingType,
+  meeting: {
+    meetingItem: {} as MeetingType,
+    status: 'loading',
+  },
 };
 
-export const fetchMeeting = createAsyncThunk('auth/fetchMeeting', async () => {
-  const { data } = await instance.get('meetings');
-  return data;
-});
+export const fetchMeeting = createAsyncThunk(
+  'meeting/fetchMeeting',
+  async () => {
+    const { data } = await instance.get('meetings');
+    return data;
+  }
+);
 
 export const getOneMeeting = createAsyncThunk(
   'meeting/getOneMeeting',
   async (params: { id: string }) => {
-    console.log(params);
     const { data } = await instance.get(`meetings/${params.id}`);
     return data;
   }
@@ -78,7 +83,7 @@ export const updateOneMeeting = createAsyncThunk(
 );
 
 const meetingsSlice = createSlice({
-  name: 'meetings',
+  name: 'meeting',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -94,11 +99,24 @@ const meetingsSlice = createSlice({
       state.meetings.status = 'error';
       state.meetings.item = [];
     });
+    builder.addCase(getOneMeeting.pending, (state) => {
+      state.meeting.status = 'loading';
+      //state.meeting.meetingItem = {};
+    });
     builder.addCase(getOneMeeting.fulfilled, (state, action) => {
-      state.meeting = action.payload;
+      state.meeting.status = 'loaded';
+      state.meeting.meetingItem = action.payload;
+    });
+    builder.addCase(getOneMeeting.rejected, (state) => {
+      state.meeting.status = 'error';
+    });
+    builder.addCase(updateOneMeeting.pending, (state, action) => {
+      // state.meeting.meetingItem = action.payload;
+      state.meeting.status = 'loading';
     });
     builder.addCase(updateOneMeeting.fulfilled, (state, action) => {
-      //state.meeting = action.payload;
+      // state.meeting.meetingItem = action.payload;
+      state.meeting.status = 'loaded';
     });
   },
 });
