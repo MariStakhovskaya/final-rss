@@ -10,7 +10,7 @@ const WS = 'https://final-rss-server.onrender.com';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const RoomContext = createContext<null | any>(null);
-
+socketIO({ path: '/socket.io/', transports: ['websocket'] });
 const ws = socketIO(WS);
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
