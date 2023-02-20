@@ -137,7 +137,7 @@ a {
 .select__button {
   width: 344px;
   cursor: pointer;
-  background: #c5c5c5;
+  background: #FFC430;
   align-self: flex-end;
 }
 .select__button > button p {

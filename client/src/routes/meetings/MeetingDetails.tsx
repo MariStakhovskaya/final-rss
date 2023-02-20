@@ -23,24 +23,28 @@ function MeetingDetails() {
     }
   }, [id, dispatch]);
 
-  const userId = localStorage.getItem('userId');
   const isLoading = useSelector(
     (state: RootState) => state.meetings.meeting.status
   );
 
-  const { title, url, personCount, description, fulldescriptions } =
-    useSelector((state: RootState) => state.meetings.meeting.meetingItem);
-  const users = useSelector(
-    (state: RootState) => state.meetings.meeting.meetingItem.users
+  const userId = localStorage.getItem('userId');
+
+  const meetings = useSelector(
+    (state: RootState) => state.meetings.meetings.item
   );
 
-  const roles = useSelector(
-    (state: RootState) => state.meetings.meeting.meetingItem.role
+  let num = 0;
+  meetings.forEach((el, i) => {
+    if (el._id === id) num = i;
+  });
+
+  const meeting = useSelector(
+    (state: RootState) => state.meetings.meetings.item[num]
   );
 
   const [role, setRole] = useState<string>('');
   const [isActive, setIsActive] = useState<boolean[]>(
-    new Array(roles.length).fill(false)
+    new Array(meeting?.role.length).fill(false)
   );
 
   const roleSelect = (selectRole: string, index: number) => {
@@ -58,7 +62,7 @@ function MeetingDetails() {
     let body = {};
     if (userId) {
       // Надо сделать проверку на длину массива users, и если больше чем countPeople дизейблить кнопку.
-      body = { users: [...users, { id: userId, role: role }] };
+      body = { users: [...meeting.users, { id: userId, role: role }] };
       console.log(body);
     }
     if (id) {
@@ -68,7 +72,7 @@ function MeetingDetails() {
   };
 
   return (
-    <>
+    <div>
       {isLoading === 'loading' ? (
         <Preloader />
       ) : (
@@ -79,9 +83,13 @@ function MeetingDetails() {
           </div>
           <div className={styles.containerMeeting}>
             <div className={styles.meeting}>
-              <div className={styles.title__details}>{title}</div>
+              <div className={styles.title__details}>{meeting.title}</div>
               <div>
-                <img className={styles.img__meeting} src={url} alt={title} />
+                <img
+                  className={styles.img__meeting}
+                  src={meeting.url}
+                  alt={meeting.title}
+                />
               </div>
               <div className={styles.count__block__details}>
                 <svg
@@ -98,22 +106,23 @@ function MeetingDetails() {
                   />
                 </svg>
                 <p className={styles.count__details}>
-                  {users ? users.length : 0} / {personCount}
+                  {meeting.users ? meeting.users.length : 0} /{' '}
+                  {meeting.personCount}
                 </p>
               </div>
-              <div className={styles.description}>{description}</div>
+              <div className={styles.description}>{meeting.description}</div>
             </div>
             <div className={styles.about}>
-              <div className={styles.minititle}>{title}</div>
+              <div className={styles.minititle}>{meeting.title}</div>
               <div
                 className={[styles.description, styles.information].join(' ')}
               >
-                {fulldescriptions}
+                {meeting.fulldescriptions}
               </div>
               <div className={styles.minititle}>Roles</div>
               <div className={[styles.roles, styles.information].join(' ')}>
-                {roles &&
-                  roles.map((rol: RoleType, index) => {
+                {meeting.role &&
+                  meeting.role.map((rol: RoleType, index) => {
                     return (
                       <p
                         key={index}
@@ -134,7 +143,7 @@ function MeetingDetails() {
               <div
                 className={[styles.description, styles.information].join(' ')}
               >
-                {description}
+                {meeting.description}
               </div>
               <div className={styles.select__button}>
                 <Button name="Select" callback={selectHandler} />
@@ -143,7 +152,7 @@ function MeetingDetails() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
