@@ -28,9 +28,8 @@ function MeetingDetails() {
     (state: RootState) => state.meetings.meeting.status
   );
 
-  const { title, url, personCount, description } = useSelector(
-    (state: RootState) => state.meetings.meeting.meetingItem
-  );
+  const { title, url, personCount, description, fulldescriptions } =
+    useSelector((state: RootState) => state.meetings.meeting.meetingItem);
   const users = useSelector(
     (state: RootState) => state.meetings.meeting.meetingItem.users
   );
@@ -40,10 +39,19 @@ function MeetingDetails() {
   );
 
   const [role, setRole] = useState<string>('');
+  const [isActive, setIsActive] = useState<boolean[]>(
+    new Array(roles.length).fill(false)
+  );
 
-  const roleSelect = (selectRole: string) => {
+  const roleSelect = (selectRole: string, index: number) => {
     console.log(role);
     setRole(selectRole);
+    setIsActive(
+      isActive.map((el, i) => {
+        if (i === index) return true;
+        return false;
+      })
+    );
   };
 
   const selectHandler = () => {
@@ -100,14 +108,23 @@ function MeetingDetails() {
               <div
                 className={[styles.description, styles.information].join(' ')}
               >
-                {description}
+                {fulldescriptions}
               </div>
               <div className={styles.minititle}>Roles</div>
               <div className={[styles.roles, styles.information].join(' ')}>
                 {roles &&
                   roles.map((rol: RoleType, index) => {
                     return (
-                      <p key={index} onClick={() => roleSelect(rol.Role)}>
+                      <p
+                        key={index}
+                        onClick={() => roleSelect(rol.Role, index)}
+                        className={[
+                          styles.role,
+                          isActive[index]
+                            ? styles.role__active
+                            : styles.role__passive,
+                        ].join(' ')}
+                      >
                         {rol.Role}
                       </p>
                     );

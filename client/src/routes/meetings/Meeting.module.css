@@ -119,7 +119,20 @@ a {
 }
 .roles {
   display: flex;
-  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.role {
+  padding: 10px 20px;
+}
+.role__passive {
+  cursor: pointer;
+  border: 1px #c5c5c5 solid;
+}
+.role__active {
+  cursor: default;
+  border: 1px #2e294e solid;
+  box-shadow: 4px 4px 15px rgba(2, 2, 70, 0.15);
 }
 .select__button {
   width: 344px;
