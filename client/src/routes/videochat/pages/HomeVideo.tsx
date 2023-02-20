@@ -18,7 +18,7 @@ function HomeVideo() {
   const today = new Date();
   const dateToday =
     today.getDate() + '.' + (today.getMonth() + 1) + '.' + today.getFullYear();
-  const timeToday = today.getHours() + ':' + today.getMinutes();
+  // const timeToday = today.getHours() + ':' + today.getMinutes();
 
   return (
     <div>
@@ -45,9 +45,7 @@ function HomeVideo() {
                 </div>
                 <CreateButton
                   title={meeting.title}
-                  disabled={
-                    dateToday > meeting.date && timeToday > meeting.time
-                  }
+                  disabled={dateToday <= meeting.date}
                 />
               </div>
             </div>
