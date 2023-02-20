@@ -82,6 +82,13 @@ export const updateOneMeeting = createAsyncThunk(
   }
 );
 
+export const createOneMeeting = createAsyncThunk(
+  'meeting/createOneMeeting',
+  async (params: { body: MeetingUpdateType }) => {
+    await instance.post('meetings/', params.body);
+  }
+);
+
 const meetingsSlice = createSlice({
   name: 'meeting',
   initialState,
@@ -117,6 +124,22 @@ const meetingsSlice = createSlice({
     builder.addCase(updateOneMeeting.fulfilled, (state, action) => {
       // state.meeting.meetingItem = action.payload;
       state.meeting.status = 'loaded';
+    });
+    builder.addCase(updateOneMeeting.rejected, (state, action) => {
+      // state.meeting.meetingItem = action.payload;
+      state.meeting.status = 'error';
+    });
+    builder.addCase(createOneMeeting.pending, (state, action) => {
+      // state.meeting.meetingItem = action.payload;
+      state.meeting.status = 'loading';
+    });
+    builder.addCase(createOneMeeting.fulfilled, (state, action) => {
+      // state.meeting.meetingItem = action.payload;
+      state.meeting.status = 'loaded';
+    });
+    builder.addCase(createOneMeeting.rejected, (state, action) => {
+      // state.meeting.meetingItem = action.payload;
+      state.meeting.status = 'error';
     });
   },
 });
