@@ -5,7 +5,8 @@ import Peer from 'peerjs';
 import { v4 as uuidV4 } from 'uuid';
 import { addPeerAction, removePeerAction } from './PeerActions';
 import { peerReducer } from './peerReducer';
-const WS = 'http://localhost:8000';
+//const WS = 'http://localhost:8000';
+const WS = 'https://final-rss-server.onrender.com';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const RoomContext = createContext<null | any>(null);
