@@ -2,7 +2,7 @@ import styles from './Meeting.module.css';
 import SecondHeader from '../../components/secodHeader/SecondHeader';
 import Button from '../../components/custom/button/Button';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 import {
@@ -20,6 +20,7 @@ function MeetingDetails() {
   useEffect(() => {
     if (id) {
       dispatch(getOneMeeting({ id }));
+      getUsersData();
     }
   }, [id, dispatch]);
 
@@ -34,6 +35,7 @@ function MeetingDetails() {
   const users = useSelector(
     (state: RootState) => state.meetings.meeting.meetingItem.users
   );
+  console.log(users);
 
   const roles = useSelector(
     (state: RootState) => state.meetings.meeting.meetingItem.role
@@ -41,10 +43,17 @@ function MeetingDetails() {
 
   const [role, setRole] = useState<string>('');
 
-  const roleSelect = (selectRole: string) => {
-    console.log(role);
+  const roleSelect = (selectRole: string, index: number) => {
+    const newVal = roles.map((el, i) => (index === i ? true : false));
+    setIsActive(newVal);
     setRole(selectRole);
   };
+
+  const getUsersData = () => {
+    console.log(users);
+  };
+
+  const [isActive, setIsActive] = useState<boolean[]>([]);
 
   const selectHandler = () => {
     let body = {};
@@ -54,8 +63,9 @@ function MeetingDetails() {
       console.log(body);
     }
     if (id) {
-      dispatch(updateOneMeeting({ id, body }));
-      dispatch(getOneMeeting({ id }));
+      dispatch(updateOneMeeting({ id, body })).then(() => {
+        dispatch(getOneMeeting({ id }));
+      });
     }
   };
 
@@ -107,7 +117,11 @@ function MeetingDetails() {
                 {roles &&
                   roles.map((rol: RoleType, index) => {
                     return (
-                      <p key={index} onClick={() => roleSelect(rol.Role)}>
+                      <p
+                        key={index}
+                        onClick={() => roleSelect(rol.Role, index)}
+                        className={isActive[index] ? styles.active : ''}
+                      >
                         {rol.Role}
                       </p>
                     );

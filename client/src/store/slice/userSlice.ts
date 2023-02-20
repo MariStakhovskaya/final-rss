@@ -27,6 +27,7 @@ const initialState = {
     __v: 0,
   },
   users: [] as Array<UserType>,
+  status: 'loading',
 };
 
 export const getUserData = createAsyncThunk(
@@ -61,6 +62,14 @@ export const updateOneUser = createAsyncThunk(
   }
 );
 
+export const createUser = createAsyncThunk(
+  'user/createUser',
+  async (params: { email: string; password: string; name: string }) => {
+    const { data } = await instance.post('users/admin', params);
+    return data;
+  }
+);
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -83,23 +92,53 @@ const userSlice = createSlice({
         name: '',
         __v: 0,
       };
+      state.status = 'loading';
     });
     builder.addCase(getUserData.fulfilled, (state, action) => {
       state.user = action.payload;
+      state.status = 'loaded';
     });
-    builder.addCase(getUserData.rejected, (state, action) => {
+    builder.addCase(getUserData.rejected, (state) => {
       state.user = {
         _id: '',
         email: '',
         name: '',
         __v: 0,
       };
+      state.status = 'error';
+    });
+    builder.addCase(createUser.pending, (state, action) => {
+      //state.user = action.payload;
+      state.status = 'loading';
+    });
+    builder.addCase(createUser.fulfilled, (state, action) => {
+      //state.user = action.payload;
+      state.status = 'loaded';
+    });
+    builder.addCase(createUser.rejected, (state, action) => {
+      //state.user = action.payload;
+      state.status = 'error';
+    });
+    builder.addCase(getAllUsers.pending, (state, action) => {
+      state.users = [];
+      state.status = 'loading';
     });
     builder.addCase(getAllUsers.fulfilled, (state, action) => {
       state.users = action.payload;
+      state.status = 'loaded';
     });
-    builder.addCase(updateOneUser.fulfilled, (state, action) => {
-      //state.meeting = action.payload;
+    builder.addCase(getAllUsers.rejected, (state, action) => {
+      state.status = 'error';
+      state.users = [];
+    });
+    builder.addCase(updateOneUser.pending, (state) => {
+      state.status = 'loading';
+    });
+    builder.addCase(updateOneUser.fulfilled, (state) => {
+      state.status = 'loaded';
+    });
+    builder.addCase(updateOneUser.rejected, (state) => {
+      state.status = 'error';
     });
   },
 });

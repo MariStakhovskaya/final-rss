@@ -1,10 +1,10 @@
 import CreateButton from '../components/CreateButton';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { useEffect } from 'react';
 import { AppDispatch, RootState } from '../../../store/store';
 import { fetchMeeting } from '../../../store/slice/meetingSlice';
 import SecondHeader from '../../../components/secodHeader/SecondHeader';
+import styles from './HomeVideo.module.css';
 
 function HomeVideo() {
   const dispatch = useDispatch<AppDispatch>();
@@ -28,15 +28,28 @@ function HomeVideo() {
         meeting.users.map((user) => {
           return userId === user.id ? (
             <div key={meeting._id}>
-              <div>{meeting.title}</div>
-              <div>{meeting.description}</div>
-              <div>
-                <span>{meeting.date}</span> <span>{meeting.time}</span>
+              <div className={styles.container}>
+                <div className={styles.title}>{meeting.title}</div>
+                <div>
+                  <img
+                    className={styles.img__meeting}
+                    src={meeting.url}
+                    alt={meeting.title}
+                  />
+                </div>
+                <div className={styles.role}>Your role:</div>
+                <div>{user.role}</div>
+                <div>
+                  <div className={styles.date}>Date:</div>
+                  <span>{meeting.date}</span> <span>{meeting.time}</span>
+                </div>
+                <CreateButton
+                  title={meeting.title}
+                  disabled={
+                    dateToday > meeting.date && timeToday > meeting.time
+                  }
+                />
               </div>
-              <CreateButton
-                title={meeting.title}
-                disabled={dateToday > meeting.date && timeToday > meeting.time}
-              />
             </div>
           ) : (
             ''
