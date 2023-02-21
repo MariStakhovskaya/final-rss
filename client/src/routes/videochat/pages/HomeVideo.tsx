@@ -46,6 +46,7 @@ function HomeVideo() {
                 <CreateButton
                   title={meeting.title}
                   disabled={dateToday <= meeting.date}
+                  idRoom={meeting._id}
                 />
               </div>
             </div>

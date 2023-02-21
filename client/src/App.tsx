@@ -48,8 +48,22 @@ function App() {
             path="/admin/newMeeting"
             element={<AdminNew title="Add new meeting" />}
           />
-          <Route path="/meetingRoom" element={<HomeVideo />} />
-          <Route path="/meetingRoom/:id" element={<RoomPage />} />
+          <Route
+            path="/meetingRoom"
+            element={
+              <RoomProvider>
+                <HomeVideo />
+              </RoomProvider>
+            }
+          />
+          <Route
+            path="/meetingRoom/:id"
+            element={
+              <RoomProvider>
+                <RoomPage />
+              </RoomProvider>
+            }
+          />
           <Route path="*" element={<ErrorPage />} />
         </Route>
       </Routes>

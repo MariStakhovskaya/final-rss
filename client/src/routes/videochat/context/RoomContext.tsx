@@ -32,7 +32,8 @@ export const RoomProvider = ({ children }: any) => {
     dispatch(removePeerAction(peerId));
   };
   useEffect(() => {
-    const meId = uuidV4();
+    const savedId = localStorage.getItem('userId');
+    const meId = savedId || uuidV4();
 
     const peer = new Peer(meId);
     setMe(peer);
