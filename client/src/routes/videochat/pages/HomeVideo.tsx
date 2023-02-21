@@ -5,6 +5,7 @@ import { AppDispatch, RootState } from '../../../store/store';
 import { fetchMeeting } from '../../../store/slice/meetingSlice';
 import SecondHeader from '../../../components/secodHeader/SecondHeader';
 import styles from './HomeVideo.module.css';
+import { RoomProvider } from '../context/RoomContext';
 
 function HomeVideo() {
   const dispatch = useDispatch<AppDispatch>();

@@ -22,7 +22,7 @@ export const RoomProvider = ({ children }: any) => {
 
   const enterRoom = ({ roomId }: { roomId: string }) => {
     navigate(`/meetingRoom/${roomId}`);
-    console.log({ roomId });
+    console.log(`roomId ${roomId}`);
   };
   const getUsers = ({ participants }: { participants: string[] }) => {
     console.log({ participants });

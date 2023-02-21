@@ -11,6 +11,7 @@ export const RoomPage = () => {
 
   useEffect(() => {
     if (me) ws.emit('join-room', { roomId: id, peerId: me._id });
+    console.log(id);
   }, [id, ws, me, stream]);
 
   return (
