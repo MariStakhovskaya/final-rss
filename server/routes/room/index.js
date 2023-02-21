@@ -5,8 +5,9 @@ const rooms = {}
 
 const roomHandler = (socket) => {
 
-const createRoom = () => {
-    const roomId = v4();
+const createRoom = (idRoom) => {
+    console.log(idRoom)
+    const roomId = idRoom || v4();
     rooms[roomId] = []
     socket.emit("room-created", {roomId});
     console.log('the room has been created');

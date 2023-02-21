@@ -13,9 +13,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <BrowserRouter>
     <Provider store={store}>
-      <RoomProvider>
-        <App />
-      </RoomProvider>
+      {/* <RoomProvider> */}
+      <App />
+      {/* </RoomProvider> */}
     </Provider>
   </BrowserRouter>
 );
