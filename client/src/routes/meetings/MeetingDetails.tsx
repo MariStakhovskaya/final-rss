@@ -17,35 +17,45 @@ function MeetingDetails() {
   const dispatch = useDispatch<AppDispatch>();
   const id = useParams().id;
 
+  const [role, setRole] = useState<string>('');
+  const [isActive, setIsActive] = useState<boolean[]>([]);
+
+  const userId = localStorage.getItem('userId');
+  const roles = useSelector(
+    (state: RootState) => state.meetings.meeting.meetingItem.role
+  );
+  const { title, url, personCount, description, fulldescriptions } =
+    useSelector((state: RootState) => state.meetings.meeting.meetingItem);
+  const users = useSelector(
+    (state: RootState) => state.meetings.meeting.meetingItem.users
+  );
+
   useEffect(() => {
     if (id) {
       dispatch(getOneMeeting({ id }));
     }
   }, [id, dispatch]);
 
+  useEffect(() => {
+    setIsActive(new Array(roles?.length).fill(false));
+  }, [roles]);
+
   const isLoading = useSelector(
     (state: RootState) => state.meetings.meeting.status
   );
 
-  const userId = localStorage.getItem('userId');
+  // const meetings = useSelector(
+  //   (state: RootState) => state.meetings.meetings.item
+  // );
 
-  const meetings = useSelector(
-    (state: RootState) => state.meetings.meetings.item
-  );
+  // let num = 0;
+  // meetings.forEach((el, i) => {
+  //   if (el._id === id) num = i;
+  // });
 
-  let num = 0;
-  meetings.forEach((el, i) => {
-    if (el._id === id) num = i;
-  });
-
-  const meeting = useSelector(
-    (state: RootState) => state.meetings.meetings.item[num]
-  );
-
-  const [role, setRole] = useState<string>('');
-  const [isActive, setIsActive] = useState<boolean[]>(
-    new Array(meeting?.role.length).fill(false)
-  );
+  // const meeting = useSelector(
+  //   (state: RootState) => state.meetings.meetings.item[num]
+  // );
 
   const roleSelect = (selectRole: string, index: number) => {
     console.log(role);
@@ -62,7 +72,7 @@ function MeetingDetails() {
     let body = {};
     if (userId) {
       // Надо сделать проверку на длину массива users, и если больше чем countPeople дизейблить кнопку.
-      body = { users: [...meeting.users, { id: userId, role: role }] };
+      body = { users: [...users, { id: userId, role: role }] };
       console.log(body);
     }
     if (id) {
@@ -83,13 +93,9 @@ function MeetingDetails() {
           </div>
           <div className={styles.containerMeeting}>
             <div className={styles.meeting}>
-              <div className={styles.title__details}>{meeting.title}</div>
+              <div className={styles.title__details}>{title}</div>
               <div>
-                <img
-                  className={styles.img__meeting}
-                  src={meeting.url}
-                  alt={meeting.title}
-                />
+                <img className={styles.img__meeting} src={url} alt={title} />
               </div>
               <div className={styles.count__block__details}>
                 <svg
@@ -106,23 +112,25 @@ function MeetingDetails() {
                   />
                 </svg>
                 <p className={styles.count__details}>
-                  {meeting.users ? meeting.users.length : 0} /{' '}
-                  {meeting.personCount}
+                  {users ? users.length : 0} / {personCount}
                 </p>
               </div>
-              <div className={styles.description}>{meeting.description}</div>
+              <div className={styles.description}>{description}</div>
             </div>
             <div className={styles.about}>
-              <div className={styles.minititle}>{meeting.title}</div>
+              <div className={styles.minititle}>{title}</div>
               <div
                 className={[styles.description, styles.information].join(' ')}
               >
-                {meeting.fulldescriptions}
+                {fulldescriptions}
               </div>
-              <div className={styles.minititle}>Roles</div>
+              <div className={[styles.minititle, styles.choice].join(' ')}>
+                <p>Roles</p>
+                <p className={styles.footnote}>(choose a role)</p>
+              </div>
               <div className={[styles.roles, styles.information].join(' ')}>
-                {meeting.role &&
-                  meeting.role.map((rol: RoleType, index) => {
+                {roles &&
+                  roles.map((rol: RoleType, index) => {
                     return (
                       <p
                         key={index}
@@ -143,7 +151,7 @@ function MeetingDetails() {
               <div
                 className={[styles.description, styles.information].join(' ')}
               >
-                {meeting.description}
+                {description}
               </div>
               <div className={styles.select__button}>
                 <Button name="Select" callback={selectHandler} />
