@@ -8,7 +8,7 @@ router.post(
     '/',
      async (req, res) => {
 try {
-    const {title, description, date, time, personCount, url, fulldescriptions, role} = req.body;
+    const {title, description, date, time, personCount, url, fulldescriptions, role, users} = req.body;
 
     const meeting = new Meeting({
         title, 

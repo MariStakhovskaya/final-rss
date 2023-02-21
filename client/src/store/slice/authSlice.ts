@@ -118,9 +118,9 @@ const authSlice = createSlice({
     builder.addCase(fetchAuthMe.fulfilled, (state, action) => {
       state.status = 'loaded';
       state.data = action.payload;
-      if (state.data) {
-        localStorage.setItem('userId', action.payload._id);
-      }
+      // if (state.data) {
+      //   localStorage.setItem('userId', action.payload._id);
+      // }
       state.error = '';
     });
     builder.addCase(fetchAuthMe.rejected, (state) => {

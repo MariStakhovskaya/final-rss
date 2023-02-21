@@ -22,15 +22,15 @@ import { useState } from 'react';
 type AdminType = {
   email: string;
   password: string;
-}
+};
 
 function Login() {
   const isAuth = useSelector(setIsAuth);
   const errorRedux = useSelector(error);
-  //console.log(errorRedux);
+
   const loader = useSelector(isLoading);
   const dispatch = useDispatch<AppDispatch>();
- 
+
   const [adminDate, setAdminDate] = useState<AdminType>({
     email: '',
     password: '',
@@ -41,15 +41,15 @@ function Login() {
       setAdminDate({
         ...adminDate,
         email: e.target.value,
-      }) 
+      });
       console.log(e.target.value);
     } else if (e.target.name === 'password') {
       setAdminDate({
         ...adminDate,
         password: e.target.value,
-      }) 
+      });
     }
-  } 
+  }
 
   const {
     register,
@@ -71,7 +71,10 @@ function Login() {
   };
 
   if (isAuth) {
-    if (adminDate.email === adminEmail && adminDate.password === adminPassword) {
+    if (
+      adminDate.email === adminEmail &&
+      adminDate.password === adminPassword
+    ) {
       return <Navigate to="/admin" />;
     } else {
       return <Navigate to="/profile" />;

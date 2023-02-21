@@ -1,7 +1,10 @@
 const express = require("express");
 const config = require("config");
+const { Server } = require("socket.io")
 const cors = require("cors");
+const http = require("http");
 const { default: mongoose } = require("mongoose");
+const { roomHandler } = require("./routes/room")
 
 const app = express();
 const PORT = process.env.port || 8000;
@@ -20,6 +23,23 @@ const corsOptions = {
    mode: "no-cors",
  };
  app.use(express.json({ extended: true }), cors(corsOptions));
+ const server = http.createServer(app);
+ const io = new Server(server, {
+   cors: {
+       origin: "*",
+       methods: ["GET", "POST"],
+   },
+});
+
+ io.on("connection", (socket) => {
+   console.log('user is connected');
+   roomHandler(socket);
+
+   socket.on("disconnect", () => {
+       console.log('user is disconnected');
+   })
+})
+
 app.use('/api/auth',cors(corsOptions), require('./routes/auth.routes'))
 app.use('/api/auth', cors(corsOptions), require('./routes/auth.routes'))
 app.use('/users', cors(corsOptions), require('./routes/users.routes'))
@@ -43,7 +63,7 @@ const connection = async () => {
     //process.exit(1);
  }
 }
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`app listening on port ${PORT}`)
   })
 connection();

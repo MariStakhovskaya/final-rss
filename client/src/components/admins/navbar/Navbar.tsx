@@ -10,7 +10,11 @@ const Navbar = () => {
       <div className={styles.navbar}>
         <div className={styles.wrapper}>
           <div className={styles.search}>
-            <input className={styles.inputNavbarAdmin} type="text" placeholder="Search..." />
+            <input
+              className={styles.inputNavbarAdmin}
+              type="text"
+              placeholder="Search..."
+            />
             <SearchOutlinedIcon />
           </div>
           <div className={styles.items}>
@@ -28,7 +32,7 @@ const Navbar = () => {
             <div className={styles.item}>
               <img
                 src="https://cropas.by/wp-content/uploads/2015/05/admin.jpg"
-                alt="Photo admin"
+                alt="Admin avatar"
                 className={styles.avatar}
               />
             </div>
