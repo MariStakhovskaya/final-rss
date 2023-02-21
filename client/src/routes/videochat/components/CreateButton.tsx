@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { RoomContext } from '../context/RoomContext';
+import { RoomContext, RoomProvider } from '../context/RoomContext';
 
 type PropsType = {
   title: string;
