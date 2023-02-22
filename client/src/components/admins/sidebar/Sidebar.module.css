@@ -1,0 +1,93 @@
+.sidebar {
+  flex: 1;
+  border-right: 0.5px solid rgb(230, 227, 227);
+  min-height: 100vh;
+}
+
+.top {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 119px;
+  height: 114px;
+  position: relative;
+  z-index: 15;
+}
+
+.hrSidebarAdmin {
+  height: 0;
+  border: 0.5px solid lightgray;
+  position: relative;
+  z-index: 20;
+}
+
+.center {
+  padding-left: 10px;
+}
+
+.ulSidebarAdmin {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  z-index: 19;
+}
+
+.liSidebarAdmin {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.liSidebarAdmin:hover {
+  background-color: #ece8ff;
+}
+
+.icon {
+  font-size: 40px;
+  color: lightgrey;
+}
+
+.span {
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 10px;
+  color: #888;
+}
+
+.bottom {
+  display: flex;
+  align-items: center;
+  margin: 10px;
+  border: 0.5px solid lightgray;
+  border-radius: 5px;
+  height: 40px;
+  padding: 5px;
+}
+
+.colorOption {
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  border: 1px solid #888;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.colorOption:nth-child(1) {
+  background-color: whitesmoke;
+}
+
+.colorOption:nth-child(2) {
+  background-color: #333;
+}
+
+.colorOption:hover {
+  width: 27px;
+  height: 27px;
+}

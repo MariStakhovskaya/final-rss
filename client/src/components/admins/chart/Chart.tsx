@@ -1,5 +1,4 @@
-import React from 'react';
-import './chart.scss';
+import styles from './Chart.module.css';
 import {
   XAxis,
   YAxis,
@@ -25,8 +24,8 @@ type ChartType = {
 };
 const Chart = ({ aspect, title }: ChartType) => {
   return (
-    <div className="chart">
-      <div className="title">{title}</div>
+    <div className={styles.chart}>
+      <div className={styles.title}>{title}</div>
       <ResponsiveContainer width="100%" aspect={aspect}>
         <AreaChart
           width={730}
@@ -42,7 +41,7 @@ const Chart = ({ aspect, title }: ChartType) => {
           </defs>
           <XAxis dataKey="name" stroke="gray" />
           <YAxis />
-          <CartesianGrid strokeDasharray="3 3" className="chartGrid" />
+          <CartesianGrid strokeDasharray="3 3" className={styles.chartGrid} />
           <Tooltip />
           <Area
             type="monotone"

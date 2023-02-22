@@ -36,7 +36,7 @@ export const getUserData = createAsyncThunk(
     const { data } = await instance.get(`users/user/${params.userId}`);
     return data;
   }
-);
+); 
 
 export const deleteUser = createAsyncThunk(
   'user/deleteUser',
