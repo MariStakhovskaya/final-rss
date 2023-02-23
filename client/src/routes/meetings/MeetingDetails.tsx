@@ -146,7 +146,9 @@ function MeetingDetails() {
                           name={rol.Role}
                           callback={() => roleSelect(rol.Role, index)}
                           disabled={
-                            isDisable || users?.find((el) => el.id === userId)
+                            isDisable ||
+                            users?.find((el) => el.id === userId) ||
+                            users?.find((el) => el.role === rol.Role)
                               ? true
                               : false
                           }
