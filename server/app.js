@@ -17,8 +17,9 @@ const whitelist = [
  ];
 
 const corsOptions = {
-   // origin: "http://localhost:3000",
-   origin: "https://maristakhovskaya.github.io/final-rss/",
+   //origin: "http://localhost:3000",
+   origin: "https://maristakhovskaya.github.io",
+   //origin: "*",
    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
    Headers: '*',
    mode: "no-cors",
@@ -45,6 +46,12 @@ app.use('/api/auth',cors(corsOptions), require('./routes/auth.routes'))
 app.use('/api/auth', cors(corsOptions), require('./routes/auth.routes'))
 app.use('/users', cors(corsOptions), require('./routes/users.routes'))
 app.use('/meetings',cors(corsOptions), require('./routes/meeting.rotes'))
+
+app.use("/", express.static(path.join(__dirname, "/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "/build/index.html"));
+});
 
 // app.get('/', (req, res) =>{
 // res.send('hello world')
