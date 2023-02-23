@@ -1,14 +1,11 @@
 import styles from './Datatable.module.css';
 import { useEffect, useState } from 'react';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import {
-  MeetingType,
-  UserMeetingType,
-} from '../../../store/slice/meetingSlice';
-import { deleteUser, UserType } from '../../../store/slice/userSlice';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../../store/store';
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { MeetingType } from '../../../store/slice/meetingSlice';
+import { UserType } from '../../../store/slice/userSlice';
+// import { useDispatch } from 'react-redux';
+// import { AppDispatch } from '../../../store/store';
 
 /* export type MeetingType = {
   _id: string;
@@ -31,7 +28,7 @@ type DataTableType = {
 };
 
 const DataTable = ({ title, dataUser, dataMeeting }: DataTableType) => {
-  const dispatch = useDispatch<AppDispatch>();
+  //const dispatch = useDispatch<AppDispatch>();
 
   function getMeetingsTitle(userId: string) {
     const arrTitle: string[] = [];
@@ -110,6 +107,7 @@ const DataTable = ({ title, dataUser, dataMeeting }: DataTableType) => {
     } else {
       setRowsMeetings(createRowsMeetings());
     } */
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title]);
 
   const columnsUser: GridColDef[] = [
@@ -174,6 +172,7 @@ const DataTable = ({ title, dataUser, dataMeeting }: DataTableType) => {
   async function handleDeleteUser(id: string) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const deleteRows: any[] = []; //Не могу пока избавиться от any!!!!!
+    // eslint-disable-next-line array-callback-return
     rows.map((elem) => {
       if (elem.id !== id) {
         deleteRows.push(elem);
@@ -239,6 +238,7 @@ const DataTable = ({ title, dataUser, dataMeeting }: DataTableType) => {
   async function handleDeleteMeetings(id: string) {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const deleteRows: any[] = []; //Не могу пока избавиться от any!!!!!
+    // eslint-disable-next-line array-callback-return
     rows.map((elem) => {
       if (elem.id !== id) {
         deleteRows.push(elem);

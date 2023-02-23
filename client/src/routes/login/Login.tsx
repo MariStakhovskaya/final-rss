@@ -2,7 +2,7 @@ import styles from './Login.module.css';
 //import google from '../../images/google.svg';
 import SecondHeader from '../../components/secodHeader/SecondHeader';
 import Button from '../../components/custom/button/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
   fetchAuth,
   setIsAuth,
@@ -42,7 +42,6 @@ function Login() {
         ...adminDate,
         email: e.target.value,
       });
-      console.log(e.target.value);
     } else if (e.target.name === 'password') {
       setAdminDate({
         ...adminDate,
