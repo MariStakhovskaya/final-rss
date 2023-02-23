@@ -172,6 +172,7 @@ const DataTable = ({ title, dataUser, dataMeeting }: DataTableType) => {
   ];
 
   async function handleDeleteUser(id: string) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const deleteRows: any[] = []; //Не могу пока избавиться от any!!!!!
     rows.map((elem) => {
       if (elem.id !== id) {
@@ -236,6 +237,7 @@ const DataTable = ({ title, dataUser, dataMeeting }: DataTableType) => {
   ];
 
   async function handleDeleteMeetings(id: string) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const deleteRows: any[] = []; //Не могу пока избавиться от any!!!!!
     rows.map((elem) => {
       if (elem.id !== id) {
