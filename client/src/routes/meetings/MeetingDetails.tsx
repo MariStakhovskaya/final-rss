@@ -19,6 +19,8 @@ function MeetingDetails() {
 
   const [role, setRole] = useState<string>('');
   const [isActive, setIsActive] = useState<boolean[]>([]);
+  const [isDisable, setIsDisable] = useState<boolean>();
+  const [buttonName, setButtonName] = useState<string>('');
 
   const userId = localStorage.getItem('userId');
   const roles = useSelector(
@@ -30,35 +32,29 @@ function MeetingDetails() {
     (state: RootState) => state.meetings.meeting.meetingItem.users
   );
 
-  useEffect(() => {
+  useEffect((): void => {
     if (id) {
       dispatch(getOneMeeting({ id }));
     }
   }, [id, dispatch]);
 
-  useEffect(() => {
+  useEffect((): void => {
     setIsActive(new Array(roles?.length).fill(false));
-  }, [roles]);
+    setIsDisable(
+      !users?.find((el) => el.id === userId) && users?.length >= personCount
+        ? true
+        : false
+    );
+    setButtonName(
+      users?.find((el) => el.id === userId) ? 'Unselect' : 'Select'
+    );
+  }, [personCount, roles, userId, users]);
 
   const isLoading = useSelector(
     (state: RootState) => state.meetings.meeting.status
   );
 
-  // const meetings = useSelector(
-  //   (state: RootState) => state.meetings.meetings.item
-  // );
-
-  // let num = 0;
-  // meetings.forEach((el, i) => {
-  //   if (el._id === id) num = i;
-  // });
-
-  // const meeting = useSelector(
-  //   (state: RootState) => state.meetings.meetings.item[num]
-  // );
-
-  const roleSelect = (selectRole: string, index: number) => {
-    console.log(role);
+  const roleSelect = (selectRole: string, index: number): void => {
     setRole(selectRole);
     setIsActive(
       isActive.map((el, i) => {
@@ -68,16 +64,21 @@ function MeetingDetails() {
     );
   };
 
-  const selectHandler = () => {
+  const selectHandler = async (name: string): Promise<void> => {
     let body = {};
     if (userId) {
-      // Надо сделать проверку на длину массива users, и если больше чем countPeople дизейблить кнопку.
-      body = { users: [...users, { id: userId, role: role }] };
-      console.log(body);
+      if (name === 'Select') {
+        body = { users: [...users, { id: userId, role: role }] };
+        setButtonName('Unselect');
+      } else {
+        body = { users: users.filter((el) => el.id !== userId) };
+        setButtonName('Select');
+      }
     }
     if (id) {
-      dispatch(updateOneMeeting({ id, body }));
-      dispatch(getOneMeeting({ id }));
+      await dispatch(updateOneMeeting({ id, body }));
+      await dispatch(getOneMeeting({ id }));
+      setRole('');
     }
   };
 
@@ -132,9 +133,8 @@ function MeetingDetails() {
                 {roles &&
                   roles.map((rol: RoleType, index) => {
                     return (
-                      <p
+                      <div
                         key={index}
-                        onClick={() => roleSelect(rol.Role, index)}
                         className={[
                           styles.role,
                           isActive[index]
@@ -142,8 +142,16 @@ function MeetingDetails() {
                             : styles.role__passive,
                         ].join(' ')}
                       >
-                        {rol.Role}
-                      </p>
+                        <Button
+                          name={rol.Role}
+                          callback={() => roleSelect(rol.Role, index)}
+                          disabled={
+                            isDisable || users?.find((el) => el.id === userId)
+                              ? true
+                              : false
+                          }
+                        />
+                      </div>
                     );
                   })}
               </div>
@@ -154,7 +162,14 @@ function MeetingDetails() {
                 {description}
               </div>
               <div className={styles.select__button}>
-                <Button name="Select" callback={selectHandler} />
+                <Button
+                  name={buttonName}
+                  callback={() => selectHandler(buttonName)}
+                  disabled={
+                    isDisable ||
+                    (buttonName === 'Select' && role === '' ? true : false)
+                  }
+                />
               </div>
             </div>
           </div>
