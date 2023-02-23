@@ -17,60 +17,74 @@ function MeetingDetails() {
   const dispatch = useDispatch<AppDispatch>();
   const id = useParams().id;
 
-  useEffect(() => {
-    if (id) {
-      dispatch(getOneMeeting({ id }));
-      getUsersData();
-    }
-  }, [id, dispatch]);
+  const [role, setRole] = useState<string>('');
+  const [isActive, setIsActive] = useState<boolean[]>([]);
+  const [isDisable, setIsDisable] = useState<boolean>();
+  const [buttonName, setButtonName] = useState<string>('');
 
   const userId = localStorage.getItem('userId');
-  const isLoading = useSelector(
-    (state: RootState) => state.meetings.meeting.status
+  const roles = useSelector(
+    (state: RootState) => state.meetings.meeting.meetingItem.role
   );
-
-  const { title, url, personCount, description } = useSelector(
-    (state: RootState) => state.meetings.meeting.meetingItem
-  );
+  const { title, url, personCount, description, fulldescriptions } =
+    useSelector((state: RootState) => state.meetings.meeting.meetingItem);
   const users = useSelector(
     (state: RootState) => state.meetings.meeting.meetingItem.users
   );
   console.log(users);
 
-  const roles = useSelector(
-    (state: RootState) => state.meetings.meeting.meetingItem.role
+  useEffect((): void => {
+    if (id) {
+      dispatch(getOneMeeting({ id }));
+    }
+  }, [id, dispatch]);
+
+  useEffect((): void => {
+    setIsActive(new Array(roles?.length).fill(false));
+    setIsDisable(
+      !users?.find((el) => el.id === userId) && users?.length >= personCount
+        ? true
+        : false
+    );
+    setButtonName(
+      users?.find((el) => el.id === userId) ? 'Unselect' : 'Select'
+    );
+  }, [personCount, roles, userId, users]);
+
+  const isLoading = useSelector(
+    (state: RootState) => state.meetings.meeting.status
   );
 
-  const [role, setRole] = useState<string>('');
-
-  const roleSelect = (selectRole: string, index: number) => {
-    const newVal = roles.map((el, i) => (index === i ? true : false));
-    setIsActive(newVal);
+  const roleSelect = (selectRole: string, index: number): void => {
     setRole(selectRole);
+    setIsActive(
+      isActive.map((el, i) => {
+        if (i === index) return true;
+        return false;
+      })
+    );
   };
 
-  const getUsersData = () => {
-    console.log(users);
-  };
-
-  const [isActive, setIsActive] = useState<boolean[]>([]);
-
-  const selectHandler = () => {
+  const selectHandler = async (name: string): Promise<void> => {
     let body = {};
     if (userId) {
-      // Надо сделать проверку на длину массива users, и если больше чем countPeople дизейблить кнопку.
-      body = { users: [...users, { id: userId, role: role }] };
-      console.log(body);
+      if (name === 'Select') {
+        body = { users: [...users, { id: userId, role: role }] };
+        setButtonName('Unselect');
+      } else {
+        body = { users: users.filter((el) => el.id !== userId) };
+        setButtonName('Select');
+      }
     }
     if (id) {
-      dispatch(updateOneMeeting({ id, body })).then(() => {
-        dispatch(getOneMeeting({ id }));
-      });
+      await dispatch(updateOneMeeting({ id, body }));
+      await dispatch(getOneMeeting({ id }));
+      setRole('');
     }
   };
 
   return (
-    <>
+    <div>
       {isLoading === 'loading' ? (
         <Preloader />
       ) : (
@@ -110,20 +124,37 @@ function MeetingDetails() {
               <div
                 className={[styles.description, styles.information].join(' ')}
               >
-                {description}
+                {fulldescriptions}
               </div>
-              <div className={styles.minititle}>Roles</div>
+              <div className={[styles.minititle, styles.choice].join(' ')}>
+                <p>Roles</p>
+                <p className={styles.footnote}>(choose a role)</p>
+              </div>
               <div className={[styles.roles, styles.information].join(' ')}>
                 {roles &&
                   roles.map((rol: RoleType, index) => {
                     return (
-                      <p
+                      <div
                         key={index}
-                        onClick={() => roleSelect(rol.Role, index)}
-                        className={isActive[index] ? styles.active : ''}
+                        className={[
+                          styles.role,
+                          isActive[index]
+                            ? styles.role__active
+                            : styles.role__passive,
+                        ].join(' ')}
                       >
-                        {rol.Role}
-                      </p>
+                        <Button
+                          name={rol.Role}
+                          callback={() => roleSelect(rol.Role, index)}
+                          disabled={
+                            isDisable ||
+                            users?.find((el) => el.id === userId) ||
+                            users?.find((el) => el.role === rol.Role)
+                              ? true
+                              : false
+                          }
+                        />
+                      </div>
                     );
                   })}
               </div>
@@ -134,13 +165,20 @@ function MeetingDetails() {
                 {description}
               </div>
               <div className={styles.select__button}>
-                <Button name="Select" callback={selectHandler} />
+                <Button
+                  name={buttonName}
+                  callback={() => selectHandler(buttonName)}
+                  disabled={
+                    isDisable ||
+                    (buttonName === 'Select' && role === '' ? true : false)
+                  }
+                />
               </div>
             </div>
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

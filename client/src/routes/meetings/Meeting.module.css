@@ -119,15 +119,39 @@ a {
 }
 .roles {
   display: flex;
-  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.role > button {
+  background: #ffffff;
+}
+.role > button:disabled > p {
+  color: #000000;
+}
+.role > button > p {
+  width: fit-content;
+  padding: 0 30px;
+}
+.role__passive {
+  border: 1px #c5c5c5 solid;
+}
+.role__active > button {
+  cursor: default;
+  border: 1px #2e294e solid;
+  box-shadow: 4px 4px 15px rgba(2, 2, 70, 0.15);
 }
 .select__button {
   width: 344px;
   cursor: pointer;
-  background: #c5c5c5;
+  background: #FFC430;
   align-self: flex-end;
 }
-.select__button > button p {
+.select__button > button:not([disabled]):hover {
+  background: #2e294e;
+  color: #ffffff;
+  transition: all 0.3s ease-in-out;
+}
+.select__button > button {
   color: #000000;
   font-weight: 700;
   font-size: 24px;
@@ -142,7 +166,13 @@ a {
 .information {
   margin-bottom: 30px;
 }
-
-.active {
-  border: 2px solid red;
+.choice {
+  display: flex;
+  gap: 10px;
+}
+.footnote {
+  font-size: 18px;
+  color: #c5c5c5;
+  align-self: flex-end;
+  padding-bottom: 3px;
 }
