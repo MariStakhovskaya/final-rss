@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/final-rss/client/static/css/main.2be05cde.css",
+    "main.js": "/final-rss/client/static/js/main.a19006c0.js",
+    "static/media/logo.svg": "/final-rss/client/static/media/logo.da85c29753192d3066f5508e1b94250b.svg",
+    "static/media/game_img.jpg": "/final-rss/client/static/media/game_img.04968ae5ff0a582427d9.jpg",
+    "static/media/hero.png": "/final-rss/client/static/media/hero.fe09a28f8341824ddf75.png",
+    "index.html": "/final-rss/client/index.html",
+    "main.2be05cde.css.map": "/final-rss/client/static/css/main.2be05cde.css.map",
+    "main.a19006c0.js.map": "/final-rss/client/static/js/main.a19006c0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2be05cde.css",
+    "static/js/main.a19006c0.js"
+  ]
+}
