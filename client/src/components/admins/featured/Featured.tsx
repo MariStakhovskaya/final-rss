@@ -1,5 +1,4 @@
-import React from 'react';
-import './featured.scss';
+import styles from './Featured.module.css';
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -9,42 +8,42 @@ import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined';
 const Featured = () => {
   const percentage = 66;
   return (
-    <div className="featured">
-      <div className="top">
-        <p className="title">Total meeting</p>
+    <div className={styles.featured}>
+      <div className={styles.top}>
+        <p className={styles.title}>Total meeting</p>
         <MoreVertOutlinedIcon fontSize="small" />
       </div>
-      <div className="bottom">
-        <div className="featuredChart">
+      <div className={styles.bottom}>
+        <div className={styles.featuredChart}>
           <CircularProgressbar
             value={percentage}
             text={`${percentage}%`}
             strokeWidth={3}
           />
         </div>
-        <p className="title">All meeting made today</p>
-        <p className="amount">125</p>
-        <p className="desc">Какое-то описание</p>
-        <div className="summary">
-          <div className="item">
-            <div className="itemTitle">Target</div>
-            <div className="itemResult">
+        <p className={styles.title}>All meeting made today</p>
+        <p className={styles.amount}>125</p>
+        <p className={styles.desc}>Какое-то описание</p>
+        <div className={styles.summary}>
+          <div className={styles.item}>
+            <div className={styles.itemTitle}>Target</div>
+            <div className={styles.itemResult}>
               <ArrowDropDownOutlinedIcon fontSize="small" />
-              <div className="resultAmount">12</div>
+              <div className={styles.resultAmount}>12</div>
             </div>
           </div>
-          <div className="item">
-            <div className="itemTitle">Last Week</div>
-            <div className="itemResult">
+          <div className={styles.item}>
+            <div className={styles.itemTitle}>Last Week</div>
+            <div className={styles.itemResult}>
               <ArrowDropDownOutlinedIcon fontSize="small" />
-              <div className="resultAmount">12</div>
+              <div className={styles.resultAmount}>12</div>
             </div>
           </div>
-          <div className="item">
-            <div className="itemTitle">Last Month</div>
-            <div className="itemResult">
+          <div className={styles.item}>
+            <div className={styles.itemTitle}>Last Month</div>
+            <div className={styles.itemResult}>
               <ArrowDropDownOutlinedIcon fontSize="small" />
-              <div className="resultAmount">12</div>
+              <div className={styles.resultAmount}>12</div>
             </div>
           </div>
         </div>

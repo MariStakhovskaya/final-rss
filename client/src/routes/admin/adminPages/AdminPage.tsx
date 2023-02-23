@@ -1,5 +1,8 @@
-import React from 'react';
-import DataTable from '../../../components/admins/datatable/Datatable';
+import styles from './AdminPage.module.css';
+import Chart from '../../../components/admins/chart/Chart';
+import Featured from '../../../components/admins/featured/Featured';
+import Widget from '../../../components/admins/widgets/Widget';
+import List from '../../../components/admins/table/Table';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../store/store';
@@ -7,15 +10,13 @@ import { fetchMeeting } from '../../../store/slice/meetingSlice';
 import { Preloader } from '../../../components/custom/preloader/Preloader';
 import { getAllUsers } from '../../../store/slice/userSlice';
 
-type ListType = {
-  title: string;
-};
-
-const List = ({ title }: ListType) => {
+const Admin = () => {
   const dispatch = useDispatch<AppDispatch>();
+
   useEffect(() => {
     dispatch(fetchMeeting());
   }, [dispatch]);
+
   useEffect(() => {
     dispatch(getAllUsers());
   }, [dispatch]);
@@ -25,15 +26,29 @@ const List = ({ title }: ListType) => {
   const isLoading = useSelector(
     (state: RootState) => state.meetings.meetings.status
   );
+  console.log('++++');
   return (
     <>
       {isLoading === 'loading' ? (
         <Preloader />
       ) : (
-        <DataTable title={title} dataUser={users} dataMeeting={item} />
+        <>
+          <div className={styles.widgets}>
+            <Widget type="user" count={users.length} />
+            <Widget type="meeting" count={item.length} />
+          </div>
+          <div className={styles.charts}>
+            <Featured />
+            <Chart aspect={2 / 1} title={'Last 6 Month (Users)'} />
+          </div>
+          <div className={styles.listContainer}>
+            <div className={styles.listTitle}>Latest Users</div>
+            <List />
+          </div>
+        </>
       )}
     </>
   );
 };
 
-export default List;
+export default Admin;

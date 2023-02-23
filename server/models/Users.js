@@ -5,6 +5,8 @@ const schemaUsers = new Schema({
     email: {type: String, required: true, unique: true },
     name: {type: String},
     
+}, {
+    timestamps: true
 });
 
 module.exports = model('Users', schemaUsers)

@@ -2,7 +2,7 @@ import styles from './Meeting.module.css';
 import SecondHeader from '../../components/secodHeader/SecondHeader';
 import Button from '../../components/custom/button/Button';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 import {
@@ -31,6 +31,7 @@ function MeetingDetails() {
   const users = useSelector(
     (state: RootState) => state.meetings.meeting.meetingItem.users
   );
+  console.log(users);
 
   useEffect((): void => {
     if (id) {

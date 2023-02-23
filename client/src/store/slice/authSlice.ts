@@ -2,6 +2,16 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { instance } from '../../api/api';
 import { RootState } from '../store';
 
+/* 
+  Admin,
+  Email: admin@lernberg.com,
+  Password: admin@lernberg.com
+  id: 63de77a2a01510281df7ea08
+ */
+export const adminId = '63de77a2a01510281df7ea08';
+export const adminEmail = 'admin@lernberg.com';
+export const adminPassword = 'admin@lernberg.com';
+
 export type UserType = {
   _id?: string;
   email?: string;
