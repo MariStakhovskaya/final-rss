@@ -21,19 +21,19 @@ const corsOptions = {
    origin: ["http://localhost:3000", "https://MariStakhovskaya.github.io"],
    //origin: "*",
    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-   Headers: '*',
+   //Headers: '*',
+   credentials:true,
    mode: "no-cors",
  };
  app.use(express.json({ extended: true }), cors(corsOptions));
  const server = http.createServer(app);
-//  const io = new Server(server, {
-//    cors: {
-//        origin: "*",
-//        methods: ["GET", "POST"],
-//    },
-// });
+ const io = new Server(server, {
+   cors: {
+       origin: "*",
+       methods: ["GET", "POST"],
+   },
+});
 
-const io = new Server(server, cors(corsOptions));
 
  io.on("connection", (socket) => {
    console.log('user is connected');
