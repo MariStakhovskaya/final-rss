@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "homepage": "https://MariStakhovskaya.github.io/final-rss/client",
+  "homepage": "https://MariStakhovskaya.github.io/final-rss",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
