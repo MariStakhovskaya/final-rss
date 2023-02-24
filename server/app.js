@@ -47,15 +47,7 @@ app.use('/api/auth', cors(corsOptions), require('./routes/auth.routes'))
 app.use('/users', cors(corsOptions), require('./routes/users.routes'))
 app.use('/meetings',cors(corsOptions), require('./routes/meeting.rotes'))
 
-// app.use("/", express.static(path.join(__dirname, "/build")));
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "/build/index.html"));
-// });
-// app.use(express.static(path.join(__dirname,'client','build'))) 
-// app.get('/', (req, res) =>{
-// res.send('hello world')
-// })
 mongoose.set('strictQuery', true);
 
 const connection = async () => {

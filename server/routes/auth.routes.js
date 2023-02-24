@@ -137,14 +137,14 @@ router.get('/me', checkAuth, async (req, res) => {
         const {id} = req.body;
 
         const user = await User.findOne({id})
-        
+        res.header({
+          "Access-Control-Allow-Origin": "*",
+        });
         if (!user) {
           return res.status(404).json({message: 'User not found'})
         }
         const {password, ...userData} = user._doc
-        res.header({
-          "Access-Control-Allow-Origin": "*",
-        });
+       
           res.json(userData)
           //res.send(userData)
         } 
