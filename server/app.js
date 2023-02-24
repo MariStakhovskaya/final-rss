@@ -18,7 +18,7 @@ const whitelist = [
 
 const corsOptions = {
    //origin: "http://localhost:3000",
-   origin: "https://MariStakhovskaya.github.io/final-rss",
+   origin: ["http://localhost:3000", "https://MariStakhovskaya.github.io"],
    //origin: "*",
    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
    Headers: '*',
