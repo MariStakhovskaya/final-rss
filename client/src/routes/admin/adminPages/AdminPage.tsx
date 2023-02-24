@@ -23,13 +23,13 @@ const Admin = () => {
 
   const { item } = useSelector((state: RootState) => state.meetings.meetings);
   const users = useSelector((state: RootState) => state.user.users);
-  const isLoading = useSelector(
+  const isLoadingMeetings = useSelector(
     (state: RootState) => state.meetings.meetings.status
   );
-  console.log('++++');
+  const isLoadingUsers = useSelector((state: RootState) => state.user.status);
   return (
     <>
-      {isLoading === 'loading' ? (
+      {isLoadingMeetings && isLoadingUsers === 'loading' ? (
         <Preloader />
       ) : (
         <>
@@ -43,7 +43,7 @@ const Admin = () => {
           </div>
           <div className={styles.listContainer}>
             <div className={styles.listTitle}>Latest Users</div>
-            <List />
+            <List allUsers={users} />
           </div>
         </>
       )}
