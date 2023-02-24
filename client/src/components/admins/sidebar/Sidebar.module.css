@@ -1,6 +1,6 @@
 .sidebar {
   flex: 1;
-  border-right: 0.5px solid rgb(230, 227, 227);
+  border-right: 0.5px solid var(--border-color);
   min-height: 100vh;
 }
 
@@ -20,9 +20,10 @@
 
 .hrSidebarAdmin {
   height: 0;
-  border: 0.5px solid lightgray;
+  border: 0.5px solid var(--border-color);
   position: relative;
   z-index: 20;
+  margin-top: 0;
 }
 
 .center {
@@ -50,21 +51,21 @@
 
 .icon {
   font-size: 40px;
-  color: lightgrey;
+  color: var(--color);
 }
 
 .span {
   font-size: 20px;
   font-weight: 600;
   margin-left: 10px;
-  color: #888;
+  color: var(--color);
 }
 
 .bottom {
   display: flex;
   align-items: center;
   margin: 10px;
-  border: 0.5px solid lightgray;
+  border: 0.5px solid var(--border-color);
   border-radius: 5px;
   height: 40px;
   padding: 5px;
@@ -74,20 +75,7 @@
   width: 25px;
   height: 25px;
   border-radius: 5px;
-  border: 1px solid #888;
+  border: 1px solid var(--border-color);
   cursor: pointer;
   margin: 5px;
-}
-
-.colorOption:nth-child(1) {
-  background-color: whitesmoke;
-}
-
-.colorOption:nth-child(2) {
-  background-color: #333;
-}
-
-.colorOption:hover {
-  width: 27px;
-  height: 27px;
 }

@@ -61,34 +61,38 @@ const List = () => {
     },
   ];
   return (
-    <TableContainer component={Paper} className="table">
+    <TableContainer component={Paper} className={styles.table}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell className="tableCell">Tracking ID</TableCell>
-            <TableCell className="tableCell">Product</TableCell>
-            <TableCell className="tableCell">Customer</TableCell>
-            <TableCell className="tableCell">Date</TableCell>
-            <TableCell className="tableCell">Amount</TableCell>
-            <TableCell className="tableCell">Payment Method</TableCell>
-            <TableCell className="tableCell">Status</TableCell>
+            <TableCell className={styles.tableCellHeader}>
+              Tracking ID
+            </TableCell>
+            <TableCell className={styles.tableCellHeader}>Product</TableCell>
+            <TableCell className={styles.tableCellHeader}>Customer</TableCell>
+            <TableCell className={styles.tableCellHeader}>Date</TableCell>
+            <TableCell className={styles.tableCellHeader}>Amount</TableCell>
+            <TableCell className={styles.tableCellHeader}>
+              Payment Method
+            </TableCell>
+            <TableCell className={styles.tableCellHeader}>Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.id}>
-              <TableCell className="tableCell">{row.id}</TableCell>
-              <TableCell className="tableCell">
+              <TableCell className={styles.tableCell}>{row.id}</TableCell>
+              <TableCell className={styles.tableCell}>
                 <div className={styles.cellWrapper}>
                   <img src={row.img} alt="" className={styles.image} />
                   {row.product}
                 </div>
               </TableCell>
-              <TableCell className="tableCell">{row.customer}</TableCell>
-              <TableCell className="tableCell">{row.date}</TableCell>
-              <TableCell className="tableCell">{row.amount}</TableCell>
-              <TableCell className="tableCell">{row.method}</TableCell>
-              <TableCell className="tableCell">
+              <TableCell className={styles.tableCell}>{row.customer}</TableCell>
+              <TableCell className={styles.tableCell}>{row.date}</TableCell>
+              <TableCell className={styles.tableCell}>{row.amount}</TableCell>
+              <TableCell className={styles.tableCell}>{row.method}</TableCell>
+              <TableCell className={styles.tableCell}>
                 <span className={`status ${row.status}`}>{row.status}</span>
               </TableCell>
             </TableRow>

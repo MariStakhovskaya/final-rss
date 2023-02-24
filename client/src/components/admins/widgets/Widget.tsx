@@ -75,13 +75,7 @@ const Widget = ({ type, count }: WidgetType) => {
         </Link>
       </div>
       <div className={styles.right}>
-        <>
-          {/*  <div className="percentage positive">
-            <ArrowDropUpOutlinedIcon />
-            20%
-          </div> */}
-          {data?.icon}
-        </>
+        <>{data?.icon}</>
       </div>
     </div>
   );

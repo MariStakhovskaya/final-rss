@@ -3,8 +3,17 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import Brightness6OutlinedIcon from '@mui/icons-material/Brightness6Outlined';
+import { useTheme } from '../../../theme/useTheme';
 
 const Navbar = () => {
+  const { themeColor, setThemeColor } = useTheme();
+  function handleChangeTheme() {
+    if (themeColor === 'dark') {
+      setThemeColor('light');
+    } else {
+      setThemeColor('dark');
+    }
+  }
   return (
     <>
       <div className={styles.navbar}>
@@ -23,7 +32,11 @@ const Navbar = () => {
               English
             </div>
             <div className={styles.item}>
-              <Brightness6OutlinedIcon className={styles.icon} />
+              <Brightness6OutlinedIcon
+                className={styles.icon}
+                onClick={handleChangeTheme}
+              />{' '}
+              {/* !!!!! */}
             </div>
             <div className={styles.item}>
               <NotificationsNoneOutlinedIcon className={styles.icon} />

@@ -1,12 +1,11 @@
 .navbar {
   height: 70px;
-  border-left: 0.75px solid rgb(231, 228, 288);
+  border-left: 0.75px solid var(--border-color);
   display: flex;
   align-items: center;
   font-size: 14px;
-  color: grey;
+  color: var(--color);
 }
-
 .wrapper {
   width: 100%;
   padding: 20px;
@@ -18,7 +17,7 @@
 .search {
   display: flex;
   align-items: center;
-  border: 0.5px solid lightgray;
+  border: 0.5px solid var(--border-color);
   padding: 3px;
 }
 
@@ -54,25 +53,10 @@
   border-radius: 50%;
 }
 
-.counter {
-  width: 15px;
-  height: 15px;
-  background-color: yellow;
-  border-radius: 50%;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 10px;
-  font-weight: bold;
-  position: absolute;
-  top: -5px;
-  right: -5px;
-}
-
 .hrNavbarAdmin {
   height: 0;
-  border: 0.5px solid lightgray;
+  border: 0.5px solid var(--border-color);
   position: relative;
   z-index: 20;
+  margin-top: 0;
 }
