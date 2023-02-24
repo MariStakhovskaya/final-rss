@@ -18,7 +18,7 @@ const whitelist = [
 
 const corsOptions = {
    //origin: "http://localhost:3000",
-   origin: "https://maristakhovskaya.github.io",
+   origin: "https://lernberg-client.onrender.com",
    //origin: "*",
    methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
    Headers: '*',
