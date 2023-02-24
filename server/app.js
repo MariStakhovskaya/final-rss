@@ -41,7 +41,11 @@ const corsOptions = {
        console.log('user is disconnected');
    })
 })
+app.use(express.static(path.join(__dirname, 'build')));
 
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 app.use('/api/auth',cors(corsOptions), require('./routes/auth.routes'))
 app.use('/api/auth', cors(corsOptions), require('./routes/auth.routes'))
 app.use('/users', cors(corsOptions), require('./routes/users.routes'))
