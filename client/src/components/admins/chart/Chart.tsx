@@ -8,21 +8,69 @@ import {
   AreaChart,
   Area,
 } from 'recharts';
+import { useEffect, useState } from 'react';
+import { UserType } from '../../../store/slice/userSlice';
 
-const data = [
-  { name: 'January', Total: 1200 },
-  { name: 'February', Total: 2100 },
-  { name: 'March', Total: 800 },
-  { name: 'April', Total: 1600 },
-  { name: 'May', Total: 900 },
-  { name: 'June', Total: 1700 },
-];
+type DataChartType = {
+  name: string;
+  Total: number;
+};
 
 type ChartType = {
   aspect: number;
   title: string;
+  allUsers: UserType[];
 };
-const Chart = ({ aspect, title }: ChartType) => {
+const Chart = ({ aspect, title, allUsers }: ChartType) => {
+  const [dataChart, setDataChart] = useState<DataChartType[]>([
+    { name: 'January', Total: 0 },
+    { name: 'February', Total: 0 },
+    { name: 'March', Total: 0 },
+  ]);
+  function createDataChart() {
+    const allMonth = [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ];
+    const newData: DataChartType[] = [];
+    const newCount = allMonth.map((elem, index) => {
+      let count = 0;
+      allUsers.forEach((elemUser) => {
+        if (index === new Date(elemUser.createdAt).getMonth()) {
+          count = count + 1;
+        }
+      });
+      return count;
+    });
+    newCount.forEach((elem, index, arr) => {
+      if (index == 0) {
+        newData.push({
+          name: allMonth[index],
+          Total: elem,
+        });
+      }
+      if (elem !== 0) {
+        newData.push({
+          name: allMonth[index],
+          Total: elem,
+        });
+      }
+    });
+    return newData;
+  }
+  useEffect(() => {
+    setDataChart(createDataChart());
+  }, [allUsers]);
   return (
     <div className={styles.chart}>
       <div className={styles.title}>{title}</div>
@@ -30,7 +78,7 @@ const Chart = ({ aspect, title }: ChartType) => {
         <AreaChart
           width={730}
           height={250}
-          data={data}
+          data={dataChart}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
         >
           <defs>

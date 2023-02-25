@@ -7,10 +7,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { UserType } from '../../../store/slice/userSlice';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type ListTYpe = {
-  allUsers?: UserType[];
+  allUsers: UserType[];
 };
 
 type UserTypeList = {
@@ -21,27 +21,30 @@ type UserTypeList = {
 };
 
 const List = ({ allUsers }: ListTYpe) => {
-  const [rows, setRows] = useState<UserTypeList[]>([
+  const [rows, setRows] = useState<UserType[]>([
     {
-      id: '1143155',
-      name: 'Acer Nitro 5',
-      email: 'John Smith',
-      date: '1 March',
+      _id: '1111111',
+      name: 'Admin',
+      email: 'admin@me.me',
+      createdAt: '24 February',
     },
   ]);
   function createRow() {
-    console.log(allUsers);
-    const latestUsers = allUsers?.filter((elem) => {});
+    const latestUsersWithoutUndefined = allUsers.filter((elem) => {
+      if (elem.createdAt) {
+        return elem;
+      }
+    });
+    const latestUsers = latestUsersWithoutUndefined.sort(function (a, b) {
+      const dateA = Date.parse(a.createdAt),
+        dateB = Date.parse(b.createdAt);
+      return dateB - dateA;
+    });
+    return latestUsers.length < 5 ? latestUsers : latestUsers.slice(0, 5);
   }
-  /*  const rows = [
-    {
-      id: 1143155,
-      name: 'Acer Nitro 5',
-      email: 'John Smith',
-      date: '1 March',
-    },
-  ]; */
-  console.log(createRow());
+  useEffect(() => {
+    setRows(createRow());
+  }, [allUsers]);
   return (
     <TableContainer component={Paper} className="table">
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -55,11 +58,13 @@ const List = ({ allUsers }: ListTYpe) => {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell className="tableCell">{row.id}</TableCell>
+            <TableRow key={row._id}>
+              <TableCell className="tableCell">{row._id}</TableCell>
               <TableCell className="tableCell">{row.name}</TableCell>
               <TableCell className="tableCell">{row.email}</TableCell>
-              <TableCell className="tableCell">{row.date}</TableCell>
+              <TableCell className="tableCell">{`${new Date(
+                row.createdAt
+              ).toDateString()}`}</TableCell>
             </TableRow>
           ))}
         </TableBody>

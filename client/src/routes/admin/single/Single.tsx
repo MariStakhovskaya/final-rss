@@ -29,12 +29,12 @@ const Single = () => {
           </div>
         </div>
         <div className={styles.right}>
-          <Chart aspect={3 / 1} title="User Spending (Last 6 Months)" />
+          {/* <Chart aspect={3 / 1} title="User Spending (Last 6 Months)" /> */}
         </div>
       </div>
       <div className={styles.bottom}>
         <p className={styles.title}>Last Game Result</p>
-        <List />
+        {/* <List /> */}
       </div>
     </>
   );
