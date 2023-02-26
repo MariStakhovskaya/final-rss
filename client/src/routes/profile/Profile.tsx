@@ -37,6 +37,7 @@ function Profile() {
       {loader === 'loaded' ? (
         <div>
           <SecondHeader />
+          <div className={styles.greeting}>Hello, {user.name}!</div>
           <div className={styles.container}>
             <div className={styles.meetings}>
               <h3 className={styles.title}>Your meetings</h3>

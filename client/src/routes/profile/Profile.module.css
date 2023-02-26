@@ -2,7 +2,6 @@
   display: flex;
   align-items: flex-start;
   gap: 75px;
-  margin-top: 40px;
 }
 .title {
   font-family: 'Poppins';
@@ -46,4 +45,8 @@
   background: #2e294e;
   color: #ffffff;
   transition: all 0.3s ease-in-out;
+}
+.greeting {
+  margin-top: 20px;
+  font-size: 24px;
 }
