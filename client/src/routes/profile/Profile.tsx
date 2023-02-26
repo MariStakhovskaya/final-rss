@@ -1,6 +1,5 @@
 import styles from './Profile.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import SecondHeader from '../../components/secodHeader/SecondHeader';
 import { isLoading } from '../../store/slice/authSlice';
 import { Preloader } from '../../components/custom/preloader/Preloader';
 import { useEffect } from 'react';
@@ -19,7 +18,7 @@ function Profile() {
   const loader = useSelector(isLoading);
 
   const userId = localStorage.getItem('userId');
-  const userInfo = localStorage.getItem('user');
+  // const userInfo = localStorage.getItem('user');
 
   useEffect(() => {
     if (userId) {

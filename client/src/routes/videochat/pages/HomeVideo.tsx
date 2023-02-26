@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { AppDispatch, RootState } from '../../../store/store';
 import { fetchMeeting } from '../../../store/slice/meetingSlice';
-import SecondHeader from '../../../components/secodHeader/SecondHeader';
 import styles from './HomeVideo.module.css';
 
 function HomeVideo() {
@@ -15,29 +14,8 @@ function HomeVideo() {
   }, [dispatch]);
   const userId = localStorage.getItem('userId');
 
-  const today = new Date();
-  const dateToday =
-    today.getDate() + '.' + (today.getMonth() + 1) + '.' + today.getFullYear();
-  // const timeToday = today.getHours() + ':' + today.getMinutes();
-
   return (
     <div>
-<<<<<<< HEAD
-      <h3>Selected meetings</h3>
-      {item.map((meeting) =>
-        meeting.users.map((user) => {
-          return userId === user.id ? (
-            <div key={meeting._id}>
-              <div className={styles.container}>
-                <div className={styles.title}>{meeting.title}</div>
-                <div>
-                  <img
-                    className={styles.img__meeting}
-                    src={meeting.url}
-                    alt={meeting.title}
-                  />
-=======
-      <SecondHeader />
       <h3 className={styles.selectMeeting}>Selected meetings</h3>
       <div className={styles.meetingsBlock}>
         {item.map((meeting) =>
@@ -80,7 +58,6 @@ function HomeVideo() {
                       idRoom={meeting._id}
                     />
                   </div>
->>>>>>> develop
                 </div>
               </div>
             ) : (
