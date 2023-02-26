@@ -13,7 +13,6 @@ function Start() {
         <Navigate to="/profile" />
       ) : (
         <div className={styles.container}>
-          <SecondHeader />
           <div className={styles.slogan}>
             <h3>
               <span>The All-In-One Learning Platform</span> Trusted by

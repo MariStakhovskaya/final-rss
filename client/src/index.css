@@ -7,6 +7,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--background-color);
+  color: var(--color);
 }
 
 code {
@@ -22,13 +23,14 @@ html[data-theme='dark'] {
   --border-color: #333;
   --background-color: #111;
   --border-color-game: #ededed;
-  --background-color-frames:  rgba(201, 201, 201, 0.644);
+  --background-color-frames:  rgba(232, 231, 231, 0.961);
   --background-table: rgba(201, 201, 201, 0.47);
   --background-table-header: rgba(157, 157, 157, 0.47);
   --background-game: #eeeeeeb9;
   --stroke: rgba(228, 228, 228, 0.219);
   --box-shadow: rgba(201, 201, 201, 0.47);
   --headers-color: #ffff;
+  --header-color-select: #FFC430;;
   --headers-border-color: #2E3A59;
   --border-color-page: rgba(201, 201, 201, 0.47);
 }
@@ -47,6 +49,7 @@ html[data-theme='light'] {
   --stroke: rgb(228, 225, 225);
   --box-shadow: rgba(2, 2, 70, 0.15);
   --headers-color: #2E294E;
+  --header-color-select: #2E3A59;
   --headers-border-color: #FFC430;
   --border-color-page: #0202463a;
 }

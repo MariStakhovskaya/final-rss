@@ -5,10 +5,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px 37px 32px 37px;
+  padding: 15px 37px 15px 37px;
 }
 .container {
-  background: var(--background-color);
+  background: var(--background-color-frames);
   height: 486px;
   justify-content: space-between;
 }

@@ -82,7 +82,6 @@ function Login() {
 
   return (
     <div className={styles.container}>
-      <SecondHeader />
       <div className={styles.login__input}>
         <h3>Log in</h3>
         {/* <div className={styles.google__button}>

@@ -4,6 +4,7 @@
 }
 main {
   width: 100%;
+  height: 100%;
 }
 .content {
   padding: 26px 80px 24px 73px;
@@ -11,4 +12,7 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+}
+.headerContainer {
+  width: 100%;
 }

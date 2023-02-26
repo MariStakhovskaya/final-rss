@@ -4,10 +4,10 @@
     gap: 76px;
 }
 .selectTopic {
-    font-family: 'Poppins';
+    font-family: 'Poppins', sans-serif;
     font-weight: 600;
     font-size: 36px;
     line-height: 28px;
-    color: #2E3A59;
+    color: var(--header-color-select);
 }
 

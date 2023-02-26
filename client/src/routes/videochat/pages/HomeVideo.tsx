@@ -23,7 +23,6 @@ function HomeVideo() {
 
   return (
     <div>
-      <SecondHeader />
       <h3>Selected meetings</h3>
       {item.map((meeting) =>
         meeting.users.map((user) => {

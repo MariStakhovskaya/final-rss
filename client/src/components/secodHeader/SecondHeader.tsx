@@ -7,7 +7,11 @@ import { logoutUser } from '../../store/slice/userSlice';
 import Brightness6OutlinedIcon from '@mui/icons-material/Brightness6Outlined';
 import { useTheme } from '../../theme/useTheme';
 
-function SecondHeader() {
+type SecondHeaderType = {
+  updateTheme: (value: string) => void;
+};
+
+function SecondHeader({ updateTheme }: SecondHeaderType) {
   const dispatch = useDispatch<AppDispatch>();
   const isAuth = useSelector(setIsAuth);
 
@@ -22,8 +26,10 @@ function SecondHeader() {
   function handleChangeTheme() {
     if (themeColor === 'dark') {
       setThemeColor('light');
+      updateTheme('light');
     } else {
       setThemeColor('dark');
+      updateTheme('dark');
     }
   }
   return (

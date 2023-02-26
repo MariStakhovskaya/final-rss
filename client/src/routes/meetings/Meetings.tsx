@@ -16,7 +16,6 @@ function Meetings() {
 
   return (
     <div>
-      <SecondHeader />
       <h3 className={styles.selectTopic}>Select a Topic</h3>
       <div className={styles.meetingsBlock}>
         {item.map((el) => (

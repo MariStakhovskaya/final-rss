@@ -30,16 +30,7 @@ function Profile() {
   }
 
   return (
-    <>
-      {loader === 'loaded' ? (
-        <div>
-          <SecondHeader />
-          HI, {user.name}
-        </div>
-      ) : (
-        <Preloader />
-      )}
-    </>
+    <>{loader === 'loaded' ? <div>HI, {user.name}</div> : <Preloader />}</>
   );
 }
 

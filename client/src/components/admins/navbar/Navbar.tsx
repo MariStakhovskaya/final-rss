@@ -5,13 +5,20 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import Brightness6OutlinedIcon from '@mui/icons-material/Brightness6Outlined';
 import { useTheme } from '../../../theme/useTheme';
 
-const Navbar = () => {
+
+type NavbarType = {
+  updateTheme: (value: string) => void;
+};
+
+const Navbar = ({updateTheme}: NavbarType) => {
   const { themeColor, setThemeColor } = useTheme();
   function handleChangeTheme() {
     if (themeColor === 'dark') {
       setThemeColor('light');
+      updateTheme('light');
     } else {
       setThemeColor('dark');
+      updateTheme('dark');
     }
   }
   return (
