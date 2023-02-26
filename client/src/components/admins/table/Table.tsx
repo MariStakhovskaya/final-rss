@@ -45,41 +45,27 @@ const List = ({ allUsers }: ListTYpe) => {
   useEffect(() => {
     setRows(createRow());
   }, [allUsers]);
+
   return (
-    <TableContainer component={Paper} className={styles.table}>
+    <TableContainer component={Paper} className="table">
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell className={styles.tableCellHeader}>
-              Tracking ID
-            </TableCell>
-            <TableCell className={styles.tableCellHeader}>Product</TableCell>
-            <TableCell className={styles.tableCellHeader}>Customer</TableCell>
-            <TableCell className={styles.tableCellHeader}>Date</TableCell>
-            <TableCell className={styles.tableCellHeader}>Amount</TableCell>
-            <TableCell className={styles.tableCellHeader}>
-              Payment Method
-            </TableCell>
-            <TableCell className={styles.tableCellHeader}>Status</TableCell>
+            <TableCell className="tableCell">Users ID</TableCell>
+            <TableCell className="tableCell">Name</TableCell>
+            <TableCell className="tableCell">Email</TableCell>
+            <TableCell className="tableCell">Registration date</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <TableRow key={row.id}>
-              <TableCell className={styles.tableCell}>{row.id}</TableCell>
-              <TableCell className={styles.tableCell}>
-                <div className={styles.cellWrapper}>
-                  <img src={row.img} alt="" className={styles.image} />
-                  {row.product}
-                </div>
-              </TableCell>
-              <TableCell className={styles.tableCell}>{row.customer}</TableCell>
-              <TableCell className={styles.tableCell}>{row.date}</TableCell>
-              <TableCell className={styles.tableCell}>{row.amount}</TableCell>
-              <TableCell className={styles.tableCell}>{row.method}</TableCell>
-              <TableCell className={styles.tableCell}>
-                <span className={`status ${row.status}`}>{row.status}</span>
-              </TableCell>
+            <TableRow key={row._id}>
+              <TableCell className="tableCell">{row._id}</TableCell>
+              <TableCell className="tableCell">{row.name}</TableCell>
+              <TableCell className="tableCell">{row.email}</TableCell>
+              <TableCell className="tableCell">{`${new Date(
+                row.createdAt
+              ).toDateString()}`}</TableCell>
             </TableRow>
           ))}
         </TableBody>
