@@ -4,8 +4,7 @@ import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { AppDispatch } from '../../../store/store';
+import { useDispatch } from 'react-redux';
 import { logout } from '../../../store/slice/authSlice';
 import logo from '../../../images/logo.svg';
 
@@ -22,9 +21,7 @@ const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
       <div className={styles.top}>
-        <Link to="/">
-          <img src={logo} alt="logo" className={styles.logo} />
-        </Link>
+        <img src={logo} alt="logo" className={styles.logo} />
       </div>
       <hr className={styles.hrSidebarAdmin} />
       <div className={styles.center}>
@@ -55,10 +52,10 @@ const Sidebar = () => {
           </Link>
         </ul>
       </div>
-      <div className={styles.bottom}>
-        {/* <div className={styles.colorOption}></div>
-        <div className={styles.colorOption}></div> */}
-      </div>
+      {/* <div className={styles.bottom}>
+        <div className={styles.colorOption}></div>
+        <div className={styles.colorOption}></div>
+      </div> */}
     </div>
   );
 };

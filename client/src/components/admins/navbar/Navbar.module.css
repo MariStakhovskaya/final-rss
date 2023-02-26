@@ -45,14 +45,24 @@
 }
 
 .icon {
-  font-size: 20px;
+  font-size: 30px !important;
+  color: lightgrey;
+}
+
+.icon:hover {
+  color: grey;
 }
 
 .avatar {
+  font-size: 32px !important;
+  color: grey;
+}
+
+/* .avatar {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-}
+} */
 
 .counter {
   width: 15px;

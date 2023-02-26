@@ -5,7 +5,8 @@ export type UserType = {
   _id: string;
   email: string;
   name: string;
-  __v: number;
+  __v?: number;
+  createdAt: string;
 };
 
 export type StateType = {
