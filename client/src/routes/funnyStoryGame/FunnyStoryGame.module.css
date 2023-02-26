@@ -1,8 +1,10 @@
 p {
   margin: 0;
+  font-family: 'Poppins', sans-serif;
 }
 .container {
   position: relative;
+  font-family: 'Poppins', sans-serif;
 }
 .chat {
   position: relative;
@@ -10,19 +12,22 @@ p {
   margin: 0 auto;
   display: grid;
   grid-template-rows: 72px 1fr 100px;
-  border: 1px #eeeeee solid;
+  border: 1px var(--border-color-game) solid;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+  background-color: var(--background-table);
 }
 .name,
 .typing {
-  background: #eeeeee;
-  padding: 20px;
+  background: var(--background-game);
+  padding: 10px;
   margin: 0;
 }
 .typing {
+  display: flex;
+  flex-direction: column;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
 }
@@ -42,15 +47,19 @@ p {
 .input__message > svg {
   cursor: pointer;
 }
+.input__message > svg path {
+  fill: var(--background-table-header);
+}
+
 .input__message > svg:hover path {
-  fill: #808080;
+  fill: var(--color);
   transition: all 0.3s ease-in-out;
 }
 .message {
   width: 78%;
   height: 34px;
   background: white;
-  border: 1px #bebebe solid;
+  border: 1px var(--border-color-game) solid;
   font-size: 20px;
   padding: 0 10px;
   border-radius: 8px;
@@ -111,11 +120,11 @@ p {
   top: 20px;
   cursor: pointer;
   font-size: 28px;
-  border: 2px #c5c5c5 solid;
+  border: 2px var(--color) solid;
   border-radius: 50%;
   width: 34px;
   height: 34px;
-  color: #c5c5c5;
+  color: var(--color);
   margin: 0;
 }
 .quastion > p {
@@ -198,6 +207,7 @@ p {
   transition: all 0.3s ease-in-out;
 }
 .questionWords {
+  color: var(--color-text);
   font-size: 18px;
   margin: 8px 0 0 0;
 }

@@ -165,7 +165,7 @@ function FunnyStoryGame() {
             </li>
             <li>
               After your question you must write in parentheses a question word
-              of your quastion (for example, (Where?)).
+              of your question (for example, (Where?)).
             </li>
             <li>
               Possible variants of the question word that the bot responds to

@@ -35,8 +35,7 @@ const Navbar = () => {
               <Brightness6OutlinedIcon
                 className={styles.icon}
                 onClick={handleChangeTheme}
-              />{' '}
-              {/* !!!!! */}
+              />
             </div>
             <div className={styles.item}>
               <NotificationsNoneOutlinedIcon className={styles.icon} />

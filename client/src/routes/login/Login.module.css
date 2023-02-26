@@ -8,12 +8,13 @@
   flex-direction: column;
   align-items: center;
   padding: 43px 64px 49px 64px;
-  box-shadow: #0202463a 8px 8px 25px;
+  box-shadow: var(--border-color-page) 8px 8px 25px;
   width: 580px;
   margin: 0 auto;
 }
 h3 {
   font-size: 36px;
+  color: var(--color-text);
 }
 .google__button {
   position: relative;
@@ -48,11 +49,11 @@ h3 {
 }
 .or > p {
   font-size: 26px;
-  color: #909090;
+  color: var(--color);
   margin: 12px;
 }
 .inputs {
-  display: flex;
+  display: flex; 
   flex-direction: column;
   align-items: center;
   gap: 24px;
@@ -61,10 +62,12 @@ h3 {
 .inputs > input {
   width: 550px;
   padding: 15px;
-  border: 1px #eaeaea solid;
+  border: 1px var(--border-color) solid;
+  background-color: transparent;
+  color: var(--color-text);
 }
 .inputs > input::placeholder {
-  color: #909090;
+  color: var(--color);
 }
 .login__button {
   background: #2E294E;

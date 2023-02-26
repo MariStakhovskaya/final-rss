@@ -33,22 +33,6 @@ function App() {
           <Route path="/games" element={<Games />} />
           <Route path="/games/carsGame" element={<GameCar />} />
           <Route path="/games/nonsense" element={<FunnyStoryGame />} />
-          {/*  <Route path="/admin" element={<Admin />} />
-          <Route path="/admin/allUsers" element={<List title="All Users" />} />
-          <Route
-            path="/admin/allMeeting"
-            element={<List title="All Meeting" />}
-          />
-          <Route path="/admin/user/:id" element={<Single />} />
-          <Route path="/admin/meeting/:id" element={<Single />} />
-          <Route
-            path="/admin/newUser"
-            element={<AdminNew title="Add new user" />}
-          />
-          <Route
-            path="/admin/newMeeting"
-            element={<AdminNew title="Add new meeting" />}
-          /> */}
           <Route
             path="/meetingRoom"
             element={

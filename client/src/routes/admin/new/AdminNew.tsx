@@ -176,7 +176,9 @@ const AdminNew = ({ title }: AdminNewType) => {
               <form action="" onSubmit={handleSubmit}>
                 <div className={styles.form}>
                   <div className={styles.formInput}>
-                    <label htmlFor="">UserName</label>
+                    <label htmlFor="" className={styles.adminLabel}>
+                      UserName
+                    </label>
                     <input
                       type="text"
                       id="name"
@@ -186,7 +188,7 @@ const AdminNew = ({ title }: AdminNewType) => {
                     />
                   </div>
                   <div className={styles.formInput}>
-                    <label htmlFor="file">
+                    <label htmlFor="file" className={styles.adminLabel}>
                       Image:
                       <DriveFolderUploadOutlinedIcon className={styles.icon} />
                     </label>
@@ -199,7 +201,9 @@ const AdminNew = ({ title }: AdminNewType) => {
                     />
                   </div>
                   <div className={styles.formInput}>
-                    <label htmlFor="">Email</label>
+                    <label htmlFor="" className={styles.adminLabel}>
+                      Email
+                    </label>
                     <input
                       type="email"
                       id="email"
@@ -209,7 +213,9 @@ const AdminNew = ({ title }: AdminNewType) => {
                     />
                   </div>
                   <div className={styles.formInput}>
-                    <label htmlFor="">Password</label>
+                    <label htmlFor="" className={styles.adminLabel}>
+                      Password
+                    </label>
                     <input
                       type="password"
                       id="password"
@@ -230,7 +236,9 @@ const AdminNew = ({ title }: AdminNewType) => {
               <form action="" onSubmit={handleSubmitMeeting}>
                 <div className={styles.form}>
                   <div className={styles.formInput}>
-                    <label htmlFor="">Title</label>
+                    <label htmlFor="" className={styles.adminLabel}>
+                      Title
+                    </label>
                     <input
                       type="text"
                       id="title"
@@ -240,7 +248,7 @@ const AdminNew = ({ title }: AdminNewType) => {
                     />
                   </div>
                   <div className={styles.formInput}>
-                    <label htmlFor="file">
+                    <label htmlFor="file" className={styles.adminLabel}>
                       Image:
                       <DriveFolderUploadOutlinedIcon className="icon" />
                     </label>
@@ -253,7 +261,9 @@ const AdminNew = ({ title }: AdminNewType) => {
                     />
                   </div>
                   <div className={styles.formInput}>
-                    <label htmlFor="">Date</label>
+                    <label htmlFor="" className={styles.adminLabel}>
+                      Date
+                    </label>
                     <input
                       type="date"
                       id="date"
@@ -264,7 +274,9 @@ const AdminNew = ({ title }: AdminNewType) => {
                     />
                   </div>
                   <div className={styles.formInput}>
-                    <label htmlFor="">Time</label>
+                    <label htmlFor="" className={styles.adminLabel}>
+                      Time
+                    </label>
                     <input
                       type="time"
                       id="time"
@@ -273,7 +285,9 @@ const AdminNew = ({ title }: AdminNewType) => {
                     />
                   </div>
                   <div className={styles.formInput}>
-                    <label htmlFor="">Count Person</label>
+                    <label htmlFor="" className={styles.adminLabel}>
+                      Count Person
+                    </label>
                     <input
                       type="number"
                       id="personCount"
@@ -282,7 +296,9 @@ const AdminNew = ({ title }: AdminNewType) => {
                     />
                   </div>
                   <div className={styles.formInput}>
-                    <label htmlFor="">Description</label>
+                    <label htmlFor="" className={styles.adminLabel}>
+                      Description
+                    </label>
                     <input
                       type="textarea"
                       id="description"
@@ -291,7 +307,9 @@ const AdminNew = ({ title }: AdminNewType) => {
                     />
                   </div>
                   <div className={styles.formInput}>
-                    <label htmlFor="">Role | Role</label>
+                    <label htmlFor="" className={styles.adminLabel}>
+                      Role | Role
+                    </label>
                     <input
                       type="text"
                       id="role"
@@ -300,7 +318,9 @@ const AdminNew = ({ title }: AdminNewType) => {
                     />
                   </div>
                   <div className={styles.formInput}>
-                    <label htmlFor="">Full Descriptions</label>
+                    <label htmlFor="" className={styles.adminLabel}>
+                      Full Descriptions
+                    </label>
                     <input
                       type="text"
                       id="fulldescriptions"
@@ -309,7 +329,9 @@ const AdminNew = ({ title }: AdminNewType) => {
                     />
                   </div>
                   <div className={styles.formInput}>
-                    <label htmlFor="">Users ID</label>
+                    <label htmlFor="" className={styles.adminLabel}>
+                      Users ID
+                    </label>
                     <input
                       type="text"
                       id="usersId"
@@ -318,7 +340,9 @@ const AdminNew = ({ title }: AdminNewType) => {
                     />
                   </div>
                   <div className={styles.formInput}>
-                    <label htmlFor="">Users Role</label>
+                    <label htmlFor="" className={styles.adminLabel}>
+                      Users Role
+                    </label>
                     <input
                       type="text"
                       id="usersRole"

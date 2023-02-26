@@ -10,6 +10,7 @@
 }
 .slogan > h3 > span {
   font-weight: 700;
+  color: var(--color-span);
 }
 .line {
   position: absolute;
@@ -32,7 +33,7 @@
   transition: all 0.3s ease-in-out;
 }
 .start__button > a button p {
-  color: #000000;
+  color: var(--color-span);
   font-weight: 700;
   font-size: 24px;
 }

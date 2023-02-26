@@ -59,6 +59,7 @@ label {
 
 .icon {
   cursor: pointer;
+  color: var(--color);
 }
 
 
@@ -67,6 +68,14 @@ label {
   padding: 5px;
   border: none;
   border-bottom: 1px solid var(--border-color);
+  background-color: transparent;
+  color: var(--color);
+}
+.inputNewAdmin::placeholder {
+  color: var(--color);
+}
+.adminLabel {
+  color: var(--color);
 }
 
 .buttonWrapper {
