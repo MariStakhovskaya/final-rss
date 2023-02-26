@@ -22,6 +22,21 @@ function HomeVideo() {
 
   return (
     <div>
+<<<<<<< HEAD
+      <h3>Selected meetings</h3>
+      {item.map((meeting) =>
+        meeting.users.map((user) => {
+          return userId === user.id ? (
+            <div key={meeting._id}>
+              <div className={styles.container}>
+                <div className={styles.title}>{meeting.title}</div>
+                <div>
+                  <img
+                    className={styles.img__meeting}
+                    src={meeting.url}
+                    alt={meeting.title}
+                  />
+=======
       <SecondHeader />
       <h3 className={styles.selectMeeting}>Selected meetings</h3>
       <div className={styles.meetingsBlock}>
@@ -65,6 +80,7 @@ function HomeVideo() {
                       idRoom={meeting._id}
                     />
                   </div>
+>>>>>>> develop
                 </div>
               </div>
             ) : (

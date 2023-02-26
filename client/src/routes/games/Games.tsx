@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 function Games() {
   return (
     <div>
-      <SecondHeader />
       <h3 className={styles.game__select}>Select a Game</h3>
       <div className={styles.games}>
         <div className={styles.game}>

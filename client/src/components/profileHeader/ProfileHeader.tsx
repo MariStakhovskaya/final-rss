@@ -1,13 +1,25 @@
 import styles from './ProfileHeader.module.css';
 import { NavLink, Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
+import logoDark from '../../images/logo-black.jpg';
+import { useTheme } from '../../theme/useTheme';
+import { useState, useEffect } from 'react';
 
-function ProfileHeader() {
+type ProfileHeaderType = {
+  theme: string;
+};
+
+function ProfileHeader({ theme }: ProfileHeaderType) {
   return (
     <div className={styles.container}>
       <div>
         <Link to="/profile">
-          <img src={logo} width="119px" height="114px" alt="logo" />
+          <img
+            src={theme === 'light' ? logo : logoDark}
+            width="119px"
+            height="114px"
+            alt="logo"
+          />
         </Link>
         <div className={styles.navigation}>
           <NavLink

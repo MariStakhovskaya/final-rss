@@ -1,21 +1,31 @@
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
+import logoDark from '../../images/logo-black.jpg';
 import { useSelector } from 'react-redux';
 import { setIsAuth } from '../../store/slice/authSlice';
 import ProfileHeader from '../profileHeader/ProfileHeader';
 
-function Header() {
+type HeaderType = {
+  theme: string;
+};
+
+function Header({ theme }: HeaderType) {
   const isAuth = useSelector(setIsAuth);
   return (
     <div className={styles.container}>
       {isAuth ? (
-        <ProfileHeader />
+        <ProfileHeader theme={theme} />
       ) : (
         <div className={styles.container}>
           <div>
             <Link to="/">
-              <img src={logo} width="119px" height="114px" alt="logo" />
+              <img
+                src={theme === 'light' ? logo : logoDark}
+                width="119px"
+                height="114px"
+                alt="logo"
+              />
             </Link>
             <div className={styles.navigation}>
               <svg

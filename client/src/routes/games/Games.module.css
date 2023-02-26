@@ -5,8 +5,8 @@
 .game {
   width: 344px;
   height: 486px;
-  background: #FFFFFF;
-  box-shadow: 8px 8px 25px rgba(2, 2, 70, 0.15);
+  background: var(--background-color-frames);
+  box-shadow: 8px 8px 25px var(--box-shadow);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,12 +14,12 @@
   padding: 30px 0;
 }
 .game__select {
-  font-family: 'Poppins';
+  font-family: 'Poppins', sans-serif;
   font-style: normal;
   font-weight: 600;
   font-size: 36px;
   line-height: 28px;
-  color: #2E3A59;
+  color: var(--header-color-select);
 }
 .play__button {
   cursor: pointer;
@@ -43,7 +43,7 @@
   height: 270px;
 }
 .title {
-  font-family: 'Poppins';
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 32px;
   color: #2E294E;

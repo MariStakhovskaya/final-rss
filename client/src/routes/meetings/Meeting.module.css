@@ -1,14 +1,14 @@
 .container,
 .meeting {
   width: 344px;
-  box-shadow: 8px 8px 25px rgba(2, 2, 70, 0.15);
+  box-shadow: 8px 8px 25px var(--border-color-page);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px 37px 32px 37px;
+  padding: 15px 37px 15px 37px;
 }
 .container {
-  background: #ffffff;
+  background: var(--background-color-frames);
   height: 486px;
   justify-content: space-between;
 }
@@ -29,7 +29,7 @@ a {
   margin-bottom: 13px;
 }
 .minititle {
-  font-family: 'Poppins';
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
   font-size: 24px;
   align-self: flex-start;
@@ -42,7 +42,7 @@ a {
   color: #ffffff;
 }
 .description {
-  font-family: 'SF Pro Display';
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
   line-height: 21px;
 }
@@ -59,7 +59,7 @@ a {
   border: none;
 }
 .btnName {
-  font-family: 'Poppins';
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 25px;
   line-height: 37px;
@@ -79,7 +79,7 @@ a {
 }
 .count,
 .count__details {
-  font-family: 'Poppins';
+  font-family: 'Poppins', sans-serif;
   font-size: 24px;
   line-height: 36px;
 }

@@ -7,8 +7,13 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../../../store/slice/authSlice';
 import logo from '../../../images/logo.svg';
+import logoDark from '../../../images/logo-black.jpg';
 
-const Sidebar = () => {
+type SidebarType = {
+  theme: string;
+};
+
+const Sidebar = ({ theme }: SidebarType) => {
   const dispatch = useDispatch();
 
   const onClickLogout = () => {
@@ -21,7 +26,13 @@ const Sidebar = () => {
   return (
     <div className={styles.sidebar}>
       <div className={styles.top}>
-        <img src={logo} alt="logo" className={styles.logo} />
+        <Link to="/">
+          <img
+            src={theme === 'light' ? logo : logoDark}
+            alt="logo"
+            className={styles.logo}
+          />
+        </Link>
       </div>
       <hr className={styles.hrSidebarAdmin} />
       <div className={styles.center}>
@@ -52,10 +63,10 @@ const Sidebar = () => {
           </Link>
         </ul>
       </div>
-      {/* <div className={styles.bottom}>
-        <div className={styles.colorOption}></div>
-        <div className={styles.colorOption}></div>
-      </div> */}
+      <div className={styles.bottom}>
+        {/* <div className={styles.colorOption}></div>
+        <div className={styles.colorOption}></div> */}
+      </div>
     </div>
   );
 };

@@ -4,8 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch } from '../../store/store';
 import { logout, setIsAuth } from '../../store/slice/authSlice';
 import { logoutUser } from '../../store/slice/userSlice';
+import Brightness6OutlinedIcon from '@mui/icons-material/Brightness6Outlined';
+import { useTheme } from '../../theme/useTheme';
 
-function SecondHeader() {
+type SecondHeaderType = {
+  updateTheme: (value: string) => void;
+};
+
+function SecondHeader({ updateTheme }: SecondHeaderType) {
   const dispatch = useDispatch<AppDispatch>();
   const isAuth = useSelector(setIsAuth);
 
@@ -16,7 +22,16 @@ function SecondHeader() {
     localStorage.removeItem('user');
     localStorage.removeItem('userId');
   };
-
+  const { themeColor, setThemeColor } = useTheme();
+  function handleChangeTheme() {
+    if (themeColor === 'dark') {
+      setThemeColor('light');
+      updateTheme('light');
+    } else {
+      setThemeColor('dark');
+      updateTheme('dark');
+    }
+  }
   return (
     <div className={styles.container}>
       <div className={styles.user}>
@@ -44,6 +59,13 @@ function SecondHeader() {
           />
         </svg>
       </div>
+      <div className={styles.item}>
+        <Brightness6OutlinedIcon
+          className={styles.icon}
+          onClick={handleChangeTheme}
+        />
+      </div>
+      <p className={styles.language}>EN</p>
     </div>
   );
 }

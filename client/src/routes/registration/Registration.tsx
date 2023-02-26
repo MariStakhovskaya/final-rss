@@ -52,7 +52,6 @@ function Registration() {
 
   return (
     <div className={styles.container}>
-      <SecondHeader />
       <div className={styles.registration__input}>
         <h3>Create an Account</h3>
         {/* <div className={styles.google__button}>

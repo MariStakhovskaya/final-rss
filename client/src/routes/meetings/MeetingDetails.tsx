@@ -88,7 +88,6 @@ function MeetingDetails() {
         <Preloader />
       ) : (
         <div>
-          <SecondHeader />
           <div className={styles.back__button}>
             <button onClick={() => navigate(-1)}>&#8249; Back</button>
           </div>

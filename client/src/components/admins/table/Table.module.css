@@ -16,12 +16,15 @@
     border-radius: 5px;
   }
 
-  .status .Approved {
-    color: green;
-    background-color: rgba(0, 128, 0, 0.151);
+  .table {
+    background-color: var(--background-table) !important;
   }
 
-  .status .Pending {
-    color: goldenrod;
-    background-color: rgba(189, 189, 3, 0.103);
+  .tableCell {
+    color: var(--color) !important;
+  }
+
+  .tableCellHeader {
+    color: var(--color-text) !important;
+    background-color: var(--background-table-header) !important;
   }

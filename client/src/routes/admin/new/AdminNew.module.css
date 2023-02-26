@@ -17,7 +17,7 @@
 }
 
 p.title {
-  color: lightgray;
+  color: var(--color);
   font-size: 20px;
 }
 
@@ -59,6 +59,7 @@ label {
 
 .icon {
   cursor: pointer;
+  color: var(--color);
 }
 
 
@@ -66,7 +67,15 @@ label {
   width: 100%;
   padding: 5px;
   border: none;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid var(--border-color);
+  background-color: transparent;
+  color: var(--color);
+}
+.inputNewAdmin::placeholder {
+  color: var(--color);
+}
+.adminLabel {
+  color: var(--color);
 }
 
 .buttonWrapper {
