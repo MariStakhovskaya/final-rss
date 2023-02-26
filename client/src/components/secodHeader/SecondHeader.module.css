@@ -1,8 +1,12 @@
 .container {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+.user__language {
+  display: flex;
+  align-items: center;
   gap: 75px;
-  justify-content: flex-end;
 }
 .user {
   display: flex;
@@ -28,5 +32,8 @@
   transition: all 0.3s ease-in-out;
 }
 .language {
+  font-size: 24px;
+}
+.greeting {
   font-size: 24px;
 }
