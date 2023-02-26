@@ -16,6 +16,7 @@ function SecondHeader() {
     localStorage.removeItem('user');
     localStorage.removeItem('userId');
   };
+
   return (
     <div className={styles.container}>
       <div className={styles.user}>
@@ -43,7 +44,6 @@ function SecondHeader() {
           />
         </svg>
       </div>
-      <p className={styles.language}>EN</p>
     </div>
   );
 }

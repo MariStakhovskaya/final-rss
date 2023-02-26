@@ -1,7 +1,6 @@
 .container {
   display: flex;
   align-items: center;
-  gap: 75px;
   justify-content: flex-end;
 }
 .user {
@@ -27,6 +26,6 @@
   fill: #4a4a4a;
   transition: all 0.3s ease-in-out;
 }
-.language {
+.greeting {
   font-size: 24px;
 }
