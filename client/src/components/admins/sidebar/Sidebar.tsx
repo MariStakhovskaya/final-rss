@@ -4,8 +4,7 @@ import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { AppDispatch } from '../../../store/store';
+import { useDispatch } from 'react-redux';
 import { logout } from '../../../store/slice/authSlice';
 import logo from '../../../images/logo.svg';
 import logoDark from '../../../images/logo-black.jpg';
@@ -14,7 +13,7 @@ type SidebarType = {
   theme: string;
 };
 
-const Sidebar = ({theme}: SidebarType) => {
+const Sidebar = ({ theme }: SidebarType) => {
   const dispatch = useDispatch();
 
   const onClickLogout = () => {
@@ -28,7 +27,11 @@ const Sidebar = ({theme}: SidebarType) => {
     <div className={styles.sidebar}>
       <div className={styles.top}>
         <Link to="/">
-          <img src={theme === 'light' ? logo : logoDark} alt="logo" className={styles.logo} />
+          <img
+            src={theme === 'light' ? logo : logoDark}
+            alt="logo"
+            className={styles.logo}
+          />
         </Link>
       </div>
       <hr className={styles.hrSidebarAdmin} />
