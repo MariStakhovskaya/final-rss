@@ -23,13 +23,13 @@ const Admin = () => {
 
   const { item } = useSelector((state: RootState) => state.meetings.meetings);
   const users = useSelector((state: RootState) => state.user.users);
-  const isLoading = useSelector(
+  const isLoadingMeetings = useSelector(
     (state: RootState) => state.meetings.meetings.status
   );
-  console.log('++++');
+  const isLoadingUsers = useSelector((state: RootState) => state.user.status);
   return (
     <>
-      {isLoading === 'loading' ? (
+      {isLoadingMeetings === 'loading' || isLoadingUsers === 'loading' ? (
         <Preloader />
       ) : (
         <>
@@ -38,12 +38,16 @@ const Admin = () => {
             <Widget type="meeting" count={item.length} />
           </div>
           <div className={styles.charts}>
-            <Featured />
-            <Chart aspect={2 / 1} title={'Last 6 Month (Users)'} />
+            <Featured allMeetings={item} />
+            <Chart
+              aspect={2 / 1}
+              title={'Number Of New Users'}
+              allUsers={users}
+            />
           </div>
           <div className={styles.listContainer}>
             <div className={styles.listTitle}>Latest Users</div>
-            <List />
+            <List allUsers={users} />
           </div>
         </>
       )}

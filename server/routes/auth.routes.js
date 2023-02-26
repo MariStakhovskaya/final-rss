@@ -42,9 +42,7 @@ try {
     })
 
    const userData =  await user.save();
-   res.header({
-    "Access-Control-Allow-Origin": "*",
-  });
+  
    const token = jwt.sign(
     {userId: user.id},
     config.get('jwtSecret'),
@@ -52,7 +50,9 @@ try {
     );
 
     //const { passwordHash, ...userData } = userNew._doc
-
+    res.header({
+      "Access-Control-Allow-Origin": "*",
+    });
     res.json({
       userData,
       token
@@ -137,7 +137,7 @@ router.get('/me', checkAuth, async (req, res) => {
         const {id} = req.body;
 
         const user = await User.findOne({id})
-        
+      
         if (!user) {
           return res.status(404).json({message: 'User not found'})
         }

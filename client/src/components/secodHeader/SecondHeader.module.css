@@ -1,7 +1,6 @@
 .container {
   display: flex;
   align-items: center;
-  gap: 75px;
   justify-content: flex-end;
   color: var(--color);
 }

@@ -18,10 +18,11 @@ const whitelist = [
 
 const corsOptions = {
    //origin: "http://localhost:3000",
-   origin: "https://maristakhovskaya.github.io",
-   //origin: "*",
-   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
+   //origin: ["http://localhost:3000", "https://MariStakhovskaya.github.io"],
+   origin: "*",
+   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
    Headers: '*',
+   credentials:true,
    mode: "no-cors",
  };
  app.use(express.json({ extended: true }), cors(corsOptions));
@@ -32,6 +33,7 @@ const corsOptions = {
        methods: ["GET", "POST"],
    },
 });
+
 
  io.on("connection", (socket) => {
    console.log('user is connected');
@@ -47,15 +49,7 @@ app.use('/api/auth', cors(corsOptions), require('./routes/auth.routes'))
 app.use('/users', cors(corsOptions), require('./routes/users.routes'))
 app.use('/meetings',cors(corsOptions), require('./routes/meeting.rotes'))
 
-// app.use("/", express.static(path.join(__dirname, "/build")));
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.resolve(__dirname, "/build/index.html"));
-// });
-// app.use(express.static(path.join(__dirname,'client','build'))) 
-// app.get('/', (req, res) =>{
-// res.send('hello world')
-// })
 mongoose.set('strictQuery', true);
 
 const connection = async () => {

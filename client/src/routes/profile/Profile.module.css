@@ -1,0 +1,52 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+  gap: 75px;
+}
+.title {
+  font-family: 'Poppins';
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 28px;
+  color: #2E3A59;
+}
+.meetings > div {
+  padding: 20px 20px 10px 20px;
+  box-shadow: 8px 8px 25px rgba(2, 2, 70, 0.15);
+}
+.meeting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px #c6c5c5 solid;
+  padding: 8px 15px;
+  margin-bottom: 10px;
+}
+.meeting > p {
+  min-width: fit-content;
+  font-weight: 600;
+  font-size: 24px;
+  margin-right: 30px;
+}
+.date__button {
+  width: 150px;
+  cursor: pointer;
+  background: #FFC430;
+  align-self: flex-end;
+}
+.date__button > button > p {
+  font-size: 24px;
+  font-weight: 600;
+}
+.date__button > button {
+  color: #000000;
+}
+.date__button > button:not([disabled]):hover {
+  background: #2e294e;
+  color: #ffffff;
+  transition: all 0.3s ease-in-out;
+}
+.greeting {
+  margin-top: 20px;
+  font-size: 24px;
+}

@@ -92,7 +92,6 @@ const AdminNew = ({ title }: AdminNewType) => {
     const value = e.target.value;
     const roleArr: RoleType[] = [];
     const usersArr: UsersType[] = [];
-
     let allUsers: { id: string; role: string }[] = new Array(
       meeting.personCount
     );
@@ -130,12 +129,17 @@ const AdminNew = ({ title }: AdminNewType) => {
     } else {
       setMeeting({ ...meeting, [id]: value });
     }
+    if (id === 'date') {
+      const dateVal = new Date(value).toLocaleDateString();
+      console.log(dateVal);
+      setMeeting({ ...meeting, date: dateVal });
+    }
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     setData({ ...data, updatedAt: '', createdAt: new Date().toString() });
     e.preventDefault();
-    dispatch(fetchRegister(data));
+    // dispatch(fetchRegister(data));
     setTimeout(() => {
       console.log(data);
       dispatch(setErrorREdux(''));

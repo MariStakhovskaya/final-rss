@@ -41,7 +41,7 @@
 .liSidebarAdmin {
   display: flex;
   align-items: center;
-  padding: 5px;
+  padding: 10px;
   cursor: pointer;
 }
 
@@ -55,7 +55,7 @@
 }
 
 .span {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 600;
   margin-left: 10px;
   color: var(--color);

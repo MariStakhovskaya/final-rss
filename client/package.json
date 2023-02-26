@@ -52,7 +52,6 @@
       "react-app/jest"
     ]
   },
-  "proxy": "https://final-rss-server.onrender.com",
   "browserslist": {
     "production": [
       ">0.2%",

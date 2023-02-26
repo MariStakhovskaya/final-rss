@@ -1,5 +1,6 @@
 import { useContext } from 'react';
-import { RoomContext, RoomProvider } from '../context/RoomContext';
+import Button from '../../../components/custom/button/Button';
+import { RoomContext } from '../context/RoomContext';
 
 type PropsType = {
   title: string;
@@ -13,11 +14,10 @@ function CreateButton({ title, disabled, idRoom }: PropsType) {
     ws.emit('create-room', idRoom);
   };
   return (
-    <div className="button">
-      <button onClick={createRoom} disabled={disabled}>
-        Start {title}
-      </button>
-    </div>
+    <Button name="Start meeting" callback={createRoom} disabled={disabled} />
+    // <button onClick={createRoom} disabled={disabled}>
+    //   Start {title}
+    // </button>
   );
 }
 

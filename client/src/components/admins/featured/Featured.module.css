@@ -66,6 +66,7 @@
 .itemResult {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-top: 10px;
   font-size: 14px;
 }
