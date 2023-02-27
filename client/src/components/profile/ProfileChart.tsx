@@ -29,6 +29,8 @@ const ProfileChart = () => {
     { name: 0, Total: 10 },
   ]);
 
+  const isGame = localStorage.getItem('carsGame') !== null ? true : false;
+
   function createDataChart() {
     const newData = dataResult?.map((elem: ElemType) => {
       console.log(elem);
@@ -46,7 +48,7 @@ const ProfileChart = () => {
 
   return (
     <div className={styles.chart}>
-      {resultGame!.length <= 0 ? (
+      {!isGame ? (
         <h2>No results</h2>
       ) : (
         <ResponsiveContainer width="100%" height="100%" aspect={2 / 1}>

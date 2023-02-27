@@ -21,6 +21,8 @@ function Profile() {
   const userId = localStorage.getItem('userId');
   // const userInfo = localStorage.getItem('user');
 
+  const isGame = localStorage.getItem('game') !== null ? true : false;
+
   useEffect(() => {
     if (userId) {
       dispatch(getUserData({ userId }));
@@ -28,10 +30,10 @@ function Profile() {
     dispatch(fetchMeeting());
   }, [dispatch, userId]);
 
-  useEffect(() => {
-    localStorage.setItem('game', JSON.stringify([]));
-    localStorage.setItem('carsGame', JSON.stringify([]));
-  }, []);
+  // useEffect(() => {
+  //   localStorage.setItem('game', JSON.stringify([]));
+  //   localStorage.setItem('carsGame', JSON.stringify([]));
+  // }, []);
 
   if (!isAuth) {
     return <Navigate to="/login" />;
@@ -87,11 +89,11 @@ function Profile() {
               <div className={styles.user}>
                 <div className={styles.title}>Funny Story Result</div>
                 <div>
-                  {funnyGame.length <= 0 ? (
+                  {!isGame ? (
                     <h2>No result</h2>
                   ) : (
                     funnyGame.map((el: string, index: number) => {
-                      return <p key={index}>{el}</p>;
+                      return <p key={index}>- {el}</p>;
                     })
                   )}
                 </div>
