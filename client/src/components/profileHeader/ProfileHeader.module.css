@@ -54,5 +54,63 @@
   background: #2E294E;
   border-radius: 5px;
   left: -14px;
-  top: 6px;
+  top: 3px;
+}
+
+@media (max-width: 999px) {
+  .container {
+    width: 100vw;
+    height: 80px;
+    display: block;
+    border-right: 0;
+    border-bottom: 1px var(--border-color) solid;
+    padding-right: 15px;
+  }
+  .container > div {
+    display: flex;
+    justify-content: space-between;
+  }
+  .container img {
+    width: 82px;
+    height: 80px;
+  }
+  .navigation {
+    flex-direction: row;
+    gap: 20px;
+    margin-top: 0;
+  }
+  .activeLink::before {
+    width: 7px;
+    height: 7px;
+    left: calc(50% - 3.5px);
+    top: 35px;
+    border-radius: 50%;
+  }
+}
+
+@media (max-width: 639px) {
+  .container {
+    height: 60px;
+  }
+  .container svg {
+    width: 20px;
+    height: 20px;
+  }
+  .navigation {
+    gap: 10px;
+  }
+  .content > a {
+    height: 60px;
+  }
+  .container img {
+    width: 61px;
+    height: 60px;
+  }
+  .activeLink::before {
+    width: 7px;
+    height: 7px;
+    left: calc(50% - 3.5px);
+    top: 30px;
+    border-radius: 50%;
+  }
 }

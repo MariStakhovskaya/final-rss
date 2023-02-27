@@ -1,6 +1,7 @@
 .games {
   display: flex;
   gap: 76px;
+  margin-bottom: 30px;
 }
 .game {
   width: 344px;
@@ -48,4 +49,78 @@
   font-size: 32px;
   color: #2E294E;
   text-align: center;
+}
+
+@media (max-width: 999px) {
+  .games {
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+  .game {
+    margin: 0 auto;
+    width: 280px;
+    height: auto;
+    box-shadow: 4px 4px 18px var(--border-color-page);
+    padding: 15px;
+  }
+  .game__select {
+    width: fit-content;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    font-size: 24px;
+    line-height: 20px;
+    margin-bottom: 10px;
+  }
+  .play__button {
+    cursor: pointer;
+    display: block;
+    background: #2E294E;
+    width: 250px;
+    margin-top: 20px;
+  }
+  .play__button:hover {
+    transition: all 0.3s ease-in-out;
+  }
+  .play__button > a button p {
+    font-size: 20px;
+  }
+  .img__container {
+    width: 250px;
+  }
+  .img__container > img {
+    height: 250px;
+  }
+  .title {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 6399px) {
+  .game__select {
+    padding-bottom: 0;
+    margin-top: 8px;
+  }
+  .play__button {
+    cursor: pointer;
+    display: block;
+    background: #2E294E;
+    width: 250px;
+    margin-top: 20px;
+  }
+  .play__button:hover {
+    transition: all 0.3s ease-in-out;
+  }
+  .play__button > a button p {
+    font-size: 20px;
+  }
+  .img__container {
+    width: 250px;
+  }
+  .img__container > img {
+    height: 250px;
+  }
+  .title {
+    font-size: 20px;
+  }
 }

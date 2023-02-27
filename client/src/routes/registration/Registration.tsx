@@ -1,7 +1,6 @@
 import Button from '../../components/custom/button/Button';
 import styles from './Registration.module.css';
 //import google from '../../images/google.svg';
-import SecondHeader from '../../components/secodHeader/SecondHeader';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../store/store';

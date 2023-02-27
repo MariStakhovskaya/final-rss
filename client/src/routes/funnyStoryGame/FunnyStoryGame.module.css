@@ -5,29 +5,31 @@ p {
 .container {
   position: relative;
   font-family: 'Poppins', sans-serif;
+  padding: 20px;
 }
 .chat {
   position: relative;
   width: 60%;
+  height: calc(100vh - 30px - 42px - 40px - 50px);
   margin: 0 auto;
   display: grid;
-  grid-template-rows: 72px 1fr 100px;
+  grid-template-rows: 72px 1fr 155px;
   border: 1px var(--border-color-game) solid;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
-  background-color: var(--background-table);
 }
 .name,
 .typing {
-  background: var(--background-game);
-  padding: 10px;
+  background: #eeeeee;
+  padding: 18px 10px;
   margin: 0;
 }
 .typing {
   display: flex;
   flex-direction: column;
+  height: fit-content;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
 }
@@ -48,15 +50,14 @@ p {
   cursor: pointer;
 }
 .input__message > svg path {
-  fill: var(--background-table-header);
+  fill: #bebebe;
 }
-
 .input__message > svg:hover path {
   fill: var(--color);
   transition: all 0.3s ease-in-out;
 }
 .message {
-  width: 78%;
+  width: 70%;
   height: 34px;
   background: white;
   border: 1px var(--border-color-game) solid;
@@ -69,7 +70,6 @@ p {
   flex-direction: column;
   padding: 20px 30px;
   font-size: 24px;
-  height: calc(100vh - 26px - 38px - 24px - 30px - 72px - 76px - 40px - 15px);
   overflow-y: auto;
 }
 .sms {
@@ -217,7 +217,7 @@ p {
 .view__button {
   cursor: pointer;
   background: #FFC430;
-  width: 100px;
+  width: 150px;
   padding: 0 10px;
   border-radius: 10px;
 }
@@ -229,4 +229,131 @@ p {
   color: #000000;
   font-weight: 500;
   font-size: 20px;
+}
+
+@media (max-width: 1599px) {
+  .chat {
+    width: 80%;
+    height: calc(100vh - 30px - 42px - 40px - 50px);
+    grid-template-rows: 40px 1fr 105.6px;
+  }
+  .name,
+  .typing {
+    padding: 8px;
+  }
+  .name {
+    font-size: 20px;
+  }
+  .message {
+    width: 60%;
+    height: 30px;
+    font-size: 18px;
+    padding: 4px 8px;
+  }
+  .content {
+    padding: 20px;
+    font-size: 20px;
+  }
+  .sms {
+    padding: 3px 12px 3px 12px;
+  }
+  .quastion {
+    right: 20px;
+    top: 6px;
+    font-size: 24px;
+    width: 28px;
+    height: 28px;
+  }
+  .popup__close,
+  .story__close {
+    display: none;
+  }
+  .popup__open,
+  .story__open {
+    top: -56px;
+    font-size: 18px;
+  }
+  .popup__open > div,
+  .story__open > div {
+    width: 60%;
+  }
+  .popup__open p {
+    font-size: 24px;
+  }
+  .questionWords {
+    font-size: 14px;
+  }
+  .view__button {
+    width: 120px;
+  }
+  .view__button p {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 639px) {
+  .chat {
+    width: 100%;
+    height: 60vh;
+    grid-template-rows: 40px 1fr auto;
+  }
+  .name,
+  .typing {
+    padding: 8px;
+  }
+  .input__message {
+    display: grid;
+    grid-template-areas: 
+      "message message"
+      "send button";
+  }
+  .message {
+    grid-area: message;
+    width: 100%;
+    font-size: 14px;
+    padding: 4px;
+    margin-bottom: 5px;
+  }
+  .input__message > svg {
+    grid-area: send;
+    width: 20px;
+    height: 20px;
+  }
+  .content {
+    padding: 12px;
+    font-size: 16px;
+  }
+  .quastion {
+    right: -32px;
+    top: 10px;
+    font-size: 20px;
+    width: 24px;
+    height: 24px;
+  }
+  .popup__close,
+  .story__close {
+    display: none;
+  }
+  .popup__open,
+  .story__open {
+    top: -56px;
+    font-size: 18px;
+  }
+  .popup__open > div,
+  .story__open > div {
+    width: 60%;
+  }
+  .popup__open p {
+    font-size: 24px;
+  }
+  .questionWords {
+    font-size: 14px;
+  }
+  .view__button {
+    grid-area: button;
+    width: 120px;
+  }
+  .view__button p {
+    font-size: 16px;
+  }
 }

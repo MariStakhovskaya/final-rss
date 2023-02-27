@@ -2,8 +2,6 @@ import styles from './ProfileHeader.module.css';
 import { NavLink, Link } from 'react-router-dom';
 import logo from '../../images/logo.svg';
 import logoDark from '../../images/logo-black.jpg';
-import { useTheme } from '../../theme/useTheme';
-import { useState, useEffect } from 'react';
 
 type ProfileHeaderType = {
   theme: string;
