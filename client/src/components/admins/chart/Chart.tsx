@@ -74,10 +74,10 @@ const Chart = ({ aspect, title, allUsers }: ChartType) => {
   return (
     <div className={styles.chart}>
       <div className={styles.title}>{title}</div>
-      <ResponsiveContainer width="100%" aspect={aspect}>
+      <ResponsiveContainer width="100%" height="300px" aspect={aspect}>
         <AreaChart
-          width={730}
-          height={250}
+          width={530}
+          height={1}
           data={dataChart}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
         >

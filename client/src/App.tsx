@@ -3,7 +3,8 @@ import Admin from './routes/admin/adminPages/AdminPage';
 import AdminRoot from './routes/admin/AdminRoot';
 import List from './routes/admin/listPage/List';
 import AdminNew from './routes/admin/new/AdminNew';
-import Single from './routes/admin/single/Single';
+import SingleMeeting from './routes/admin/single/SingleMeeting';
+import SingleUser from './routes/admin/single/SingleUser';
 import { GameCar } from './routes/cars-game-pages/game-car';
 import ErrorPage from './routes/error-page';
 import FunnyStoryGame from './routes/funnyStoryGame/FunnyStoryGame';
@@ -57,8 +58,8 @@ function App() {
             path="/admin/allMeeting"
             element={<List title="All Meeting" />}
           />
-          <Route path="/admin/user/:id" element={<Single />} />
-          <Route path="/admin/meeting/:id" element={<Single />} />
+          <Route path="/admin/user/:id" element={<SingleUser />} />
+          <Route path="/admin/meeting/:id" element={<SingleMeeting />} />
           <Route
             path="/admin/newUser"
             element={<AdminNew title="Add new user" />}

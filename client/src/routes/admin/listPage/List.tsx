@@ -22,12 +22,13 @@ const List = ({ title }: ListType) => {
 
   const { item } = useSelector((state: RootState) => state.meetings.meetings);
   const users = useSelector((state: RootState) => state.user.users);
-  const isLoading = useSelector(
+  const isLoadingMeeting = useSelector(
     (state: RootState) => state.meetings.meetings.status
   );
+  const isLoadingUser = useSelector((state: RootState) => state.user.status);
   return (
     <>
-      {isLoading === 'loading' ? (
+      {isLoadingMeeting === 'loading' || isLoadingUser === 'loading' ? (
         <Preloader />
       ) : (
         <DataTable title={title} dataUser={users} dataMeeting={item} />

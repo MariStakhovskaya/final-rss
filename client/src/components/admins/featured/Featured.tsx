@@ -9,14 +9,28 @@ type FeaturedDataType = {
 };
 
 const Featured = ({ allMeetings }: FeaturedDataType) => {
-  const percentage = 66;
+  const [percentage, setPercentage] = useState(0);
   const [todayMeetings, setTodayMeetings] = useState(0);
   const [meetingsSummary, setMeetingsSummary] = useState({
     pastData: 0,
     comingData: 0,
   });
   const today = new Date().toLocaleDateString();
-  console.log(today);
+
+  function findPercentage(): number {
+    const todayMeeting = allMeetings.filter((elem) => elem.date === today);
+    let personCountTotal = 0;
+    let usersCountTotal = 0;
+    todayMeeting.forEach((elem) => {
+      personCountTotal = personCountTotal + elem.personCount;
+      usersCountTotal = usersCountTotal + elem.users.length;
+    });
+    return (usersCountTotal * 100) / personCountTotal;
+  }
+
+  useEffect(() => {
+    setPercentage(findPercentage());
+  }, [allMeetings]);
 
   function findSummary() {
     let past = 0;

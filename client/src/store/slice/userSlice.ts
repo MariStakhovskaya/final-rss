@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { instance } from '../../api/api';
 
 export type UserType = {
+  updatedAt?: any;
+  password?: any;
   _id: string;
   email: string;
   name: string;
