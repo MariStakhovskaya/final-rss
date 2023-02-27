@@ -52,6 +52,14 @@
   font-size: 24px;
 }
 
+.replace {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+.user, .carGame {
+  margin-top: 40px;
+}
+
 @media (max-width: 1599px) {
   .title {
     font-size: 32px;

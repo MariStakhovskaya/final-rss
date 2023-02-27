@@ -26,13 +26,11 @@ const Sidebar = ({ theme }: SidebarType) => {
   return (
     <div className={styles.sidebar}>
       <div className={styles.top}>
-        <Link to="/">
-          <img
-            src={theme === 'light' ? logo : logoDark}
-            alt="logo"
-            className={styles.logo}
-          />
-        </Link>
+        <img
+          src={theme === 'light' ? logo : logoDark}
+          alt="logo"
+          className={styles.logo}
+        />
       </div>
       <hr className={styles.hrSidebarAdmin} />
       <div className={styles.center}>
@@ -62,10 +60,6 @@ const Sidebar = ({ theme }: SidebarType) => {
             </li>
           </Link>
         </ul>
-      </div>
-      <div className={styles.bottom}>
-        {/* <div className={styles.colorOption}></div>
-        <div className={styles.colorOption}></div> */}
       </div>
     </div>
   );

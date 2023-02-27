@@ -5,6 +5,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../store/store';
 import { fetchRegister, setErrorREdux } from '../../../store/slice/authSlice';
+import { createOneMeeting } from '../../../store/slice/meetingSlice';
+import { createUser } from '../../../store/slice/userSlice';
 
 type AdminNewType = {
   title: string;
@@ -23,8 +25,8 @@ type RoleType = {
 };
 
 type UsersType = {
-  id?: string;
-  role?: string;
+  id: string;
+  role: string;
 };
 
 type NewMeetingType = {
@@ -34,14 +36,15 @@ type NewMeetingType = {
   time: string;
   personCount: number;
   role: RoleType[];
-  users: UsersType[];
+  users: [];
   fulldescriptions: string;
+  url: string;
 };
 
 const AdminNew = ({ title }: AdminNewType) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const [fileImg, setFileImg] = useState<File>();
+  const [fileImg, setFileImg] = useState('');
 
   const [page, setPage] = useState('');
   const navigate = useNavigate();
@@ -61,8 +64,9 @@ const AdminNew = ({ title }: AdminNewType) => {
     time: '02.00',
     personCount: 2,
     role: [{ Role: 'role1' }, { Role: 'role2' }],
-    users: [{ id: '', role: '' }],
+    users: [],
     fulldescriptions: 'Some full descriptions',
+    url: '',
   });
 
   const location = useLocation();
@@ -92,23 +96,23 @@ const AdminNew = ({ title }: AdminNewType) => {
     const value = e.target.value;
     const roleArr: RoleType[] = [];
     const usersArr: UsersType[] = [];
-    let allUsers: { id: string; role: string }[] = new Array(
+    const allUsers: { id: string; role: string }[] = new Array(
       meeting.personCount
     );
-    let usersId: string[] = new Array(meeting.personCount);
-    let usersRole: string[] = new Array(meeting.personCount);
+    const usersId: string[] = new Array(meeting.personCount);
+    const usersRole: string[] = new Array(meeting.personCount);
 
     usersId.fill('');
     usersRole.fill('');
 
-    if (id === 'usersId') {
+    /*  if (id === 'usersId') {
       const arr = value.split(',');
       usersId = arr.map((elem) => elem.trim());
     }
     if (id === 'usersRole') {
       const arr = value.split(',');
       usersRole = arr.map((elem) => elem.trim());
-    }
+    } */
 
     if (id === 'role') {
       if (value.includes('|')) {
@@ -120,13 +124,13 @@ const AdminNew = ({ title }: AdminNewType) => {
         roleArr.push({ Role: e.target.value });
       }
       setMeeting({ ...meeting, [id]: roleArr });
-    } else if (id === 'usersId' || id === 'usersRole') {
+    } /* else if (id === 'usersId' || id === 'usersRole') {
       allUsers = usersId.map((elem, index) => ({
         id: usersId[index],
         role: usersRole[index],
       }));
       console.log(allUsers);
-    } else {
+    } */ else {
       setMeeting({ ...meeting, [id]: value });
     }
     if (id === 'date') {
@@ -134,12 +138,16 @@ const AdminNew = ({ title }: AdminNewType) => {
       console.log(dateVal);
       setMeeting({ ...meeting, date: dateVal });
     }
+    if (id === 'file') {
+      setFileImg(value);
+      setMeeting({ ...meeting, url: value });
+    }
   }
 
   const handleSubmit = (e: React.FormEvent) => {
     setData({ ...data, updatedAt: '', createdAt: new Date().toString() });
     e.preventDefault();
-    // dispatch(fetchRegister(data));
+    dispatch(createUser(data));
     setTimeout(() => {
       console.log(data);
       dispatch(setErrorREdux(''));
@@ -149,7 +157,7 @@ const AdminNew = ({ title }: AdminNewType) => {
 
   const handleSubmitMeeting = (e: React.FormEvent) => {
     e.preventDefault();
-    //dispatch(fetchMeeting(meeting));
+    dispatch(createOneMeeting({ body: meeting }));
     setTimeout(() => {
       console.log(meeting);
       dispatch(setErrorREdux(''));
@@ -168,7 +176,7 @@ const AdminNew = ({ title }: AdminNewType) => {
             className={styles.img}
             src={
               fileImg
-                ? URL.createObjectURL(fileImg)
+                ? fileImg
                 : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
             }
             alt=""
@@ -196,13 +204,6 @@ const AdminNew = ({ title }: AdminNewType) => {
                       Image:
                       <DriveFolderUploadOutlinedIcon className={styles.icon} />
                     </label>
-                    <input
-                      onChange={(e) => setFileImg(getFile(e))}
-                      type="file"
-                      id="file"
-                      style={{ display: 'none' }}
-                      className={styles.inputNewAdmin}
-                    />
                   </div>
                   <div className={styles.formInput}>
                     <label htmlFor="" className={styles.adminLabel}>
@@ -256,11 +257,19 @@ const AdminNew = ({ title }: AdminNewType) => {
                       Image:
                       <DriveFolderUploadOutlinedIcon className="icon" />
                     </label>
-                    <input
+                    {/*  <input
                       onChange={(e) => setFileImg(getFile(e))}
                       type="file"
                       id="file"
                       style={{ display: 'none' }}
+                      className={styles.inputNewAdmin}
+                    /> */}
+                    <input
+                      type="text"
+                      id="file"
+                      placeholder="New User Name"
+                      onChange={handleInputMeeting}
+                      //onChange={(e) => setFileImg(e.value)}
                       className={styles.inputNewAdmin}
                     />
                   </div>
@@ -328,28 +337,6 @@ const AdminNew = ({ title }: AdminNewType) => {
                     <input
                       type="text"
                       id="fulldescriptions"
-                      onChange={handleInputMeeting}
-                      className={styles.inputNewAdmin}
-                    />
-                  </div>
-                  <div className={styles.formInput}>
-                    <label htmlFor="" className={styles.adminLabel}>
-                      Users ID
-                    </label>
-                    <input
-                      type="text"
-                      id="usersId"
-                      onChange={handleInputMeeting}
-                      className={styles.inputNewAdmin}
-                    />
-                  </div>
-                  <div className={styles.formInput}>
-                    <label htmlFor="" className={styles.adminLabel}>
-                      Users Role
-                    </label>
-                    <input
-                      type="text"
-                      id="usersRole"
                       onChange={handleInputMeeting}
                       className={styles.inputNewAdmin}
                     />

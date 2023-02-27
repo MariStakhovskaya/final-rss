@@ -1,11 +1,10 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import style from '../../routes/cars-game-pages/GameCar.module.css';
-import heroImg from '../../assets/car-game/hero.png';
+import heroImg from '../../images/car-game/hero.png';
 import { arrWords, createWord, getRandomNumber } from './word';
 import { HeaderCarsGame } from './header';
 import { FooterCarsGame } from './footer';
-import Button from '../custom/button/Button';
-import { Link, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type Field = {
   fieldHeight: number;
@@ -38,20 +37,7 @@ type Coords = {
 type Result = {
   resultLives: number;
   resultCounter: number;
-  resultLevel: number;
   resultTime: string;
-};
-
-type Pause = {
-  resultLives: number;
-  resultCounter: number;
-  resultLevel: number;
-  resultTime: string;
-  word: string;
-  wordX: number;
-  wordY: number;
-  heroX: number;
-  heroY: number;
 };
 
 const FieldCarsGame = () => {
@@ -63,18 +49,16 @@ const FieldCarsGame = () => {
   const [lives, setLives] = React.useState(3);
   const [counter, setCounter] = React.useState(0);
   const [time, setTime] = React.useState('0:0');
-  const [level, setLevel] = React.useState(1);
   const [result, setResult] = React.useState({} as Result);
-  const [pause, setPause] = React.useState({} as Pause);
   const [move, setMove] = React.useState(true);
   const [win, setWin] = React.useState(false);
   const [isStop, setIsStop] = React.useState(false);
-  const [isPause, setIsPause] = React.useState(false);
   const [modalWindow, setModalWindow] = React.useState(false);
   const [fieldState, setFieldState] = React.useState({} as Field);
   const [heroState, setHeroState] = React.useState({} as Hero);
 
   const navigate = useNavigate();
+  const location = useLocation().pathname;
 
   let word: Word;
   let yCount = 0;
@@ -85,8 +69,6 @@ const FieldCarsGame = () => {
   let counterS = 0;
   let livesS = 3;
 
-  /* let modalWindow = false;
-  let win = false; */
   let timer: NodeJS.Timer;
   let timeTimer: NodeJS.Timer;
 
@@ -130,6 +112,7 @@ const FieldCarsGame = () => {
     timeTimer = setInterval(() => {
       getTimer();
     }, 1000);
+    console.log(location);
   }, []);
 
   function moveWordLeft() {
@@ -173,8 +156,6 @@ const FieldCarsGame = () => {
       width: parseInt(getComputedStyle(heroG).width),
       height: parseInt(getComputedStyle(heroG).height),
     };
-    /* console.log('hero', coordsHero);
-    console.log('word', coordsWord); */
     if (
       (coordsWord.x > coordsHero.x &&
         coordsWord.x < coordsHero.x + coordsHero.width &&
@@ -200,9 +181,7 @@ const FieldCarsGame = () => {
   }
 
   function checkWord(wordF: string | null) {
-    console.log(wordF);
     if (arrWords.includes(wordF!)) {
-      console.log(true);
       setCounter((prev) => prev + 1);
       counterS += 1;
       startTimer();
@@ -210,21 +189,23 @@ const FieldCarsGame = () => {
         setWin(true);
         setModalWindow(true);
         clearInterval(timeTimer);
-        setMove(false); //Запрещаем ходить игроку heroState.move
+        setMove(false);
+        setResult({
+          resultLives: lives,
+          resultCounter: counter,
+          resultTime: time,
+        });
       }
     } else {
       setLives((prev) => prev - 1);
       livesS -= 1;
-      console.log(false);
       startTimer();
       if (livesS === 0) {
-        //Проиграл
         setWin(false);
         setModalWindow(true);
-        console.log(modalWindow, win);
         clearInterval(timeTimer);
         clearInterval(timer);
-        setMove(false); //Запрещаем ходить игроку heroState.move
+        setMove(false);
       }
     }
   }
@@ -297,91 +278,32 @@ const FieldCarsGame = () => {
     backgroundImage: `url(${heroImg})`,
   };
 
-  function tryAgain() {
-    navigate(0);
-    /* setModalWindow(false);
-    setWin(false);
-    setMove(true);
-    setLives(3);
-    setCounter(0);
-    setTime('0:0');
-    min = 0;
-    sec = 0;
-    changeX = 0;
-    counterS = 0;
-    livesS = 3;
-    const wordW = document.getElementById('word');
-    console.log(wordW);
-    wordW!.style.top = `${changeX}px`;
-    startTimer();
-    timeTimer = setInterval(() => {
-      getTimer();
-    }, 1000); */
-  }
-  function getPause() {
-    setIsPause(!isPause);
-    const wordW = document.getElementById('word')!;
-    const heroG = document.getElementById('hero')!;
-    setMove(true);
-    setPause({
-      resultLives: lives,
-      resultCounter: counter,
-      resultLevel: level,
-      resultTime: time,
-      word: wordRender,
-      wordX: parseInt(getComputedStyle(wordW).left),
-      wordY: parseInt(getComputedStyle(wordW).top),
-      heroX: parseInt(getComputedStyle(heroG).left),
-      heroY: parseInt(getComputedStyle(heroG).top),
-    });
-    clearInterval(timeTimer);
-    clearInterval(timer);
-    console.log(pause);
-  }
-
   function getStop() {
     setIsStop(!isStop);
     clearInterval(timeTimer);
-    console.log(timeTimer);
+    console.log(timer);
     clearInterval(timer);
-    setLives(3);
-    setCounter(0);
-    setTime('0:0');
-    min = 0;
-    sec = 0;
-    changeX = 0;
-    counterS = 0;
-    livesS = 3;
-    //document.addEventListener('DOMContentLoaded', () => console.log(timer));
-    //console.log(window);
   }
-
   return (
     <>
       {modalWindow ? (
         <>
+          <HeaderCarsGame classButton={style.header} />
           {win ? (
             <h2>Поздравляем, Вы выиграли!</h2>
           ) : (
             <h2>К сожалению, Вы проиграли!</h2>
           )}
-          <FooterCarsGame counter={counter} time={time} lives={lives} />
-          <div className={style.header}>
-            <Button name={'Try again'} callback={tryAgain} />
-            <Link to="/login" className={style.link}>
-              <Button name={'Move on'} />
-            </Link>
-          </div>
+          <FooterCarsGame
+            counter={counter}
+            time={time}
+            lives={lives}
+            result={true}
+          />
         </>
       ) : (
         <>
-          <HeaderCarsGame
-            classButton={style.header}
-            isStop={isStop}
-            isPause={isPause}
-            callbackPause={getPause}
-            callbackStop={getStop}
-          />
+          <HeaderCarsGame classButton={style.header} />
           <div className={style.game} ref={refField} id="game">
             <div id="word" className={style.word} ref={wordRef}>
               {wordRender}
@@ -393,7 +315,12 @@ const FieldCarsGame = () => {
               style={styleCar}
             ></div>
           </div>
-          <FooterCarsGame counter={counter} time={time} lives={lives} />
+          <FooterCarsGame
+            counter={counter}
+            time={time}
+            lives={lives}
+            result={false}
+          />
         </>
       )}
     </>

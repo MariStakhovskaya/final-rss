@@ -89,6 +89,14 @@ export const createOneMeeting = createAsyncThunk(
   }
 );
 
+export const deleteOneMeeting = createAsyncThunk(
+  'meeting/deleteOneMeeting',
+  async (params: { id: string }) => {
+    const { data } = await instance.delete(`meetings/${params.id}`);
+    return data;
+  }
+);
+
 const meetingsSlice = createSlice({
   name: 'meeting',
   initialState,
@@ -139,6 +147,17 @@ const meetingsSlice = createSlice({
     });
     builder.addCase(createOneMeeting.rejected, (state, action) => {
       // state.meeting.meetingItem = action.payload;
+      state.meeting.status = 'error';
+    });
+    builder.addCase(deleteOneMeeting.pending, (state) => {
+      state.meeting.status = 'loading';
+      //state.meeting.meetingItem = {};
+    });
+    builder.addCase(deleteOneMeeting.fulfilled, (state, action) => {
+      state.meeting.status = 'loaded';
+      state.meeting.meetingItem = action.payload;
+    });
+    builder.addCase(deleteOneMeeting.rejected, (state) => {
       state.meeting.status = 'error';
     });
   },

@@ -24,7 +24,12 @@ function Meeting(props: MeetingPropsType) {
         <div>
           <img
             className={styles.img__meeting}
-            src={props.meeting.url}
+            //src={props.meeting.url}
+            src={
+              props.meeting.url
+                ? props.meeting.url
+                : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
+            }
             alt={props.meeting.title}
           />
         </div>

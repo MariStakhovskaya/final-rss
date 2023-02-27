@@ -10,10 +10,15 @@ import SecondHeader from '../../components/secodHeader/SecondHeader';
 
 export default function Root() {
   const [theme, setTheme] = useState('');
+  useEffect(() => {
+    const currentTheme = document.documentElement.getAttribute('data-theme')!;
+    setTheme(currentTheme);
+  }, []);
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(fetchAuthMe());
   }, [dispatch]);
+
   function updateTheme(value: string) {
     setTheme(value);
   }

@@ -2,24 +2,14 @@ import styles from './Datatable.module.css';
 import { useEffect, useState } from 'react';
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { MeetingType } from '../../../store/slice/meetingSlice';
-import { UserType } from '../../../store/slice/userSlice';
-// import { useDispatch } from 'react-redux';
-// import { AppDispatch } from '../../../store/store';
+import {
+  deleteOneMeeting,
+  MeetingType,
+} from '../../../store/slice/meetingSlice';
+import { deleteUser, UserType } from '../../../store/slice/userSlice';
 
-/* export type MeetingType = {
-  _id: string;
-  title?: string;
-  description: string;
-  fulldescriptions: string;
-  date: string;
-  time: string;
-  personCount: number;
-  url: string;
-  role: RoleType[];
-  users: Array<UserMeetingType>;
-  __v: number;
-}; */
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../../store/store';
 
 type DataTableType = {
   title: string;
@@ -28,7 +18,8 @@ type DataTableType = {
 };
 
 const DataTable = ({ title, dataUser, dataMeeting }: DataTableType) => {
-  //const dispatch = useDispatch<AppDispatch>();
+  console.log(dataUser);
+  const dispatch = useDispatch<AppDispatch>();
 
   function getMeetingsTitle(userId: string) {
     const arrTitle: string[] = [];
@@ -154,7 +145,7 @@ const DataTable = ({ title, dataUser, dataMeeting }: DataTableType) => {
       renderCell: (params) => {
         return (
           <div className={styles.cellAction}>
-            <Link to={`/admin/user/:${params.id}`}>
+            <Link to={`/admin/user/${params.id}`}>
               <div className={styles.viewButton}>Update</div>
             </Link>
             <div
@@ -179,7 +170,7 @@ const DataTable = ({ title, dataUser, dataMeeting }: DataTableType) => {
       }
     });
     try {
-      //await deleteUser({userId: id});
+      await dispatch(deleteUser({ userId: id }));
       setRows(deleteRows);
     } catch (err) {
       console.log(err);
@@ -220,7 +211,7 @@ const DataTable = ({ title, dataUser, dataMeeting }: DataTableType) => {
       renderCell: (params) => {
         return (
           <div className={styles.cellAction}>
-            <Link to={`/admin/meeting/:${params.id}`}>
+            <Link to={`/admin/meeting/${params.id}`}>
               <div className={styles.viewButton}>Update</div>
             </Link>
             <div
@@ -245,7 +236,7 @@ const DataTable = ({ title, dataUser, dataMeeting }: DataTableType) => {
       }
     });
     try {
-      //await deleteMeetings({userId: id});
+      await dispatch(deleteOneMeeting({ id: id }));
       setRows(deleteRows);
     } catch (err) {
       console.log(err);

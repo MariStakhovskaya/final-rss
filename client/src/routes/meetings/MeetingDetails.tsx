@@ -1,5 +1,4 @@
 import styles from './Meeting.module.css';
-import SecondHeader from '../../components/secodHeader/SecondHeader';
 import Button from '../../components/custom/button/Button';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -94,8 +93,16 @@ function MeetingDetails() {
           <div className={styles.containerMeeting}>
             <div className={[styles.meeting, styles.meeting__small].join(' ')}>
               <div className={styles.title__details}>{title}</div>
-              <div className={styles.img}>
-                <img className={styles.img__meeting} src={url} alt={title} />
+              <div>
+                <img
+                  className={styles.img__meeting}
+                  src={
+                    url
+                      ? url
+                      : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
+                  }
+                  alt={title}
+                />
               </div>
               <div className={styles.count__block__details}>
                 <svg

@@ -119,6 +119,7 @@ function FunnyStoryGame() {
           3000
         );
     }
+    localStorage.setItem('game', JSON.stringify(content));
   }, [content]);
 
   const [openPopUp, setOpenPopUp] = useState<boolean>(false);
