@@ -37,7 +37,6 @@ const ProfileChart = () => {
         Total: elem.resultCounter,
       };
     });
-    console.log(newData);
     return newData;
   }
   createDataChart();

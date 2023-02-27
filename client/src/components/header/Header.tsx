@@ -1,7 +1,8 @@
 import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
-import logo from '../../images/logo.svg';
-import logoDark from '../../images/logo-black.jpg';
+// import logo from '../../images/logo.svg';
+// import logoDark from '../../images/logo-black.jpg';
+import logo from '../../images/logo_clear.png';
 import { useSelector } from 'react-redux';
 import { setIsAuth } from '../../store/slice/authSlice';
 import ProfileHeader from '../profileHeader/ProfileHeader';
@@ -20,7 +21,8 @@ function Header({ theme }: HeaderType) {
         <div className={styles.container}>
           <div className={styles.content}>
             <Link to="/">
-              <img src={theme === 'light' ? logo : logoDark} alt="logo" />
+              {/* <img src={theme === 'light' ? logo : logoDark} alt="logo" /> */}
+              <img src={logo} alt="logo" />
             </Link>
             <div className={styles.navigation}>
               <svg
