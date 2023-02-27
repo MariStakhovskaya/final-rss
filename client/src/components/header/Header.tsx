@@ -18,19 +18,12 @@ function Header({ theme }: HeaderType) {
         <ProfileHeader theme={theme} />
       ) : (
         <div className={styles.container}>
-          <div>
+          <div className={styles.content}>
             <Link to="/">
-              <img
-                src={theme === 'light' ? logo : logoDark}
-                width="119px"
-                height="114px"
-                alt="logo"
-              />
+              <img src={theme === 'light' ? logo : logoDark} alt="logo" />
             </Link>
             <div className={styles.navigation}>
               <svg
-                width="33"
-                height="33"
                 viewBox="0 0 33 33"
                 xmlns="http://www.w3.org/2000/svg"
                 onClick={() => (window.location.href = 'tel: +375331234567')}
@@ -43,8 +36,6 @@ function Header({ theme }: HeaderType) {
                 />
               </svg>
               <svg
-                width="33"
-                height="27"
                 viewBox="0 0 33 27"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -58,8 +49,6 @@ function Header({ theme }: HeaderType) {
                 />
               </svg>
               <svg
-                width="33"
-                height="33"
                 viewBox="0 0 33 33"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -76,8 +65,6 @@ function Header({ theme }: HeaderType) {
                 />
               </svg>
               <svg
-                width="34"
-                height="29"
                 viewBox="0 0 34 29"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"

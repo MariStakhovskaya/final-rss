@@ -35,8 +35,6 @@ function Meeting(props: MeetingPropsType) {
         </div>
         <div className={styles.count__block}>
           <svg
-            width="30"
-            height="30"
             viewBox="0 0 18 20"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
@@ -52,7 +50,7 @@ function Meeting(props: MeetingPropsType) {
         </div>
         <div className={styles.description}>{props.meeting.description}</div>
       </div>
-      <div>
+      <div className={styles.date}>
         <Link key={props.meeting._id} to={`/meetings/${props.meeting._id}`}>
           <button className={styles.btnMeeting}>
             <span className={styles.btnName}>{props.meeting.date}</span>

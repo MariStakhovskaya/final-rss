@@ -91,7 +91,7 @@ function MeetingDetails() {
             <button onClick={() => navigate(-1)}>&#8249; Back</button>
           </div>
           <div className={styles.containerMeeting}>
-            <div className={styles.meeting}>
+            <div className={[styles.meeting, styles.meeting__small].join(' ')}>
               <div className={styles.title__details}>{title}</div>
               <div>
                 <img

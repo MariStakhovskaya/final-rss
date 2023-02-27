@@ -9,7 +9,6 @@
 }
 .container {
   background: var(--background-color-frames);
-  height: 486px;
   justify-content: space-between;
 }
 .meeting {
@@ -88,6 +87,10 @@ a {
 }
 .count__details {
   color: #ffffff;
+}
+.count__block > svg {
+  width: 30px;
+  height: 30px;
 }
 .count__block > svg path {
   fill: #2e294e;
@@ -175,4 +178,135 @@ a {
   color: #c5c5c5;
   align-self: flex-end;
   padding-bottom: 3px;
+}
+.date {
+  margin-top: 30px;
+}
+
+@media (max-width: 1599px) {
+  .container,
+  .meeting {
+    width: 300px;
+  }
+  .containerMeeting {
+    gap: 30px;
+  }
+  .select__button {
+    width: 290px;
+  }
+}
+
+@media (max-width: 999px) {
+  .containerMeeting {
+    flex-direction: column;
+  }
+  .container,
+  .meeting {
+    width: 280px;
+    box-shadow: 4px 4px 18px var(--border-color-page);
+    padding: 15px;
+  }
+  .meeting__small {
+    position: relative;
+    width: auto;
+    max-width: 884px;
+  }
+  .title,
+  .title__details {
+    font-size: 24px;
+    line-height: 28px;
+  }
+  .minititle {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .description {
+    font-size: 16px;
+  }
+  .btnMeeting {
+    padding: 10px 20px;
+    width: auto;
+  }
+  .btnName {
+    font-size: 20px;
+    line-height: 26px;
+  }
+  .img__meeting {
+    width: 250px;
+    margin-bottom: 16px;
+  }
+  .meeting__small .img {
+    align-self: flex-start;
+  }
+  .count,
+  .count__details {
+    font-size: 24px;
+    line-height: 26px;
+  }
+  .count__block {
+    display: none;
+  }
+  .count__block__details {
+    position: absolute;
+    left: calc(250px + 15px + 15px);
+    top: calc(28px + 134px);
+    align-items: center;
+  }
+  .back__button {
+    margin-bottom: 20px;
+  }
+  .back__button > button {
+    font-size: 26px;
+  }
+  .select__button {
+    width: 300px;
+  }
+  .select__button > button {
+    font-size: 20px;
+  }
+  .about {
+    box-shadow: 4px 4px 18px rgba(2, 2, 70, 0.15);
+  }
+  .information {
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 639px) {
+  .container,
+  .meeting {
+    width: 280px;
+    box-shadow: 4px 4px 18px var(--border-color-page);
+    padding: 15px;
+  }
+  .meeting__small {
+    max-width: 560px;
+  }
+  .minititle {
+    font-size: 18px;
+    margin-bottom: 6px;
+  }
+  .description {
+    font-size: 14px;
+  }
+  .btnMeeting {
+    padding: 7px 15px;
+  }
+  .btnName {
+    font-size: 18px;
+  }
+  .count,
+  .count__details {
+    font-size: 18px;
+    line-height: 26px;
+  }
+  .count__block__details {
+    position: static;
+  }
+  .select__button {
+    width: 200px;
+  }
+  .select__button > button {
+    font-size: 18px;
+  }
 }

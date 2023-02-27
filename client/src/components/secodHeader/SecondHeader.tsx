@@ -65,7 +65,6 @@ function SecondHeader({ updateTheme }: SecondHeaderType) {
           onClick={handleChangeTheme}
         />
       </div>
-      <p className={styles.language}>EN</p>
     </div>
   );
 }
