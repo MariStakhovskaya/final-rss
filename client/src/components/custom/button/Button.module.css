@@ -14,8 +14,13 @@
 .container p {
   margin: 0;
 }
-
 .container:disabled {
   background-color: gray;
   cursor: default;
+}
+
+@media (max-width: 1599px) {
+  .container {
+    padding: 8px 0;
+  }
 }

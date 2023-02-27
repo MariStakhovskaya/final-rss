@@ -1,5 +1,6 @@
 .preloader {
     margin: 0 auto;
+    padding-bottom: 50px;
     max-width: 60px;
     height: 30px;
     display: flex;

@@ -21,43 +21,41 @@ function HomeVideo() {
         {item.map((meeting) =>
           meeting.users.map((user) => {
             return userId === user.id ? (
-              <div key={meeting._id}>
-                <div className={styles.container}>
+              <div key={meeting._id} className={styles.container}>
+                <div>
+                  <div className={styles.title}>{meeting.title}</div>
                   <div>
-                    <div className={styles.title}>{meeting.title}</div>
-                    <div>
-                      <img
-                        className={styles.img__meeting}
-                        src={meeting.url}
-                        alt={meeting.title}
-                      />
-                    </div>
-                    <div className={styles.minititle}>Your role:</div>
-                    <div className={styles.title__details}>{user.role}</div>
-                    <div>
-                      <div className={styles.minititle}>Date:</div>
-                      <div className={styles.date}>
-                        <span className={styles.title__details}>
-                          {meeting.date}
-                        </span>
-                        <span className={styles.title__details}>
-                          {meeting.time}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className={styles.button}>
-                    <CreateButton
-                      title={meeting.title}
-                      disabled={
-                        new Date() <
-                        new Date(meeting.date.split('.').reverse().join('-'))
-                          ? true
-                          : false
-                      }
-                      idRoom={meeting._id}
+                    <img
+                      className={styles.img__meeting}
+                      src={meeting.url}
+                      alt={meeting.title}
                     />
                   </div>
+                  <div className={styles.minititle}>Your role:</div>
+                  <div className={styles.title__details}>{user.role}</div>
+                  <div>
+                    <div className={styles.minititle}>Date:</div>
+                    <div className={styles.date}>
+                      <span className={styles.title__details}>
+                        {meeting.date}
+                      </span>
+                      <span className={styles.title__details}>
+                        {meeting.time}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.button}>
+                  <CreateButton
+                    title={meeting.title}
+                    disabled={
+                      new Date() <
+                      new Date(meeting.date.split('.').reverse().join('-'))
+                        ? true
+                        : false
+                    }
+                    idRoom={meeting._id}
+                  />
                 </div>
               </div>
             ) : (

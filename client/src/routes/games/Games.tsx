@@ -1,4 +1,3 @@
-import SecondHeader from '../../components/secodHeader/SecondHeader';
 import styles from './Games.module.css';
 import gameIMG from '../../images/game_img.jpg';
 import Button from '../../components/custom/button/Button';

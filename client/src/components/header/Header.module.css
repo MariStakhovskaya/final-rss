@@ -7,6 +7,14 @@
   justify-content: space-between;
   border-right: 1px var(--border-color) solid;
 }
+.container svg {
+  width: 33px;
+  height: 33px;
+}
+.container img {
+  width: 119px;
+  height: 114px;
+}
 .navigation {
   display: flex;
   flex-direction: column;
@@ -25,4 +33,55 @@
   color: #c5c5c5;
   font-size: 22px;
   margin: 0 0 24px 0;
+}
+
+@media (max-width: 999px) {
+  .container {
+    width: 100vw;
+    height: 80px;
+    display: block;
+    border-right: 0;
+    border-bottom: 1px var(--border-color) solid;
+    padding-right: 15px;
+  }
+  .container svg {
+    width: 25px;
+    height: 25px;
+  }
+  .content {
+    display: flex;
+    justify-content: space-between;
+  }
+  .container img {
+    width: 82px;
+    height: 80px;
+  }
+  .navigation {
+    flex-direction: row;
+    gap: 25px;
+    margin-top: 0;
+  }
+  .container > p {
+    display: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .container {
+    height: 60px;
+  }
+  .container svg {
+    width: 20px;
+    height: 20px;
+  }
+  .navigation {
+    gap: 20px;
+  }
+  .content > a {
+    height: 60px;
+  }
+  .container img {
+    width: 61px;
+    height: 60px;
+  }
 }

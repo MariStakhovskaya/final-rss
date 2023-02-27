@@ -1,11 +1,14 @@
+.container {
+  width: fit-content;
+  margin: 0 auto;
+}
 .registration__input {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 43px 64px 49px 64px;
   box-shadow: var(--border-color-page) 8px 8px 25px;
-  width: 580px;
-  margin: 0 auto;
+  margin-top: 40px;
 }
 h3 {
   font-size: 36px;
@@ -54,7 +57,7 @@ h3 {
   margin-bottom: 62px;
 }
 .inputs > input {
-  width: 550px;
+  width: 580px;
   padding: 15px;
   border: 1px var(--border-color) solid;
   background-color: transparent;
@@ -68,7 +71,7 @@ h3 {
   width: 580px;
   margin-bottom: 28px;
 }
-.create__button > button p{
+.create__button > button p {
   color: #ffffff;
   font-weight: 700;
   font-size: 24px;
@@ -86,7 +89,90 @@ h3 {
   text-decoration: underline;
   transition: all 0.3s ease-in-out;
 }
-
 .errorRed {
   color: red;
+}
+
+@media (max-width: 1599px) {
+  .registration__input {
+    padding: 33px 42px 39px 42px;
+    margin-top: 60px;
+  }
+  h3 {
+    font-size: 32px;
+  }
+  .inputs {
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .inputs > input {
+    width: 450px;
+  }
+  .create__button {
+    width: 450px;
+  }
+}
+
+@media (max-width: 999px) {
+  .registration__input {
+    padding: 0 20px 15px 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  .inputs {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .inputs > input {
+    width: 330px;
+    margin-bottom: 10px;
+  }
+  .create__button {
+    width: 330px;
+  }
+  .create__button > button p {
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .registration__input > p {
+    font-size: 14px;
+  }
+  .errorRed {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 639px) {
+  .registration__input {
+    padding: 0 15px 10px 15px;
+    margin-top: 25px;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  .inputs {
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+  .inputs > input {
+    width: 200px;
+    padding: 8px;
+    margin-bottom: 5px;
+  }
+  .create__button {
+    width: 200px;
+  }
+  .create__button > button p {
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .create__input > p {
+    font-size: 14px;
+  }
+  .errorRed {
+    font-size: 14px;
+  }
 }

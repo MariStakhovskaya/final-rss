@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import Button from '../../components/custom/button/Button';
-import SecondHeader from '../../components/secodHeader/SecondHeader';
 import { setIsAuth } from '../../store/slice/authSlice';
 import styles from './Start.module.css';
 
