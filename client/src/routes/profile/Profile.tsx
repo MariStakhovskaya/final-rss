@@ -28,6 +28,11 @@ function Profile() {
     dispatch(fetchMeeting());
   }, [dispatch, userId]);
 
+  useEffect(() => {
+    localStorage.setItem('game', JSON.stringify([]));
+    localStorage.setItem('carsGame', JSON.stringify([]));
+  }, []);
+
   if (!isAuth) {
     return <Navigate to="/login" />;
   }
@@ -83,7 +88,7 @@ function Profile() {
                 <div className={styles.title}>Funny Story Result</div>
                 <div>
                   {funnyGame.length <= 0 ? (
-                    <h2>Start the game</h2>
+                    <h2>No result</h2>
                   ) : (
                     funnyGame.map((el: string, index: number) => {
                       return <p key={index}>{el}</p>;

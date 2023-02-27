@@ -30,7 +30,7 @@ const ProfileChart = () => {
   ]);
 
   function createDataChart() {
-    const newData = dataResult.map((elem: ElemType) => {
+    const newData = dataResult?.map((elem: ElemType) => {
       console.log(elem);
       return {
         name: elem.resultTime,
@@ -48,8 +48,8 @@ const ProfileChart = () => {
 
   return (
     <div className={styles.chart}>
-      {resultGame!.length < 0 ? (
-        <h2>Start the game</h2>
+      {resultGame!.length <= 0 ? (
+        <h2>No results</h2>
       ) : (
         <ResponsiveContainer width="100%" height="100%" aspect={2 / 1}>
           <AreaChart

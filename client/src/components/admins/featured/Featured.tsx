@@ -25,7 +25,9 @@ const Featured = ({ allMeetings }: FeaturedDataType) => {
       personCountTotal = personCountTotal + elem.personCount;
       usersCountTotal = usersCountTotal + elem.users.length;
     });
-    return (usersCountTotal * 100) / personCountTotal;
+    return personCountTotal === 0
+      ? usersCountTotal * 100
+      : (usersCountTotal * 100) / personCountTotal;
   }
 
   useEffect(() => {
