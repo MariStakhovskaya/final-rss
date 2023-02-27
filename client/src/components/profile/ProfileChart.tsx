@@ -42,7 +42,6 @@ const ProfileChart = () => {
   createDataChart();
   useEffect(() => {
     setDataChart(createDataChart());
-    console.log(dataChart);
   }, [resultGame]);
 
   return (
