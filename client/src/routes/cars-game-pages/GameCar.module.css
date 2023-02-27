@@ -162,3 +162,21 @@ h2 {
 .link {
   text-decoration: none;
 }
+
+.back__button {
+  margin-bottom: 36px;
+}
+.back__button > button {
+  cursor: pointer;
+  border: none;
+  background: inherit;
+  font-size: 36px;
+  font-weight: 700;
+  color: #c5c5c5;
+  display: flex;
+  align-items: center;
+}
+.back__button > button:hover {
+  color: #808080;
+  transition: all 0.3s ease-in-out;
+}

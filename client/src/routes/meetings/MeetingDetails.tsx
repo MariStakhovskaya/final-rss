@@ -1,5 +1,4 @@
 import styles from './Meeting.module.css';
-import SecondHeader from '../../components/secodHeader/SecondHeader';
 import Button from '../../components/custom/button/Button';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';

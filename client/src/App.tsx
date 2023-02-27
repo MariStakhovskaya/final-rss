@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import SettingsUser from './components/settings/SettingsUser';
 import Admin from './routes/admin/adminPages/AdminPage';
 import AdminRoot from './routes/admin/AdminRoot';
 import List from './routes/admin/listPage/List';
@@ -50,6 +51,7 @@ function App() {
               </RoomProvider>
             }
           />
+          <Route path="/setting" element={<SettingsUser />} />
         </Route>
         <Route path="/admin" element={<AdminRoot />}>
           <Route index element={<Admin />} />

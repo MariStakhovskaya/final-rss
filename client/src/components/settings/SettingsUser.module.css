@@ -1,0 +1,15 @@
+.top {
+  width: 500px;
+  height: max-content;
+  padding: 20px;
+  margin: 0 auto;
+}
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.itemImg {
+  width: 30%;
+  
+}

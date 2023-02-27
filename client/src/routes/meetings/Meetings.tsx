@@ -2,7 +2,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 import { useEffect } from 'react';
 import { fetchMeeting } from '../../store/slice/meetingSlice';
-import SecondHeader from '../../components/secodHeader/SecondHeader';
 import Meeting from './Meeting';
 import styles from './Meetings.module.css';
 

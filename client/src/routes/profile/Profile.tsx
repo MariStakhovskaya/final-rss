@@ -8,6 +8,7 @@ import { getUserData } from '../../store/slice/userSlice';
 import { Navigate } from 'react-router-dom';
 import { fetchMeeting } from '../../store/slice/meetingSlice';
 import Button from '../../components/custom/button/Button';
+import ProfileChart from '../../components/profile/ProfileChart';
 
 function Profile() {
   const dispatch = useDispatch<AppDispatch>();
@@ -30,6 +31,11 @@ function Profile() {
   if (!isAuth) {
     return <Navigate to="/login" />;
   }
+  const resultGame = localStorage.getItem('game');
+  let funnyGame;
+  if (resultGame) {
+    funnyGame = JSON.parse(resultGame);
+  }
 
   return (
     <div>
@@ -40,31 +46,56 @@ function Profile() {
             <div className={styles.meetings}>
               <h3 className={styles.title}>Your meetings</h3>
               <div>
-                {item
-                  .filter(
-                    (el) =>
-                      el.users.filter((elem) => elem.id === userId).length !== 0
-                  )
-                  .map((el) => (
-                    <div key={el._id} className={styles.meeting}>
-                      <p>{el.title}</p>
-                      <div className={styles.date__button}>
-                        <Button
-                          name={el.date}
-                          callback={() => {}}
-                          disabled={
-                            new Date() <
-                            new Date(el.date.split('.').reverse().join('-'))
-                              ? true
-                              : false
-                          }
-                        />
-                      </div>
-                    </div>
-                  ))}
+                {item.filter(
+                  (el) =>
+                    el.users.filter((elem) => elem.id === userId).length !== 0
+                ).length === 0 ? (
+                  <div className={styles.replace}>You don`t have meetings</div>
+                ) : (
+                  <div>
+                    {item
+                      .filter(
+                        (el) =>
+                          el.users.filter((elem) => elem.id === userId)
+                            .length !== 0
+                      )
+                      .map((el) => (
+                        <div key={el._id} className={styles.meeting}>
+                          <p>{el.title}</p>
+                          <div className={styles.date__button}>
+                            <Button
+                              name={el.date}
+                              callback={() => {}}
+                              disabled={
+                                new Date() <
+                                new Date(el.date.split('.').reverse().join('-'))
+                                  ? true
+                                  : false
+                              }
+                            />
+                          </div>
+                        </div>
+                      ))}
+                  </div>
+                )}
+              </div>
+              <div className={styles.user}>
+                <div className={styles.title}>Funny Story Result</div>
+                <div>
+                  {funnyGame.length <= 0 ? (
+                    <h2>Start the game</h2>
+                  ) : (
+                    funnyGame.map((el: string, index: number) => {
+                      return <p key={index}>{el}</p>;
+                    })
+                  )}
+                </div>
+              </div>
+              <div className={styles.carGame}>
+                <div className={styles.title}>Car Game Result</div>
+                <ProfileChart />
               </div>
             </div>
-            <div className={styles.user}></div>
           </div>
         </div>
       ) : (

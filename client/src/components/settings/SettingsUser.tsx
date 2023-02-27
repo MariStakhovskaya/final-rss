@@ -1,38 +1,27 @@
-import styles from './Single.module.css';
-import { useParams } from 'react-router';
+import styles from './SettingsUser.module.css';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { AppDispatch, RootState } from '../../../store/store';
+import { AppDispatch, RootState } from '../../store/store';
 import { useState } from 'react';
-import { setErrorREdux } from '../../../store/slice/authSlice';
-import { updateOneUser } from '../../../store/slice/userSlice';
+import { setErrorREdux } from '../../store/slice/authSlice';
+import { updateOneUser } from '../../store/slice/userSlice';
 
 type NewUserType = {
   name: string;
   email: string;
-  password: string | undefined;
-  createdAt: string;
-  updatedAt: string | undefined;
 };
 
-const SingleUser = () => {
+const SettingsUser = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const id = useParams().id;
-  const user = useSelector((state: RootState) => state.user.users).filter(
-    (e) => e._id === id
-  );
 
-  console.log(user[0]);
+  const user = useSelector((state: RootState) => state.user.user);
 
   const [data, setData] = useState<NewUserType>({
-    name: user[0].name,
-    email: user[0].email,
-    password: user[0].password,
-    createdAt: user[0].createdAt,
-    updatedAt: user[0].updatedAt,
+    name: user.name,
+    email: user.email,
   });
 
   function handleInput(e: React.ChangeEvent<HTMLInputElement>) {
@@ -43,11 +32,8 @@ const SingleUser = () => {
   }
 
   const handleSubmit = (e: React.FormEvent) => {
-    setData({ ...data, updatedAt: new Date().toString() });
     e.preventDefault();
-    if (id) {
-      dispatch(updateOneUser({ id: id, body: data }));
-    }
+    dispatch(updateOneUser({ id: user._id, body: data }));
     setTimeout(() => {
       console.log(data);
       dispatch(setErrorREdux(''));
@@ -94,18 +80,6 @@ const SingleUser = () => {
                     value={data.email}
                   />
                 </div>
-                <div className={styles.formInput}>
-                  <label htmlFor="" className={styles.adminLabel}>
-                    Password
-                  </label>
-                  <input
-                    type="password"
-                    id="password"
-                    className={styles.inputNewAdmin}
-                    onChange={handleInput}
-                    value={data.password}
-                  />
-                </div>
               </div>
               <div className={styles.buttonWrapper}>
                 <button className={styles.buttonNewAdmin} type="submit">
@@ -120,4 +94,4 @@ const SingleUser = () => {
   );
 };
 
-export default SingleUser;
+export default SettingsUser;

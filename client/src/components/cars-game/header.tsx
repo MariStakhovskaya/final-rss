@@ -1,23 +1,20 @@
-import Button from '../custom/button/Button';
+import styles from '../../routes/cars-game-pages/GameCar.module.css';
+import { useNavigate } from 'react-router-dom';
+
 type HeaderCarsGameType = {
   classButton: string;
-  isStop: boolean;
-  isPause: boolean;
-  callbackPause: () => void;
-  callbackStop: () => void;
 };
 
-const HeaderCarsGame = (props: HeaderCarsGameType) => {
+const HeaderCarsGame = ({ classButton }: HeaderCarsGameType) => {
+  const navigate = useNavigate();
+  function stopGame() {
+    navigate(-1);
+  }
   return (
-    <div className={props.classButton}>
-      <Button
-        name={props.isPause ? 'Play' : 'Pause'}
-        callback={props.callbackPause}
-      />
-      <Button
-        name={props.isStop ? 'Play' : 'Stop'}
-        callback={props.callbackStop}
-      />
+    <div className={classButton}>
+      <div className={styles.back__button}>
+        <button onClick={stopGame}>&#8249; Back</button>
+      </div>
     </div>
   );
 };

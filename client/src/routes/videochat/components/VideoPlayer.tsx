@@ -7,7 +7,5 @@ export const VideoPlayer = ({ stream }: { stream: MediaStream }) => {
   useEffect(() => {
     if (videoRef.current) videoRef.current.srcObject = stream;
   }, [stream]);
-  return (
-    <video ref={videoRef} autoPlay muted={true} className={styles.videoBox} />
-  );
+  return <video ref={videoRef} autoPlay className={styles.videoBox} />;
 };
