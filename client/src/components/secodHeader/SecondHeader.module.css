@@ -1,0 +1,80 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 25px;
+  color: var(--color);
+}
+.user {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  cursor: pointer;
+}
+.status a {
+  text-decoration: none;
+  color: #a0a0a0;
+  font-size: 22px;
+}
+.user:hover a {
+  color: #4a4a4a;
+  transition: all 0.3s ease-in-out;
+}
+.status svg {
+  width: 24px;
+  height: 24px;
+}
+.user:hover svg path {
+  fill: #4a4a4a;
+  transition: all 0.3s ease-in-out;
+}
+.item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  color: var(--color);
+}
+.item svg > path {
+  cursor: pointer;
+  fill: #C6C5C5;
+}
+.item:hover svg > path {
+  fill: #808080;
+  transition: all 0.3s ease-in-out;
+}
+.icon {
+  font-size: 20px;
+}
+
+@media (max-width: 999px) {
+  .container {
+    gap: 20px;
+    margin-right: -45px;
+    margin-top: -15px;
+  }
+  .user {
+    gap: 10px;
+  }
+  .status a {
+    font-size: 16px;
+  }
+  .status svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 639px) {
+  .container {
+    gap: 20px;
+    margin-right: -7px;
+    margin-top: -20px;
+  }
+  .user {
+    gap: 8px;
+  }
+  .status svg {
+    width: 16px;
+    height: 16px;
+  }
+}

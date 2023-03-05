@@ -1,0 +1,34 @@
+.meetingsBlock {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 76px;
+  margin-bottom: 30px;
+}
+.selectTopic {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 28px;
+  color: var(--header-color-select);
+}
+
+@media (max-width: 999px) {
+  .meetingsBlock {
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+  .meetingsBlock > div {
+    margin: 0 auto;
+  }
+  .selectTopic {
+    font-size: 24px;
+    line-height: 20px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 639px) {
+  .selectTopic {
+    text-align: center;
+  }
+}
