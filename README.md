@@ -15,10 +15,10 @@ Choosing different roles, users can communicate with each other on a specific to
 - Interactive header
 - Videochat
 - Admin-panel
-- Adding, deleting, editing meetings
-- Adding, deleting, editing users
+- Create, delete, update meetings
+- Create, delete, update users
 - 2 games
-- Boolean role selection (can`t take occupied roles, can`t select a new role if you are registered)
+- Boolean role selection (can not take occupied roles, can not select a new role if you are registered)
 - API
 - Preloader
 - Graphics
